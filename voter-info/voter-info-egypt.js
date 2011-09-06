@@ -84,14 +84,12 @@ $(document).ready(function(){
 })(jQuery);
 
 
-$(function() {
-    /* For jquery.chained.js */
-   d =  $("#pid").chained("#gid");
-  });
-
-
+	$(function() {      
+		setTimeout("$('#pid').chained('#gid')",20);   
+	});
 
 });
+
 var defaultLanguage = 'ar';
 var supportedLanguages = {
 	ar: 'عربي',
