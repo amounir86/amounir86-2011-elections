@@ -4,7 +4,7 @@
 
 (function() {
 
-var img = 'http://election-gadgets.googlecode.com/hg/voter-info/images/vote-icon-50.png';
+var img = 'http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/vote-icon-50.png';
 
 document.write(
 	'<div style="margin:.5em; font-family:Arial,sans-serif; font-size:10pt;">',
