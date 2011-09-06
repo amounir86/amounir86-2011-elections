@@ -2,13 +2,13 @@
 <Module>
 
 <ModulePrefs
-    title="Google Election Center app"
-    description="Enter your home address to find your voter registration information, voting location and more. Embed this app on your website or blog to help others find this important information."
-    author="Google, Inc."
-    author_affiliation="Google, Inc."
-    author_email="elections@google.com"
-    thumbnail="http://election-gadgets.googlecode.com/hg/voter-info/voter-info-gadget-thumbnail.png"
-    screenshot="http://election-gadgets.googlecode.com/hg/voter-info/voter-info-gadget-screenshot.png"
+    title="Egyptian Elections"
+    description="Enter your national id and choose your governorate and police station to find your voter registration information, voting location and more. Embed this app on your website or blog to help others find this important information."
+    author="eSpace for software development."
+    author_affiliation="eSpace for software development."
+    author_email="ali.maher@espace.come.eg"
+    thumbnail="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/voter-info-gadget-thumbnail.png"
+    screenshot="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/voter-info-gadget-screenshot.png"
     title_url="http://maps.google.com/vote"
     width="620"
     height="480">
@@ -127,8 +127,8 @@
 	
 	var opt = {
 		debug: '{{debug}}',
-		codeUrl: 'http://election-gadgets.googlecode.com/hg/voter-info/',
-		gadgetUrl: 'http://election-gadgets.appspot.com/{{debug}}voter-info-gadget.xml',
+		codeUrl: 'http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/',
+		gadgetUrl: 'http://alimaher-egyptian-elections.appspot.com/{{debug}}voter-info-gadget.xml',
 		
 		MODULE_ID: __MODULE_ID__,
 		BIDI_START_EDGE: '__BIDI_START_EDGE__',
