@@ -54,7 +54,7 @@
 	<EnumValue value="px" display_value="Pixels (px)"/>
 </UserPref>
 
-<UserPref name="homePrompt" datatype="string" display_name="Addr Prompt" default_value=""/>
+<UserPref name="homePrompt" datatype="string" display_name="Addr Prompt" default_value=" "/>
 
 <UserPref name="example" datatype="string" display_name="Example&#160;Addr" default_value=""/>
 
