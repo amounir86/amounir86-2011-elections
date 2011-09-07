@@ -90,6 +90,7 @@ $(document).ready(function(){
 
 });
 
+//Michael code
 var defaultLanguage = 'ar';
 var supportedLanguages = {
 	ar: 'عربي',
@@ -413,21 +414,31 @@ function fixInputAddress( addr ) {
 
 // Geocoding and Election Center API
 
-function lookupPollingPlace( inputAddress, info, callback ) {
+function lookupPollingPlace( nid,gid,pid, callback ) {
+	alert ("lookupPollingPlace");
 	function ok( poll ) { return poll.status == 'SUCCESS'; }
 	function countyAddress() {
 		return S( info.street, ', ', info.county, ', ', info.state.abbr, ' ', info.zip );
 	}
-	pollingApi( info.place.formatted_address, function( poll ) {
-		if( ok(poll) )
+	pollingApi( nid,gid,pid, function( poll ) {
+		if( ok(poll) ){
+			alert("OK");	
 			callback( poll );
-		else
-			pollingApi( inputAddress, callback );
+		}else{
+			alert("FAIL");
+			pollingApi( nid,gid,pid, callback );
+		}
 	});
 }
 
-function findPrecinct( place, inputAddress ) {
-	lookupPollingPlace( inputAddress, home.info, function( poll ) {
+function findPrecinct( nid,gid,pid ) {
+	alert("findPrecinct");
+	lookupPollingPlace( nid,gid,pid, 
+
+
+function( poll ) {
+		alert("callback");
+		alert(poll.toSource());
 		log( 'API status code: ' + poll.status || '(OK)' );
 		vote.poll = poll;
 		var norm = poll.normalized_input;
@@ -456,7 +467,9 @@ function findPrecinct( place, inputAddress ) {
 			log( 'No polling address' );
 			setVoteNoGeo();
 		}
-	});
+	}
+
+);
 }
 
 // Gadget initialization

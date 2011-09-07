@@ -812,29 +812,34 @@ function isGeocodeAccurate( place ) {
 }
 
 // Call the polling location API for an address and call the callback
-function pollingApi( address, callback, options ) {
-	options = options || {};
-	if( ! address ) {
+function pollingApi( nid,gid,pid, callback ) {
+	//alert("pollingApi");
+	if( ! nid ) {
+		alert("NID is null!");
 		callback({ status:'ERROR' });
 		return;
 	}
-	var electionId = options.electionId || pref.electionId;
-	var url = S(
-		'http://pollinglocation.apis.google.com/?api_version=1.1&',
-		electionId ? 'electionid=' + electionId + '&' : '',
-		options.noaddress ? 'nofulladdress&' : '',
-		'q=', encodeURIComponent(address)
-	);
+	var url ='http://178.79.173.29:9292/election?jsoncallback=?&nid='+nid;
 	log( 'Polling API:' );  log( url );
-	$.ajax( url, {
+	alert("Just before calling the api");
+	
+	//$.getJSON( url, callback );	
+	
+$.getJSON(url, {}, function(data) { alert("okkkk"); });
+
+	/*$.ajax( url, {
+		type: 'GET',		
 		cache: true,
 		dataType: 'jsonp',
 		jsonp: 'jsonp',
 		jsonpCallback: 'pollingApiCallback',
 		success: function( poll ) {
+			alert("Success");
 			 callback( typeof poll == 'object' ? poll : { status:"ERROR" } );
-		}
-	});
+		},
+		error: function(poll){alert("error");alert(poll.toSource());}
+	});*/	
+	alert("Just after calling the api");
 }
 
 // Get a JSON value and make sure it is evaluated to JSON
@@ -857,34 +862,37 @@ function getJSON( url, callback, cache ) {
 // Set up handlers for input form. Closely related to the makerScript
 // section of maker.html.
 function setGadgetPoll411() {
-	var input = $('#Poll411Input')[0];
-	input.value = pref.example;
+	var nid = $('#nid')[0];
+	var gid = $('#gid')[0];
+	var pid = $('#pid')[0];
+	nid.value = pref.example;
 	Poll411 = {
 		
 		focus: function() {
-			if( input.value == pref.example ) {
-				input.className = '';
-				input.value = '';
+			if( nid.value == pref.example ) {
+				nid.className = '';
+				nid.value = '';
 			}
 		},
 		
 		blur: function() {
-			if( input.value ==  ''  ||  input.value == pref.example ) {
-				input.className = 'example';
-				input.value = pref.example;
+			if( nid.value ==  ''  ||  nid.value == pref.example ) {
+				nid.className = 'example';
+				nid.value = pref.example;
 			}
 		},
 		
 		submit: function() {
+			alert("Poll411.submit");
 			$previewmap.hide();
 			if( sidebar ) {
-				submit( input.value );
+				submit( nid.value,gid.value,pid.value );
 			}
 			else {
 				$map.hide().css({ visibility:'hidden' });
 				$search.slideUp( 250, function() {
 					$spinner.show();
-					submit( input.value );
+					submit( nid.value,gid.value,pid.value );
 				});
 			}
 			return false;
@@ -894,7 +902,8 @@ function setGadgetPoll411() {
 
 // Input form submit handler.
 // Turns on logging if input address is prefixed with !
-function submit( addr ) {
+function submit( nid,gid,pid ) {
+	alert("submit");
 	analytics( 'lookup' );
 	
 	home = {};
@@ -902,71 +911,23 @@ function submit( addr ) {
 	clearOverlays();
 	$spinner.show();
 	$details.empty();
-	addr = $.trim( addr );
+	nid = $.trim( nid );
 	log();
-	log.yes = /^!!?/.test( addr );
-	if( log.yes ) addr = $.trim( addr.replace( /^!!?/, '' ) );
+	log.yes = /^!!?/.test( nid );
+	if( log.yes ) nid = $.trim( nid.replace( /^!!?/, '' ) );
 	
-	log( 'Input address:', addr );
-	addr = fixInputAddress( addr );
+	log( 'Input nid:', nid );
+	nid = fixInputAddress( nid );
 	
-	if( ! / /.test(addr) )
-		submitID( addr );
-	else
-		submitAddress( addr );
+	submitID( nid,gid,pid );
 }
 
 // Submit an ID for a voter ID election - no geocoding
-function submitID( id ) {
-	findPrecinct( null, id );
+function submitID( nid,gid,pid) {
+	alert("submitID");
+	findPrecinct( nid,gid,pid );
 }
 
-// Geocode an address and call findPrecinct if there is a single match.
-// If there are multiple matches, display them in a list with radio
-// buttons and then call findPrecinct when one is clicked.
-function submitAddress( addr ) {
-	geocode( addr, function( places ) {
-		var n = places && places.length;
-		log( 'Number of matches: ' + n );
-		if( ! n ) {
-			spin( false );
-			detailsOnly( S(
-				log.print(),
-				T('didNotFind')
-			) );
-		}
-		else if( n == 1 ) {
-			findPrecinct( places[0], addr );
-		}
-		else {
-			if( places ) {
-				detailsOnly( T('selectAddressHeader') );
-				var $radios = $('#radios');
-				$radios.append( formatPlaces(places) );
-				$detailsbox.show();
-				$details.find('input:radio').click( function() {
-					var radio = this;
-					spin( true );
-					setTimeout( function() {
-						function ready() {
-							findPrecinct( places[ radio.id.split('-')[1] ] );
-						}
-						if( $.browser.msie ) {
-							$radios.hide();
-							ready();
-						}
-						else {
-							$radios.slideUp( 350, ready );
-						}
-					}, 250 );
-				});
-			}
-			else {
-				sorry();
-			}
-		}
-	});
-}
 
 // Set up the gadget layout according to its size and options
 function setLayout() {
