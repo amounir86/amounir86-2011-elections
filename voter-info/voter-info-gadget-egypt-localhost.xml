@@ -54,9 +54,9 @@
 	<EnumValue value="px" display_value="Pixels (px)"/>
 </UserPref>
 
-<UserPref name="homePrompt" datatype="string" display_name="Addr Prompt" default_value="Get your voter info! Enter the *full home address* where you&#8217;re registered to vote, including city and state:"/>
+<UserPref name="homePrompt" datatype="string" display_name="Addr Prompt" default_value=""/>
 
-<UserPref name="example" datatype="string" display_name="Example&#160;Addr" default_value="Ex: 1600 Pennsylvania Ave, Washington DC"/>
+<UserPref name="example" datatype="string" display_name="Example&#160;Addr" default_value=""/>
 
 <UserPref name="submit" datatype="bool" display_name="Preload&#160;Addr" default_value=""/>
 

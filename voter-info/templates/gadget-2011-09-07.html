@@ -108,74 +108,88 @@ body{direction: rtl;}
       <tr valign="middle">
         <td id="Poll411InputCell">
 
-<label> الرقم القومي</label>
-<input type="text" id="Poll411Input" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
-<label>المحافظة</label>
+          <label> الرقم القومي</label>
+	</td>
+	<td>
+          <input type="text" id="Poll411Input" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
+        </td>
+	</tr>
+	<tr>
+		<td>
+		<label>المحافظة</label>
+		</td>
+		<td>
 
-<select id="gid" name="gid">
+            <select id="gid" name="gid">
 
-<option value="">اختر المحافظة</option>
+              <option value="">اختر المحافظة</option>
 
-<option value="19">القاهرة</option>
+             <option value="19">القاهرة</option>
 
-<option value="27">الأسكندرية</option>
+		<option value="27">الأسكندرية</option>
 
-<option value="35">بورسعيد</option>
+		<option value="35">بورسعيد</option>
 
-<option value="43">السويس</option>
+		<option value="43">السويس</option>
 
-<option value="51">دمياط</option>
+		<option value="51">دمياط</option>
 
-<option value="61">الدقهلية</option>
+		<option value="61">الدقهلية</option>
 
-<option value="78">الشرقية</option>
+		<option value="78">الشرقية</option>
 
-<option value="86">القليوبية</option>
+		<option value="86">القليوبية</option>
 
-<option value="94">كفر الشيخ</option>
+		<option value="94">كفر الشيخ</option>
 
-<option value="108">الغربية</option>
+		<option value="108">الغربية</option>
 
-<option value="116">المنوفية</option>
+		<option value="116">المنوفية</option>
 
-<option value="124">البحيرة</option>
+		<option value="124">البحيرة</option>
 
-<option value="132">الإسماعيلية</option>
+		<option value="132">الإسماعيلية</option>
 
-<option value="141">الجيزة</option>
+		<option value="141">الجيزة</option>
 
-<option value="159">بني سويف</option>
+		<option value="159">بني سويف</option>
 
-<option value="167">الفيوم</option>
+		<option value="167">الفيوم</option>
 
-<option value="175">المنيا</option>
+		<option value="175">المنيا</option>
 
-<option value="183">أسيوط</option>
+		<option value="183">أسيوط</option>
 
-<option value="191">سوهاج</option>
+		<option value="191">سوهاج</option>
 
-<option value="205">قنا</option>
+		<option value="205">قنا</option>
 
-<option value="213">أسوان</option>
+		<option value="213">أسوان</option>
 
-<option value="221">البحر الأحمر</option>
+		<option value="221">البحر الأحمر</option>
 
-<option value="231">الوادي الجديد</option>
+		<option value="231">الوادي الجديد</option>
 
-<option value="248">مطروح</option>
+		<option value="248">مطروح</option>
 
-<option value="256">شمال سيناء</option>
+		<option value="256">شمال سيناء</option>
 
-<option value="264">جنوب سيناء</option>
+		<option value="264">جنوب سيناء</option>
 
-<option value="311">الأقصر</option> 
+		<option value="311">الأقصر</option> 
 
-</select>
+            </select>
 
+	</td>
+	</tr>
+	<tr>
+<td>
  <label>القسم</label>
-<select name="pid" id="pid">
+</td>
+		<td>
+            <select name="pid" id="pid">
 
-<option value="">اختر القسم</option>
+               <option value="">اختر القسم</option>
 
 <option value="35" class="19">15 مايو</option>
 
@@ -979,17 +993,18 @@ body{direction: rtl;}
 
 <option value="2534" class="311">مركز أرمنت</option>
 
-</select>
-<button type="submit" id="Poll411Button"> تحقق</button>
-</td>
+             </select>
 
-  
+		</td>
+	</tr>
+	<tr>
+		<td id="Poll411ButtonCell">
+		  <button type="submit" id="Poll411Button"> تحقق</button>
+		</td>
 
-
-</tr>
-</table>
-</form>
-
+      </tr>
+    </table>
+  </form>
   <div id="Poll411Frame">
   </div>
 
