@@ -332,34 +332,15 @@ function formatLocations( locations, info, icon, title, infowindow, extra, mappe
 }
 
 // Set up map and sidebar when the polling place location is known
-function setVoteGeo( places, address, location) {
-	//if( places && places.length == 1 ) {
-	if( places && places.length >= 1 ) {
-		// More than one place, use first match only if it has address
-		// accuracy and the remaining matches don't
-		//if( places.length > 1 ) {
-		//	if( places[0].AddressDetails.Accuracy < Accuracy.address ) {
-		//		setVoteNoGeo();
-		//		return;
-		//	}
-		//	for( var place, i = 0;  place = places[++i]; ) {
-		//		if( places[i].AddressDetails.Accuracy >= Accuracy.address ) {
-		//			setVoteNoGeo();
-		//			return;
-		//		}
-		//	}
-		//}
-		try {
-			var place = places[0];
-			if( location.latitude && location.longitude )
-				place.geometry.location =
-					new gm.LatLng( location.latitude, location.longitude );
-		}
-		catch( e ) {
-			log( 'Error getting polling state' );
-		}
+function setVoteGeo(location) {
+	if( location ) {
+/*		var place = {address_components:[{long_name:"", short_name:"", types:["street_number"]}, {long_name:location[0].address.location_name, short_name:location[0].address.location_name, types:["route"]}, {long_name:"Oakton", short_name:"Oakton", types:["locality", "political"]}, {long_name:"Providence", short_name:"Providence", types:["administrative_area_level_3", "political"]}, {long_name:"Fairfax", short_name:"Fairfax", types:["administrative_area_level_2", "political"]}, {long_name:"Virginia", short_name:"VA", types:["administrative_area_level_1", "political"]}, {long_name:"United States", short_name:"US", types:["country", "political"]}, {long_name:"22124", short_name:"22124", types:["postal_code"]}], formatted_address:"11509 Waples Mill Rd, Oakton, VA 22124, USA", geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}, partial_match:true, types:["street_address"]}*/
+		var place = {geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}};
+		
+		//alert(place.toSource());
+		place.geometry.location =new gm.LatLng( location.lat, location.lng ); //new gm.LatLng(  31.09,29.53 );
 		log( 'Getting polling place map info' );
-		setMap( vote.info = mapInfo( place, vote.locations[0] ) );
+		setMap( vote.info = mapInfo( place, null ) );
 		return;
 	}
 	setVoteNoGeo();
@@ -415,53 +396,42 @@ function fixInputAddress( addr ) {
 // Geocoding and Election Center API
 
 function lookupPollingPlace( nid,gid,pid, callback ) {
-	alert ("lookupPollingPlace");
+	//alert ("lookupPollingPlace");
 	function ok( poll ) { return poll.status == 'SUCCESS'; }
 	function countyAddress() {
 		return S( info.street, ', ', info.county, ', ', info.state.abbr, ' ', info.zip );
 	}
 	pollingApi( nid,gid,pid, function( poll ) {
 		if( ok(poll) ){
-			alert("OK");	
+			//alert("OK");	
 			callback( poll );
 		}else{
-			alert("FAIL");
+			//alert("FAIL");
 			pollingApi( nid,gid,pid, callback );
 		}
 	});
 }
 
 function findPrecinct( nid,gid,pid ) {
-	alert("findPrecinct");
+	//alert("findPrecinct");
 	lookupPollingPlace( nid,gid,pid, 
 
 
 function( poll ) {
-		alert("callback");
-		alert(poll.toSource());
+		alert("callback called");
+		alert(poll);
 		log( 'API status code: ' + poll.status || '(OK)' );
 		vote.poll = poll;
-		var norm = poll.normalized_input;
 		var locations = vote.locations = poll.locations && poll.locations[0];
 		if( poll.status != 'SUCCESS'  ||  ! locations  ||  ! locations.length ) {
 			sorry();
 			return;
 		}
-		if( locations.length > 1 ) {
-			log( 'Multiple polling locations' );
-			setVoteNoGeo();
-			return;
-		}
-		var location = locations[0], address = location.address;
-		if(
-			( address.line1 || address.line2 )  &&
-			( ( address.city && address.state ) || address.zip )
-		) {
-			var addr = oneLineAddress( address );
-			log( 'Polling address:', addr );
-			geocode( addr, function( places ) {
-				setVoteGeo( places, addr, location );
-			});
+		var location = locations[0];
+		alert(location.toSource());
+		if( location.lng && location.lat ){
+			log( 'Polling address found' );			
+			setVoteGeo( location );
 		}
 		else {
 			log( 'No polling address' );
