@@ -820,28 +820,28 @@ function pollingApi( nid,gid,pid, callback ) {
 		callback({ status:'ERROR' });
 		return;
 	}
-
-	var url ='http://178.79.173.29:9292/election?nid='+nid;
+	//var url ='http://178.79.173.29:9292/election?jsoncallback=?&nid='+nid;
+	var url = "http://localhost:3000/admin/sites/1/crawl"
 	log( 'Polling API:' );  log( url );
 	//alert("Just before calling the api");
 	
+	//$.getJSON( url, callback );	
+	
+//$.getJSON(url, {}, function(data) { console.log(data); }).error(function() { alert("error"); }).complete(function() { alert("complete"); });
+
 
 
 	$.ajax( url, {
 		type: 'GET',		
 		//cache: true,
 		dataType: 'jsonp',
-		jsonp: 'jsonp',
-
+		jsonp: 'callback',
 		success: function( poll ) {
-
-			//alert(poll);
-			 callback( typeof poll == 'object' ? poll : { status:"ERROR" } );
-
-		}
-
-		//error: function(poll){alert("error");alert(poll);}
-
+			//alert("Success");
+			// callback( typeof poll == 'object' ? poll : { status:"ERROR" } );
+			console.log(poll);
+		},
+		error: function(poll){alert("error");}
 	});
 	//alert("Just after calling the api");
 }
@@ -887,7 +887,7 @@ function setGadgetPoll411() {
 		},
 		
 		submit: function() {
-			//alert("Poll411.submit");
+			alert("Poll411.submit");
 			$previewmap.hide();
 			if( sidebar ) {
 				submit( nid.value,gid.value,pid.value );
@@ -907,7 +907,7 @@ function setGadgetPoll411() {
 // Input form submit handler.
 // Turns on logging if input address is prefixed with !
 function submit( nid,gid,pid ) {
-	//alert("submit");
+	alert("submit");
 	analytics( 'lookup' );
 	
 	home = {};
@@ -928,7 +928,7 @@ function submit( nid,gid,pid ) {
 
 // Submit an ID for a voter ID election - no geocoding
 function submitID( nid,gid,pid) {
-	//alert("submitID");
+	alert("submitID");
 	findPrecinct( nid,gid,pid );
 }
 
