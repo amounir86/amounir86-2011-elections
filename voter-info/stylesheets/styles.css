@@ -139,9 +139,9 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	.intro .elec-info p{ margin:-5px 0 10px; font-weight:bold;}
 	.intro .id-demo{ background:url(http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/graphics/id-2.png) no-repeat; width:303px; height:190px; position:relative; margin-right:55px;}
 	.intro .id-demo .border{ border:2px solid #c00; position:absolute; -moz-border-radius:5px;  -webkit-border-radius:5px;}
-	.intro .id-demo .gov{bottom:58px; right:57px;width:60px; height:20px; }
-	.intro .id-demo .station{bottom:58px; right:10px; width:45px; height:20px; }
-	.intro .id-demo .id-num{ bottom:17px; right:10px; width:100px; height:20px;}
+	.intro .id-demo .gov{display:none;bottom:58px; right:57px;width:60px; height:20px; }
+	.intro .id-demo .station{display:none;bottom:58px; right:10px; width:45px; height:20px; }
+	.intro .id-demo .id-num{display:none; bottom:17px; right:10px; width:100px; height:20px;}
 	
 	
 		/*--Form--*/
