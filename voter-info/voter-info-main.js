@@ -5,8 +5,8 @@
 //window.console && typeof console.log == 'function' && console.log( location.href );
 
 // Utility functions and jQuery extensions
-var _alert = alert;
-alert = function(){}
+//var _alert = alert;
+//alert = function(){}
 var $window = $(window), $body = $('body');
 
 // Return window width or height

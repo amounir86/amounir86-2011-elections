@@ -1,14 +1,38 @@
-
-
-
 // voter-info-egypt.js
 // By Michael Geary - http://mg.to/
 // See UNLICENSE or http://unlicense.org/ for public domain notice.
 
 // Language and prefs
 
-
+$(window).load(function() {
+	$(function() {      
+		$('#pid').chained('#gid'); 
+	});
+	
+	$("input#nid").focus(function () {
+         $('.id-demo > .id-num').fadeIn(500);
+    });
+    $("input#nid").blur(function () {
+         $('.id-demo > .id-num').fadeOut(500);
+    });
+    
+    $("select#gid").focus(function () {
+         $('.id-demo > .gov').fadeIn(500);
+    });
+    $("select#gid").blur(function () {
+         $('.id-demo > .gov').fadeOut(500);
+    });
+    
+    $("select#pid").focus(function () {
+         $('.id-demo > .station').fadeIn(500);
+    });
+    $("select#pid").blur(function () {
+         $('.id-demo > .station').fadeOut(500);
+    });
+});
 $(document).ready(function(){
+	
+   
 /*
 * Chained - jQuery non AJAX(J) chained selects plugin
 *
@@ -84,36 +108,15 @@ $(document).ready(function(){
 })(jQuery);
 
 
-	$(function() {      
-		setTimeout("$('#pid').chained('#gid')",20);   
-	});
+	//$(function() {      
+		//setTimeout("$('#pid').chained('#gid')",20);   
+//	});
 
 
 
-	$(function() {      
-		setTimeout("$('#pid').chained('#gid')",20);   
-	});
 	
-	 $("input#nid").focus(function () {
-         $('.id-demo > .id-num').fadeIn(500);
-    });
-    $("input#nid").blur(function () {
-         $('.id-demo > .id-num').fadeOut(500);
-    });
-    
-    $("select#gid").focus(function () {
-         $('.id-demo > .gov').fadeIn(500);
-    });
-    $("select#gid").blur(function () {
-         $('.id-demo > .gov').fadeOut(500);
-    });
-    
-    $("select#pid").focus(function () {
-         $('.id-demo > .station').fadeIn(500);
-    });
-    $("select#pid").blur(function () {
-         $('.id-demo > .station').fadeOut(500);
-    });
+	
+
 
 
 
