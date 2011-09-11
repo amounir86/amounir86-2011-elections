@@ -88,6 +88,36 @@ $(document).ready(function(){
 		setTimeout("$('#pid').chained('#gid')",20);   
 	});
 
+
+
+	$(function() {      
+		setTimeout("$('#pid').chained('#gid')",20);   
+	});
+	
+	 $("input#nid").focus(function () {
+         $('.id-demo > .id-num').fadeIn(500);
+    });
+    $("input#nid").blur(function () {
+         $('.id-demo > .id-num').fadeOut(500);
+    });
+    
+    $("select#gid").focus(function () {
+         $('.id-demo > .gov').fadeIn(500);
+    });
+    $("select#gid").blur(function () {
+         $('.id-demo > .gov').fadeOut(500);
+    });
+    
+    $("select#pid").focus(function () {
+         $('.id-demo > .station').fadeIn(500);
+    });
+    $("select#pid").blur(function () {
+         $('.id-demo > .station').fadeOut(500);
+    });
+
+
+
+
 });
 
 //Michael code
