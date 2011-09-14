@@ -643,6 +643,8 @@ function directionsLink( from, to ) {
 
 // Wrap some HTML in a DIV for an info section
 function infoWrap( html ) {
+	//alert(html);
+	//alert(T( 'infoWrap', { html:html } ));
 	return T( 'infoWrap', { html:html } );
 }
 
@@ -999,7 +1001,7 @@ function sorryHtml() {
 }
 
 // Make the map visible and load the home/vote icons
-function setMap( a ) {
+function setMap( a ) {//set width and height
 	if( ! a ) return;
 	a.width = $map.width();
 	$map.show().height( a.height = Math.floor( winHeight() - $map.offset().top ) );
@@ -1027,22 +1029,21 @@ function formatPlaces( places ) {
 }
 
 // Return an 'info' object for either home.info or vote.info
-function mapInfo( place, extra ) {
+function mapInfo( place, extra ) {//place and location
 	extra = extra || {};
 	if( place  &&  ! isGeocodeAccurate(place) ) {
 		log( 'Not accurate enough' );
 		return null;
 	}
 	
-	var formatted = oneLineAddress( place.formatted_address );
+	var formatted =  extra.address 
+	alert(formatted);
 	log( 'Formatted address:', formatted );
 	return {
 		place: place,
 		address: formatted,
 		latlng: place.geometry.location,
-		location: extra.address && extra.address.location_name,
-		directions: extra.directions,
-		hours: extra.hours,
+		location: extra.name,
 		_:''
 	};
 }

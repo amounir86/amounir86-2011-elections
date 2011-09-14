@@ -33,5 +33,5 @@ loadStrings({
 "viewCandidates": "View Candidates and Details", 
 "viewDetails": "View Election Details", 
 "yourHome": "Your Home", 
-"yourVotingLocation": "Your Voting Location"
+"yourVotingLocation": "لجنتك الانتخابية"
 })
