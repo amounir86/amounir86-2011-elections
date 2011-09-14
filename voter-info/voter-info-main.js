@@ -839,9 +839,7 @@ function pollingApi( nid,gid,pid, callback ) {
 			 callback( typeof poll == 'object' ? poll : { status:"ERROR" } );
 
 		}
-
 		//error: function(poll){alert("error");alert(poll);}
-
 	});
 	//alert("Just after calling the api");
 }
