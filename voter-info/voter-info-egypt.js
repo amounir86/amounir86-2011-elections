@@ -368,13 +368,30 @@ function formatLocations( locations, info, icon, title, infowindow, extra, mappe
 function setVoteGeo(location) {
 	if( location ) {
 /*		var place = {address_components:[{long_name:"", short_name:"", types:["street_number"]}, {long_name:location[0].address.location_name, short_name:location[0].address.location_name, types:["route"]}, {long_name:"Oakton", short_name:"Oakton", types:["locality", "political"]}, {long_name:"Providence", short_name:"Providence", types:["administrative_area_level_3", "political"]}, {long_name:"Fairfax", short_name:"Fairfax", types:["administrative_area_level_2", "political"]}, {long_name:"Virginia", short_name:"VA", types:["administrative_area_level_1", "political"]}, {long_name:"United States", short_name:"US", types:["country", "political"]}, {long_name:"22124", short_name:"22124", types:["postal_code"]}], formatted_address:"11509 Waples Mill Rd, Oakton, VA 22124, USA", geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}, partial_match:true, types:["street_address"]}*/
-		var place = {geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}};
+		/*var place = {geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}};*/
 		
-		//alert(place.toSource());
-		place.geometry.location =new gm.LatLng( location.lat, location.lng ); //new gm.LatLng(  31.09,29.53 );
-		log( 'Getting polling place map info' );
-		setMap( vote.info = mapInfo( place, null ) );
-		return;
+
+		
+
+var place ={geometry: {
+		location: {},
+		location_type: "ROOFTOP",
+		/*viewport: {
+			southwest: {lat: location.lat-0.02,lng: location.lng-0.01},
+			northeast: {lat: location.lat+0.02,lng: location.lng+0.01}
+      		},*/
+		bounds: {
+			southwest: {lat: location.lat-0.0005,lng: location.lng-0.001},
+			northeast: {lat: location.lat+0.0015,lng: location.lng+0.001}
+
+      		}
+	    }};
+	    //alert(place.toSource());
+	    //place.geometry.location =new gm.LatLng( location.lat, location.lng );
+	    place.geometry.location = new gm.LatLng(  30.0647,31.2495);
+	    log( 'Getting polling place map info' );
+	    setMap( vote.info = mapInfo( place, null ) );
+	    return;
 	}
 	setVoteNoGeo();
 }
@@ -452,16 +469,16 @@ function findPrecinct( nid,gid,pid ) {
 
 function( poll ) {
 		alert("callback called");
-		alert(poll);
 		log( 'API status code: ' + poll.status || '(OK)' );
 		vote.poll = poll;
-		var locations = vote.locations = poll.locations && poll.locations[0];
+		var locations = vote.locations = poll.locations;
+		//alert(locations.toSource());
 		if( poll.status != 'SUCCESS'  ||  ! locations  ||  ! locations.length ) {
-			sorry();
+			sorry();//TODO
 			return;
 		}
 		var location = locations[0];
-		alert(location.toSource());
+		//alert(location.toSource());
 		if( location.lng && location.lat ){
 			log( 'Polling address found' );			
 			setVoteGeo( location );
