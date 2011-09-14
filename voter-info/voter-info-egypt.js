@@ -237,32 +237,24 @@ function setVoteHtml() {
 		$details.append( log.print() );
 		return;
 	}
-	//var largeMapLink = S(
-	//	'<div style="padding-top:0.5em;">',
-	//		'<a target="_blank" href="http://maps.google.com/maps?f=q&hl=en&geocode=&q=', encodeURIComponent( a.address.replace( / /g, '+' ) ), '&ie=UTF8&ll=', latlng, '&z=15&iwloc=addr">',
-	//			'Large map and directions &#187;',
-	//		'</a>',
-	//	'</div>'
-	//);
 	
 	function voteLocation( infowindow ) {
 		var loc = T('yourVotingLocation');
 		if( !( vote.locations && vote.locations.length ) )
 			return '';
 		if( vote.info )
-			return formatLocations( vote.locations, null,
-				infowindow
-					? { url:'vote-icon-50.png', width:50, height:50 }
-					: { url:'vote-pin-icon.png', width:29, height:66 },
+			return formatLocations( vote.locations, vote.info,
+				null,
 				loc, infowindow, '', true
 			);
-		return infowindow ? '' : formatLocations( vote.locations, null,
+		/*return infowindow ? '' : formatLocations( vote.locations, vote.info,
 			{ url:'vote-icon-32.png', width:32, height:32 },
 			loc + ( vote.locations.length > 1 ? 's' : '' ), false, '', false
-		);
+		);*/
 	}
 	
-	if( ! sidebar ) $tabs.show();
+	if( ! sidebar ) 
+		$tabs.show();//TODO
 	$details.html( longInfo() ).show();
 	vote.html = infoWrap( S(
 		log.print(),
@@ -325,14 +317,15 @@ function getContests() {
 function formatLocations( locations, info, icon, title, infowindow, extra, mapped ) {
 	
 	function formatLocationRow( info ) {
+		//alert(info.toSource());
 		var address = T( 'address', {
 			location: H( info.location ),
 			address: multiLineAddress( info.address )
 		});
 		return T( 'locationRow', {
-			iconSrc: imgUrl(icon.url),
-			iconWidth: icon.width,
-			iconHeight: icon.height,
+			iconSrc: "",//imgUrl(icon.url),
+			iconWidth: 0,//icon.width,
+			iconHeight: 0,//icon.height,
 			address: address,
 			directions: info.directions || '',
 			hours: info.hours ? 'Hours: ' + info.hours : '',
@@ -373,7 +366,7 @@ function setVoteGeo(location) {
 
 		
 
-var place ={geometry: {
+		var place ={geometry: {
 		location: {},
 		location_type: "ROOFTOP",
 		/*viewport: {
@@ -387,11 +380,11 @@ var place ={geometry: {
       		}
 	    }};
 	    //alert(place.toSource());
-	    //place.geometry.location =new gm.LatLng( location.lat, location.lng );
-	    place.geometry.location = new gm.LatLng(  30.0647,31.2495);
+	    place.geometry.location =new gm.LatLng( location.lat, location.lng );
+	    //place.geometry.location = new gm.LatLng(  30.0647,31.2495);
 	    log( 'Getting polling place map info' );
-	    setMap( vote.info = mapInfo( place, null ) );
-	    return;
+	    setMap( vote.info = mapInfo( place, location ) );
+	    //return;
 	}
 	setVoteNoGeo();
 }
