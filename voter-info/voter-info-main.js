@@ -1006,12 +1006,37 @@ function setMap( a ) {//set width and height
 	a.width = $map.width();
 	$map.show().height( a.height = Math.floor( winHeight() - $map.offset().top ) );
 clearOverlays();
-//zoomTo('wv');
-//zoomTo('ne');
-polyState('02');
-polyState('nv');
+//polyState('nv');
 //polyState('ne');
-//polyState('xx');
+
+polyState('01_');
+polyState('04_');
+polyState('13_');
+polyState('16_');
+polyState('19_');
+polyState('23_');
+polyState('26_');
+polyState('31_');
+polyState('34_');
+polyState('02_');
+polyState('11_');
+polyState('14_');
+polyState('17_');
+polyState('21_');
+polyState('24_');
+polyState('27_');
+polyState('32_');
+polyState('35_');
+polyState('03_');
+polyState('12_');
+polyState('15_');
+polyState('18_');
+polyState('22_');
+polyState('25_');
+polyState('29_');
+polyState('33_');
+
+
 loadMap( a );
 	
 }
@@ -1158,7 +1183,7 @@ function polyState( abbr ) {
 		});
 		var polygon = new gm.Polygon({
 			paths: paths,
-			strokeColor: '#000000',
+			strokeColor: 'red',
 			strokeWeight: 2,
 			strokeOpacity: .7,
 			fillColor: '#000000',
