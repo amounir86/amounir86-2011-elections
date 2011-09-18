@@ -1008,10 +1008,10 @@ function setMap( a ) {//set width and height
 clearOverlays();
 //zoomTo('wv');
 //zoomTo('ne');
-polyState('wv');
+polyState('02');
 polyState('nv');
-polyState('ne');
-polyState('xx');
+//polyState('ne');
+//polyState('xx');
 loadMap( a );
 	
 }
@@ -1145,7 +1145,7 @@ function log() {
 function polyState( abbr ) {
 	GoogleElectionMap.currentAbbr = abbr = abbr.toLowerCase();
 	GoogleElectionMap.shapeReady = function( json ) {
-		if( json.state != GoogleElectionMap.currentAbbr ) return;
+		//if( json.state != GoogleElectionMap.currentAbbr ) return;
 		//clearOverlays();
 		var paths = new gm.MVCArray;
 		json.shapes.forEach( function( poly ) {
