@@ -447,11 +447,14 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
 	}
 	pollingApi( nid,gid,pid, function( poll ) {
 		if( ok(poll) ){
-			//alert("OK");	
 			callback( poll );
+			
 		}else{
-			//alert("FAIL");
-			pollingApi( nid,gid,pid, callback );
+			alert("FAIL");
+			// $('.not-found').show();
+			//pollingApi( nid,gid,pid, callback );
+			sorry();
+			return;
 		}
 	});
 }
@@ -461,7 +464,7 @@ function findPrecinct( nid,gid,pid ) {
 	lookupPollingPlace( nid,gid,pid, 
 
 
-function( poll ) {
+function(poll) {
 	    
 		alert("callback called");
 		log( 'API status code: ' + poll.status || '(OK)' );
@@ -471,6 +474,11 @@ function( poll ) {
 		//alert(locations.toSource());
 		if( poll.status != 'SUCCESS'  ||  ! locations  ||  ! locations.length ) {
 			sorry();//TODO
+			return;
+		}
+		if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
+			
+			notTheSame();
 			return;
 		}
 		var location = locations[0];
@@ -483,6 +491,11 @@ function( poll ) {
 			log( 'No polling address' );
 			setVoteNoGeo();
 		}
+		/*if( poll.status == 'SUCCESS' ) {
+			alert("SORRY");
+			sorry();
+			return;
+		}*/
 	}
 
 );
