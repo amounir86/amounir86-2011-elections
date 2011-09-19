@@ -502,8 +502,8 @@ function degreesToRadians( degrees ) {
 var inline = pref.gadgetType == 'inline';
 var iframe = ! inline;  // TODO: redundant now
 var balloon = pref.sidebar  ||  ( winWidth() >= 450  &&  winHeight() >= 400 );
-var sidebar = !!( pref.sidebar  ||  ( winWidth() >= 800  &&  winHeight() >= 500 ) );
-
+//var sidebar = !!( pref.sidebar  ||  ( winWidth() >= 800  &&  winHeight() >= 500 ) );
+var sidebar = false;
 $body.toggleClass( 'logo', pref.logo );
 $body.toggleClass( 'sidebar', sidebar );
 
@@ -544,9 +544,9 @@ function tabLinks( active ) {
 		});
 	}
 	return T( 'tabLinks', {
-		tab1: tab( '#detailsbox', 'Details' ),
-		tab2: includeMap() ? tab( '#mapbox', 'Map' ) : '',
-		tab3: pref.ready ? '' : tab( '#Poll411Gadget', 'Search' )
+		tab1: tab( '#detailsbox', 'معلومات' ),
+		tab2: includeMap() ? tab( '#mapbox', 'الخـريطة' ) : '',
+		tab3: pref.ready ? '' : tab( '#Poll411Gadget', 'بـحـــث' )
 	});
 }
 
