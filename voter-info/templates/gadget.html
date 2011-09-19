@@ -1,8 +1,4 @@
-<!DOCTYPE HTML PUBLIC
-  "-//W3C//DTD HTML 4.01//EN"
-  "http://www.w3.org/TR/html4/strict.dtd"
-  [ <!ATTLIST a target CDATA #IMPLIED> ]
->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" [ <!ATTLIST a target CDATA #IMPLIED> ]>
 
 <html lang="en">
 <head><meta http-equiv="Content-type" content="text/html;charset=UTF-8">
@@ -1049,9 +1045,19 @@ body{direction: rtl;}
 </div>
 
 
-<!---------- LISTING  ------------------------>
 
-<div class="content" style="display:none;">
+
+<!--:: attribution ::-->
+
+<div style="margin-bottom:0.5em; color:#333; {{fontStyle}}">
+    <div style="font-size:85%; margin-top:1.5em; border-top:1px solid #BBB; padding-top:1em;">
+    
+    </div>
+
+    <div style="font-size:85%; margin-top:0.75em;">
+        <!---------- LISTING  ------------------------>
+
+
 	<div class="wrapper">
  		
     <div class="main">
@@ -1111,37 +1117,11 @@ body{direction: rtl;}
     </div><!--end main-->
       
   </div>
-</div><!--end content-->
+ 
+
 <!------------ END LIST -------------------->
-
-<!--:: attribution ::-->
-
-<div style="margin-bottom:0.5em; color:#333; {{fontStyle}}">
-    <div style="font-size:85%; margin-top:1.5em; border-top:1px solid #BBB; padding-top:1em;">
-        Developed with 
-<!--
-        <span id="vips" style="font-size:100%;">
-            <a style="font-size:100%;" href="#" onclick="$(\'#vips\').html(fullvips); return false;">
-                state and local election officials
-            </a>
-        </span>
--->
-        the 
-        {{special}}
-        <a style="font-size:100%;" target="_blank" href="http://www.votinginfoproject.org/">
-            Voting Information Project
-        </a>
-        .
     </div>
-<!--
-    <div style="font-size:85%; margin-top:0.75em;">
-        In conjunction with the 
-        <a style="font-size:100%;" target="_blank" href="http://www.lwv.org/">
-            League of Women Voters
-        </a>
-        .
-    </div>
--->
+
     <div style="font-size:85%; margin:1em 0 1em 0;">
     	Help others find their voter information:<br />
     	<a target="_blank" href="http://gmodules.com/ig/creator?synd=open&url=http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/voter-info-gadget.xml">
@@ -1176,6 +1156,7 @@ body{direction: rtl;}
         <div>
             <label for="{{id}}" class="Poll411SearchPlaceAddress">
                 {{address}}
+               
             </label>
         </div>
     </td>
@@ -1222,12 +1203,12 @@ body{direction: rtl;}
     {{header}}
     <div style="padding-top:0.75em">
     </div>
-    {{home}}
+    
     <div style="padding-top:0.75em">
     </div>
     {{location}}
     {{warning}}
-    {{stateLocator}}
+ 
     <div style="padding-top:1em">
     </div>
     {{info}}
@@ -1259,6 +1240,13 @@ body{direction: rtl;}
           </td>
           <td style="padding-bottom:6px;">
               {{address}}
+              
+              {{contests}}
+              
+              {{each contests}}
+            	${$index + 1}: <em>${$value}. </em>
+        	  {{/each}}
+            		
               <div>
                 {{directions}}
               </div>
@@ -1283,7 +1271,7 @@ temp
 <!--:: locationWarning ::-->
 
 <div style="font-size:90%;">
-  {{forEligibleVoters}}
+ 
 </div>
 
 <!--:: address ::-->
@@ -1294,6 +1282,7 @@ temp
   </div>
   <div>
     {{address}}
+   
   </div>
 </div>
 

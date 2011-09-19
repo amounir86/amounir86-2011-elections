@@ -243,7 +243,8 @@ function setVoteHtml() {
 		if( !( vote.locations && vote.locations.length ) )
 			return '';
 		if( vote.info )
-			return formatLocations( vote.locations, vote.info,
+	
+			return formatLocations(vote.poll.contests, vote.locations, vote.info,
 				null,
 				loc, infowindow, '', true
 			);
@@ -284,18 +285,9 @@ function setVoteHtml() {
 				'</a>',
 			'</div>'
 		);
-		return vote.info && vote.info.latlng ? S(
-			voteLocation( true ),
-			viewLink
-			//locationWarning(),
-			//'<div style="padding-top:0.75em">',
-			//'</div>',
-		) : S(
-			//'<div style="padding-top:0.75em">',
-			//'</div>',
-			voteLocation( infowindow )/*,
-			locationWarning()*/
-		);
+
+		return vote.info && vote.info.latlng ? S(voteLocation( true ),viewLink) : S(voteLocation( infowindow ));
+		
 	}
 	
 	function longInfo() {
@@ -314,12 +306,15 @@ function getContests() {
 	return contests && contests.length && contests;
 }
 
-function formatLocations( locations, info, icon, title, infowindow, extra, mapped ) {
+function formatLocations( contests,locations, info, icon, title, infowindow, extra, mapped ) {
 	
+	//alert(contests[0].police_stations[0].pname);
 	function formatLocationRow( info ) {
 		//alert(info.toSource());
 		var address = T( 'address', {
 			location: H( info.location ),
+			//contests: contests[0].police_stations[0].pname,
+			contests: contests,
 			address: multiLineAddress( info.address )
 		});
 		return T( 'locationRow', {
@@ -327,6 +322,8 @@ function formatLocations( locations, info, icon, title, infowindow, extra, mappe
 			iconWidth: 0,//icon.width,
 			iconHeight: 0,//icon.height,
 			address: address,
+			//contests: contests[0].police_stations[0].pname,
+			contests: contests,
 			directions: info.directions || '',
 			hours: info.hours ? 'Hours: ' + info.hours : '',
 			extra: extra || ''
@@ -341,6 +338,8 @@ function formatLocations( locations, info, icon, title, infowindow, extra, mappe
 				location: a && a.location_name || '',
 				directions: location.directions || '',
 				hours: location.pollinghours || '',
+				//contests: contests[0].police_stations[0].pname || '',
+				contests: contests || [],
 				address: a
 			});
 		});
@@ -359,6 +358,8 @@ function formatLocations( locations, info, icon, title, infowindow, extra, mappe
 
 // Set up map and sidebar when the polling place location is known
 function setVoteGeo(location) {
+	
+	//alert(vote.poll.contests.toSource());
 	if( location ) {
 /*		var place = {address_components:[{long_name:"", short_name:"", types:["street_number"]}, {long_name:location[0].address.location_name, short_name:location[0].address.location_name, types:["route"]}, {long_name:"Oakton", short_name:"Oakton", types:["locality", "political"]}, {long_name:"Providence", short_name:"Providence", types:["administrative_area_level_3", "political"]}, {long_name:"Fairfax", short_name:"Fairfax", types:["administrative_area_level_2", "political"]}, {long_name:"Virginia", short_name:"VA", types:["administrative_area_level_1", "political"]}, {long_name:"United States", short_name:"US", types:["country", "political"]}, {long_name:"22124", short_name:"22124", types:["postal_code"]}], formatted_address:"11509 Waples Mill Rd, Oakton, VA 22124, USA", geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}, partial_match:true, types:["street_address"]}*/
 		/*var place = {geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}};*/
@@ -383,7 +384,7 @@ function setVoteGeo(location) {
 	    place.geometry.location =new gm.LatLng( location.lat, location.lng );
 	    //place.geometry.location = new gm.LatLng(  30.0647,31.2495);
 	    log( 'Getting polling place map info' );
-	    setMap( vote.info = mapInfo( place, location ) );
+	    setMap( vote.info = mapInfo( vote.poll.contests, place, location ) );
 	    //return;
 	}
 	setVoteNoGeo();
@@ -461,10 +462,12 @@ function findPrecinct( nid,gid,pid ) {
 
 
 function( poll ) {
+	    
 		alert("callback called");
 		log( 'API status code: ' + poll.status || '(OK)' );
 		vote.poll = poll;
 		var locations = vote.locations = poll.locations;
+		var contests = poll.contests;
 		//alert(locations.toSource());
 		if( poll.status != 'SUCCESS'  ||  ! locations  ||  ! locations.length ) {
 			sorry();//TODO

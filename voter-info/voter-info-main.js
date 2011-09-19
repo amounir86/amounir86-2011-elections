@@ -992,6 +992,7 @@ function sorryHtml() {
 		'<div>',
 			formatHome(),
 			stateLocator(),
+			
 			electionInfo(),
 		'</div>'
 	) : S(
@@ -1029,7 +1030,9 @@ function formatPlaces( places ) {
 }
 
 // Return an 'info' object for either home.info or vote.info
-function mapInfo( place, extra ) {//place and location
+function mapInfo( contests,place, extra ) {//place and location
+	
+	//alert(vote.poll.contests[0].police_stations[0].pname);
 	extra = extra || {};
 	if( place  &&  ! isGeocodeAccurate(place) ) {
 		log( 'Not accurate enough' );
@@ -1043,6 +1046,8 @@ function mapInfo( place, extra ) {//place and location
 		place: place,
 		address: formatted,
 		latlng: place.geometry.location,
+		//contests: vote.poll.contests[0].police_stations[0].pname,
+		contests: vote.poll.contests,
 		location: extra.name,
 		_:''
 	};
