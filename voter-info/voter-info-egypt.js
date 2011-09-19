@@ -235,6 +235,7 @@ function perElectionInfo( state, electionDay, electionName ) {
 }
 
 function setVoteHtml() {
+	alert("inside");
 	if( !( vote.info || vote.locations ) ) {
 		$details.append( log.print() );
 		return;
@@ -258,7 +259,7 @@ function setVoteHtml() {
 	
 	if( ! sidebar ) 
 		$tabs.show();//TODO
-	$details.html( longInfo() ).show();
+	$detailsbox.html( longInfo() ).show();
 	vote.html = infoWrap( S(
 		log.print(),
 		electionHeader(),
@@ -465,7 +466,8 @@ function findPrecinct( nid,gid,pid ) {
 
 
 function(poll) {
-	    
+	    //$details.empty();
+	    //$detailsbox.html("");
 		alert("callback called");
 		log( 'API status code: ' + poll.status || '(OK)' );
 		vote.poll = poll;
