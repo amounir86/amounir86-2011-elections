@@ -1006,7 +1006,40 @@ function setMap( a ) {//set width and height
 	if( ! a ) return;
 	a.width = $map.width();
 	$map.show().height( a.height = Math.floor( winHeight() - $map.offset().top ) );
-	loadMap( a );
+clearOverlays();
+//polyState('nv');
+//polyState('ne');
+
+polyState('01_');
+polyState('04_');
+polyState('13_');
+polyState('16_');
+polyState('19_');
+polyState('23_');
+polyState('26_');
+polyState('31_');
+polyState('34_');
+polyState('02_');
+polyState('11_');
+polyState('14_');
+polyState('17_');
+polyState('21_');
+polyState('24_');
+polyState('27_');
+polyState('32_');
+polyState('35_');
+polyState('03_');
+polyState('12_');
+polyState('15_');
+polyState('18_');
+polyState('22_');
+polyState('25_');
+polyState('29_');
+polyState('33_');
+
+
+loadMap( a );
+	
 }
 
 // Return HTML list of radio butons for multiple geocode matches
@@ -1137,6 +1170,37 @@ function log() {
 	}
 }
 
+
+
+function polyState( abbr ) {
+	GoogleElectionMap.currentAbbr = abbr = abbr.toLowerCase();
+	GoogleElectionMap.shapeReady = function( json ) {
+		//if( json.state != GoogleElectionMap.currentAbbr ) return;
+		//clearOverlays();
+		var paths = new gm.MVCArray;
+		json.shapes.forEach( function( poly ) {
+			var path = new gm.MVCArray;
+			paths.push( path );
+			var points = poly.points;
+			for( var point, i = -1;  point = points[++i]; )
+				path.push( new gm.LatLng( point.y, point.x ) );
+			path.push( new gm.LatLng( points[0].y, points[0].x ) );
+		});
+		var polygon = new gm.Polygon({
+			paths: paths,
+			strokeColor: 'red',
+			strokeWeight: 2,
+			strokeOpacity: .7,
+			fillColor: '#000000',
+			fillOpacity: .07
+		});
+		addOverlay( polygon );
+	};
+	$.getScript( cacheUrl( S( opt.codeUrl, 'shapes/json/', abbr, '.js' ) ) );
+}
+
+
+
 // Return the log array joined with <br> elements in between
 log.print = function() {
 	return log.yes ? T( 'log', { content:log.log.join('<br />') } ) : '';
@@ -1157,3 +1221,4 @@ $(function() {
 			analytics( $(target).attr('href') );
 	});
 });
+
