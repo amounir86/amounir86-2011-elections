@@ -235,7 +235,7 @@ function perElectionInfo( state, electionDay, electionName ) {
 }
 
 function setVoteHtml() {
-	alert("inside");
+	//alert("inside");
 	if( !( vote.info || vote.locations ) ) {
 		$details.append( log.print() );
 		return;
@@ -245,12 +245,14 @@ function setVoteHtml() {
 		var loc = T('yourVotingLocation');
 		if( !( vote.locations && vote.locations.length ) )
 			return '';
-		if( vote.info )
+		if( vote.info ){
 	
 			return formatLocations(vote.poll.contests, vote.locations, vote.info,
 				null,
 				loc, infowindow, '', true
 			);
+		}
+
 		/*return infowindow ? '' : formatLocations( vote.locations, vote.info,
 			{ url:'vote-icon-32.png', width:32, height:32 },
 			loc + ( vote.locations.length > 1 ? 's' : '' ), false, '', false
@@ -278,9 +280,8 @@ function setVoteHtml() {
 	) );
 	
 	function homeAndVote( infowindow ) {
-		var viewMessage = getContests() ?
-			T('viewCandidates') :
-			T('viewDetails');
+		//var viewMessage = getContests() ? T('viewCandidates') : T('viewDetails');
+		var viewMessage = "";
 		var viewLink = sidebar ? '' : S(
 			'<div style="padding-top:0.75em;">',
 				'<a href="#detailsbox" onclick="return selectTab(\'#detailsbox\');">',
@@ -317,7 +318,7 @@ function formatLocations( contests,locations, info, icon, title, infowindow, ext
 		var address = T( 'address', {
 			location: H( info.location ),
 			//contests: contests[0].police_stations[0].pname,
-			contests: contests,
+			//contests: contests,
 			address: multiLineAddress( info.address )
 		});
 		return T( 'locationRow', {
@@ -326,7 +327,7 @@ function formatLocations( contests,locations, info, icon, title, infowindow, ext
 			iconHeight: 0,//icon.height,
 			address: address,
 			//contests: contests[0].police_stations[0].pname,
-			contests: contests,
+			//contests: contests,
 			directions: info.directions || '',
 			hours: info.hours ? 'Hours: ' + info.hours : '',
 			extra: extra || ''
@@ -342,7 +343,7 @@ function formatLocations( contests,locations, info, icon, title, infowindow, ext
 				directions: location.directions || '',
 				hours: location.pollinghours || '',
 				//contests: contests[0].police_stations[0].pname || '',
-				contests: contests || [],
+				//contests: contests || [],
 				address: a
 			});
 		});
@@ -380,13 +381,13 @@ function setVoteGeo(location) {
 
       		}*/
 	    }};
-	    //alert(place.toSource());
 	    place.geometry.location =new gm.LatLng( location.lat, location.lng );
 	    //place.geometry.location = new gm.LatLng(  30.0647,31.2495);
 	    log( 'Getting polling place map info' );
 	    setMap( vote.info = mapInfo( vote.poll.contests, place, location ) );
-	    map.setCenter( voteLatLng );
-	    //return;
+	    //map.setCenter(new gm.LatLng(  30.01,31.14));  //cairo
+	    //alert(vote.info.latlng);    
+	    map.setCenter( vote.info.latlng );
 	}
 	setVoteNoGeo();
 }
@@ -448,12 +449,12 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
 	}
 	pollingApi( nid,gid,pid, function( poll ) {
 		if( ok(poll) ){
+			if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
+				notTheSame();
+				return;
+			}
 			callback( poll );
-			
 		}else{
-			alert("FAIL");
-			// $('.not-found').show();
-			//pollingApi( nid,gid,pid, callback );
 			sorry();
 			return;
 		}
@@ -466,38 +467,38 @@ function findPrecinct( nid,gid,pid ) {
 
 
 function(poll) {
-	    //$details.empty();
-	    //$detailsbox.html("");
-		alert("callback called");
+		//alert("callback called");
 		log( 'API status code: ' + poll.status || '(OK)' );
 		vote.poll = poll;
 		var locations = vote.locations = poll.locations;
 		var contests = poll.contests;
-		//alert(locations.toSource());
-		if( poll.status != 'SUCCESS'  ||  ! locations  ||  ! locations.length ) {
-			sorry();//TODO
+		//Phase1
+		/*if( poll.status != 'SUCCESS'  ||  ! locations  ||  ! locations.length ) {
+			sorry();
+			return;
+		}*/
+		if( poll.status != 'SUCCESS') {
+			sorry();
 			return;
 		}
+		//end phase1		
 		if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
-			
 			notTheSame();
 			return;
 		}
-		var location = locations[0];
-		//alert(location.toSource());
+		var location = {};
+		if (locations && locations.length)
+			location = locations[0];
+		
 		if( location.lng && location.lat ){
 			log( 'Polling address found' );			
 			setVoteGeo( location );
 		}
 		else {
-			log( 'No polling address' );
+			log( 'No polling address' );    		
+			setMap( null);
 			setVoteNoGeo();
 		}
-		/*if( poll.status == 'SUCCESS' ) {
-			alert("SORRY");
-			sorry();
-			return;
-		}*/
 	}
 
 );
@@ -517,10 +518,8 @@ function gadgetReady( json ) {
 	initMap( function() {
 		setupTabs();
 		if( pref.ready ){
-			//alert('if');
 			submit( pref.address || pref.example );
 		}else{
-			//alert('else');
 			zoomTo( initialBbox );
 		}
 	});

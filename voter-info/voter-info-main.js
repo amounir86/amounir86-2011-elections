@@ -5,8 +5,6 @@
 //window.console && typeof console.log == 'function' && console.log( location.href );
 
 // Utility functions and jQuery extensions
-//var _alert = alert;
-//alert = function(){}
 var $window = $(window), $body = $('body');
 
 // Return window width or height
@@ -532,7 +530,8 @@ function electionHeader() {
 
 // Should we show the map? Depends on polling place location.
 function includeMap() {
-	return vote && vote.info && vote.info.latlng;
+	return vote.poll && true;
+	//return vote && vote.info && vote.info.latlng;
 }
 
 // Return HTML for the tab links, adjusted for active tab
@@ -643,8 +642,6 @@ function directionsLink( from, to ) {
 
 // Wrap some HTML in a DIV for an info section
 function infoWrap( html ) {
-	//alert(html);
-	//alert(T( 'infoWrap', { html:html } ));
 	return T( 'infoWrap', { html:html } );
 }
 
@@ -818,7 +815,7 @@ function isGeocodeAccurate( place ) {
 function pollingApi( nid,gid,pid, callback ) {
 	//alert("pollingApi");
 	if( ! nid ) {
-		alert("NID is null!");
+		//alert("NID is null!");
 		callback({ status:'ERROR' });
 		return;
 	}
@@ -1074,15 +1071,26 @@ function notTheSameHtml() {
 
 // Make the map visible and load the home/vote icons
 function setMap( a ) {//set width and height
-	if( ! a ) return;
+	//Phase1	
+	/*if( ! a ) return;
 	a.width = $map.width();
-	$map.show().height( a.height = Math.floor( winHeight() - $map.offset().top ) );
+	$map.show().height( a.height = Math.floor( winHeight() - $map.offset().top ) );*/
+
+	if( ! a ){
+		$map.show().height( Math.floor( winHeight() - $map.offset().top ) );
+	}else{
+		a.width = $map.width();
+		$map.show().height( a.height = Math.floor( winHeight() - $map.offset().top ) );
+	}
+
+	//end phase1
+
 clearOverlays();
 //polyState('nv');
 //polyState('ne');
 
 polyState('01_');
-polyState('04_');
+/*polyState('04_');
 polyState('13_');
 polyState('16_');
 polyState('19_');
@@ -1108,7 +1116,7 @@ polyState('25_');
 polyState('29_');
 polyState('33_');
 polyState('28_');
-
+*/
 
 loadMap( a );
 	
@@ -1145,7 +1153,7 @@ function mapInfo( contests,place, extra ) {//place and location
 	}
 	
 	var formatted =  extra.address 
-	alert(formatted);
+	//alert(formatted);
 	log( 'Formatted address:', formatted );
 	return {
 		place: place,
