@@ -1059,14 +1059,14 @@ body{direction: rtl;}
         <!---------- LISTING  ------------------------>
 
 
-	<div class="wrapper">
+	<div class="wrapper"  >
  		
     <div class="main">
      
       <div class="results">
 
       
-       
+       <div style="display:none">
         <h1>الدوائر</h1>
         <table width="100%" cellspacing="0">
         <tr>
@@ -1112,7 +1112,7 @@ body{direction: rtl;}
           <td><img src="/images/dummy/bag1.png" alt="رمز الشنطة" /></td>
         </tr>
       </table>
-       
+       </div>
       </div><!--end results-->
       
     </div><!--end main-->
@@ -1242,11 +1242,11 @@ body{direction: rtl;}
           <td style="padding-bottom:6px;">
               {{address}}
               
-              {{contests}}
+             <!-- {{contests}}
               
               {{each contests}}
             	${$index + 1}: <em>${$value}. </em>
-        	  {{/each}}
+        	  {{/each}}-->
             		
               <div>
                 {{directions}}
