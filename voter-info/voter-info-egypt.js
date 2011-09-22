@@ -235,7 +235,6 @@ function perElectionInfo( state, electionDay, electionName ) {
 }
 
 function setVoteHtml() {
-	//alert("inside");
 	if( !( vote.info || vote.locations ) ) {
 		$details.append( log.print() );
 		return;
@@ -246,41 +245,26 @@ function setVoteHtml() {
 		if( !( vote.locations && vote.locations.length ) )
 			return '';
 		if( vote.info ){
-	
-			return formatLocations(vote.poll.contests, vote.locations, vote.info,
-				null,
-				loc, infowindow, '', true
-			);
+			return formatLocations(vote.locations, vote.info,null,loc, infowindow, '', true	);
 		}
 
-		/*return infowindow ? '' : formatLocations( vote.locations, vote.info,
-			{ url:'vote-icon-32.png', width:32, height:32 },
-			loc + ( vote.locations.length > 1 ? 's' : '' ), false, '', false
-		);*/
 	}
 	
 	if( ! sidebar ) 
-		$tabs.show();//TODO
+		$tabs.show();
 	$detailsbox.html( longInfo() ).show();
 	vote.html = infoWrap( S(
 		log.print(),
 		electionHeader(),
-		homeAndVote()//,
-		//'<div style="padding-top:1em">',
-		//'</div>',
-		//electionInfo()
+		homeAndVote()
 	) );
 	vote.htmlInfowindow = infoWrap( S(
 		log.print(),
 		electionHeader(),
-		homeAndVote( true )//,
-		//'<div style="padding-top:1em">',
-		//'</div>',
-		//electionInfo()
+		homeAndVote( true )
 	) );
 	
 	function homeAndVote( infowindow ) {
-		//var viewMessage = getContests() ? T('viewCandidates') : T('viewDetails');
 		var viewMessage = "";
 		var viewLink = sidebar ? '' : S(
 			'<div style="padding-top:0.75em;">',
@@ -295,13 +279,53 @@ function setVoteHtml() {
 	}
 	
 	function longInfo() {
-		return T( 'longInfo', {
+		var location = vote.locations[0];
+		var locationHtml = (location)?S(
+		'<h1>بيانات اللجنة الانتخابية</h1>',
+		'<div class="place">',
+		  '<p>لجنتك الانتخابية :'+location.name+'</p>',
+		  '<p>العنوان : '+location.address+'</p>',
+		'</div>'):'';
+
+		var contests = vote.info.contests;
+		var boundriesHtml = '';		
+		if(contests){	
+	
+			var contestButtonsHtml = '';
+			for(var i = 0;i <contests.length; i++){
+				contestButtonsHtml += ('<li><a href="#mapbox" onclick="setMap(vote.info,[\'c'+contests[i].constituency_code
++'\'],7);return selectTab(\'#mapbox\');">'+contests[i].type+' '+contests[i].constituency+'</a></li>');
+			} 
+
+			boundriesHtml = S(
+			       '<h1>لمعرفة حدود اللجنة الإنتخابية</h1>',
+			       '<ul class="area-cover clearfix">',
+				contestButtonsHtml,
+			       '</ul>'
+			);
+		}
+
+		var html = S(
+			'<div class="content">',
+				'<div class="wrapper">',
+					'<div class="main">',
+						'<div class="results">',
+							locationHtml,
+							boundriesHtml,
+						'</div>',
+					'</div>',
+				'</div>',
+			'</div>'
+		);
+		return T('longInfo',{html: html});
+
+		/*return T( 'longInfo', {
 			log: log.print(),
 			header: electionHeader(),
 			location: voteLocation(),
 			warning: locationWarning(),
 			info: electionInfo()
-		});
+		});*/
 	}
 }
 
@@ -310,24 +334,21 @@ function getContests() {
 	return contests && contests.length && contests;
 }
 
-function formatLocations( contests,locations, info, icon, title, infowindow, extra, mapped ) {
+function formatLocations( locations, info, icon, title, infowindow, extra, mapped ) {
 	
-	//alert(contests[0].police_stations[0].pname);
 	function formatLocationRow( info ) {
-		//alert(info.toSource());
 		var address = T( 'address', {
 			location: H( info.location ),
-			//contests: contests[0].police_stations[0].pname,
-			//contests: contests,
 			address: multiLineAddress( info.address )
 		});
+		
+
+
 		return T( 'locationRow', {
 			iconSrc: "",//imgUrl(icon.url),
 			iconWidth: 0,//icon.width,
 			iconHeight: 0,//icon.height,
 			address: address,
-			//contests: contests[0].police_stations[0].pname,
-			//contests: contests,
 			directions: info.directions || '',
 			hours: info.hours ? 'Hours: ' + info.hours : '',
 			extra: extra || ''
@@ -342,8 +363,6 @@ function formatLocations( contests,locations, info, icon, title, infowindow, ext
 				location: a && a.location_name || '',
 				directions: location.directions || '',
 				hours: location.pollinghours || '',
-				//contests: contests[0].police_stations[0].pname || '',
-				//contests: contests || [],
 				address: a
 			});
 		});
@@ -384,10 +403,10 @@ function setVoteGeo(location) {
 	    place.geometry.location =new gm.LatLng( location.lat, location.lng );
 	    //place.geometry.location = new gm.LatLng(  30.0647,31.2495);
 	    log( 'Getting polling place map info' );
-	    setMap( vote.info = mapInfo( vote.poll.contests, place, location ) );
+	    setMap( vote.info = mapInfo( vote.poll.contests, place, location ),null,null );
 	    //map.setCenter(new gm.LatLng(  30.01,31.14));  //cairo
 	    //alert(vote.info.latlng);    
-	    map.setCenter( vote.info.latlng );
+	    //map.setCenter( vote.info.latlng );
 	}
 	setVoteNoGeo();
 }

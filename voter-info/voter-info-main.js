@@ -671,7 +671,7 @@ function initMap( go ) {
 
 // Load the home and vote markers onto the map, and load voting
 // information into the sidebar
-function loadMap( a ) {
+function loadMap( a,z ) {
 	go();
 	
 	function ready() {
@@ -755,7 +755,8 @@ function loadMap( a ) {
 		}
 		else if( voteLatLng ) {
 			map.setCenter( voteLatLng );
-			map.setZoom( 15 );
+			if (!z) map.setZoom( 15 );
+			else map.setZoom( z );
 		}
 		
 		ready();
@@ -1070,7 +1071,7 @@ function notTheSameHtml() {
 
 
 // Make the map visible and load the home/vote icons
-function setMap( a ) {//set width and height
+function setMap( a,states,z ) {//set width and height
 	//Phase1	
 	/*if( ! a ) return;
 	a.width = $map.width();
@@ -1086,11 +1087,14 @@ function setMap( a ) {//set width and height
 	//end phase1
 
 clearOverlays();
+if(states){
+	for(var i=0;i<states.length;i++){polyState(states[i]);}
+}
 //polyState('nv');
 //polyState('ne');
 
-polyState('01_');
-/*polyState('04_');
+/*polyState('01_');
+polyState('04_');
 polyState('13_');
 polyState('16_');
 polyState('19_');
@@ -1118,7 +1122,7 @@ polyState('33_');
 polyState('28_');
 */
 
-loadMap( a );
+loadMap( a,z );
 	
 }
 
