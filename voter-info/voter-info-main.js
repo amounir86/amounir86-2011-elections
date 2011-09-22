@@ -1278,6 +1278,8 @@ function polyState( abbr ) {
 			fillColor: '#000000',
 			fillOpacity: .07
 		});
+		//gme.addListener(polygon,'click',function(){alert('sss');});
+		//gme.addListener(polygon,'click',function(){alert('sss');});
 		addOverlay( polygon );
 	};
 	$.getScript( cacheUrl( S( opt.codeUrl, 'shapes/json/', abbr, '.js' ) ) );
