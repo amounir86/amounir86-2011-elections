@@ -290,7 +290,7 @@ function setVoteHtml() {
 		var contests = vote.info.contests;
 		var boundriesHtml = '';		
 		if(contests){	
-	
+			//boundries
 			var contestButtonsHtml = '';
 			for(var i = 0;i <contests.length; i++){
 				contestButtonsHtml += ('<li><a href="#mapbox" onclick="setMap(vote.info,[\'c'+contests[i].constituency_code
@@ -303,7 +303,78 @@ function setVoteHtml() {
 				contestButtonsHtml,
 			       '</ul>'
 			);
+			//candidates
+			var listingsHtml = '';
+			for(var i = 0;i <contests.length; i++){
+				if(contests[i].ballot_choices.candidates.length){
+					listingsHtml += ('<h1>المرشحين عن دائرة'+' '+contests[i].type+' '+contests[i].constituency+'</h1>');
+					listingsHtml += S('<table width="100%" cellspacing="0">',
+								'<tr>',
+								  '<th scope="col">الاسم</th>',
+								  '<th scope="col">اسم الشهرة</th>',
+								  '<th scope="col">الحزب</th>',
+								  '<th scope="col">الصفة</th>',
+								  '<th scope="col">الرمز</th>',
+								'</tr>'
+					);
+					var candidates = contests[i].ballot_choices.candidates;
+					for(var j = 0;j<candidates.length;j++){
+						c = (j%2 == 0)?'even':'';
+						listingsHtml += S('<tr class = "'+c+'">',
+								  '<td><a href="'+candidates[j].url+'">'+candidates[j].name+'</a></td>',
+								  '<td>'+candidates[j].nick_name+'</td>',
+								  '<td>'+candidates[j].party_name+'</td>',
+								  '<td>'+candidates[j].type+'</td>',
+								  '<td><img src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
+								'</tr>'
+						);
+					}
+					listingsHtml += '</table>';
+				}else if(contests[i].ballot_choices.choices.length){
+					listingsHtml += ('<h1>المرشحين عن دائرة'+' '+contests[i].type+' '+contests[i].constituency+'</h1>');
+					listingsHtml += '<p>اضغط على اسم القائمة لمزيد من التفاصيل</p>';
+					listingsHtml += '<ul class="lists">';
+
+					var lists = contests[i].ballot_choices.choices;
+					for(var l= 0;l<lists.length;l++){
+						listingsHtml += '<li>';
+						listingsHtml += '<img src="'+lists[l].symbol_url+'" class="img-border" /> <a href="'+lists[l].url+'">قائمة '+lists[l].name+'</a>';
+						listingsHtml += S('<table width="100%" cellspacing="0">',
+									'<tr>',
+									  '<th scope="col">الاسم</th>',
+									  '<th scope="col">اسم الشهرة</th>',
+									  '<th scope="col">الحزب</th>',
+									  '<th scope="col">الصفة</th>',
+									  '<th scope="col">الرمز</th>',
+									'</tr>'
+						);
+				
+						var candidates = lists[l].candidates;
+						for(var j = 0;j<candidates.length;j++){
+							c = (j%2 == 0)?'even':'';
+							listingsHtml += S('<tr class = "'+c+'">',
+									  '<td><a href="'+candidates[j].url+'">'+candidates[j].name+'</a></td>',
+									  '<td>'+candidates[j].nick_name+'</td>',
+									  '<td>'+candidates[j].party_name+'</td>',
+									  '<td>'+candidates[j].type+'</td>',
+									  '<td><img src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
+									'</tr>'
+							);
+						}
+
+						listingsHtml += S('<tr>',
+							  	'<td colspan="10" class="center list-info"><a href="'+lists[l].url+'">للمزيد من المعلومات قم بزيارة الموقع الخاص بقائمة'+' '+lists[l].name +' </a></td>',
+								'</tr>'
+						);
+						listingsHtml += '</table>';
+						listingsHtml += '</li>';
+					}	
+					listingsHtml +='</ul>';
+				}
+			}
+        
 		}
+
 
 		var html = S(
 			'<div class="content">',
@@ -312,6 +383,7 @@ function setVoteHtml() {
 						'<div class="results">',
 							locationHtml,
 							boundriesHtml,
+							listingsHtml,
 						'</div>',
 					'</div>',
 				'</div>',
