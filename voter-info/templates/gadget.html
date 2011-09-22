@@ -1065,7 +1065,7 @@ body{direction: rtl;}
      
       <div class="results">
 
-      
+      xyz
        <div style="display:none">
         <h1>الدوائر</h1>
         <table width="100%" cellspacing="0">
@@ -1199,9 +1199,15 @@ body{direction: rtl;}
 
 <!--:: longInfo ::-->
 
+{{html}}
+
+
+<!--:: xlongInfo ::-->
+
 {{log}}
 <div>
     {{header}}
+	
     <div style="padding-top:0.75em">
     </div>
     
@@ -1233,21 +1239,15 @@ body{direction: rtl;}
     <div style="padding:0.5em 0;">
       <table cellpadding="0" cellspacing="0">
 
-<!--:: locationRow ::-->
+<!--:: xlocationRow ::-->
 
         <tr valign="top">
           <td style="width:20px; padding:2px .75em 8 0;">
             <img src="{{iconSrc}}" style="width:{{iconWidth}}px; height:{{iconHeight}}px;" alt="">
           </td>
           <td style="padding-bottom:6px;">
-              {{address}}
+		{{address}}
               
-             <!-- {{contests}}
-              
-              {{each contests}}
-            	${$index + 1}: <em>${$value}. </em>
-        	  {{/each}}-->
-            		
               <div>
                 {{directions}}
               </div>
@@ -1257,6 +1257,16 @@ body{direction: rtl;}
               {{extra}}
           </td>
         </tr>
+
+<!--:: locationRow ::-->
+
+        <tr valign="top">
+          
+	<td style="padding-bottom:6px;">
+		{{address}}
+ 	</td>
+        </tr>
+
 
 <!--:: locationFoot ::-->
 
@@ -1279,10 +1289,12 @@ temp
 
 <div>
   <div>
+    اللجنة: 
     <strong>{{location}}</strong>
   </div>
   <div>
-    {{address}}
+العنوان: 
+    <strong>{{address}}</strong>
    
   </div>
 </div>
@@ -1301,26 +1313,7 @@ temp
             {{reportAnError}}
         </a>
     </div>
-<!--
-    <div style="margin-top:1em; border-top:1px solid #BBB; padding-top:1em;">
-    	Full election coverage:<br />
-    	<a target="_blank" href="http://www.google.com/2008election">
-    		Google 2008 Election Site
-    	</a>
-    </div>
-    <div style="margin-top:1em;">
-    	More election maps:<br />
-    	<a target="_blank" href="http://maps.google.com/elections">
-    		Google Elections Map Gallery
-    	</a>
-    </div>
-    <div style="margin-top:1em;">
-    	Get voter info on your phone:<br />
-    	<a target="_blank" href="http://m.google.com/elections">
-    		http://m.google.com/elections
-    	</a>
-    </div>
--->
+
 </div>
 
 <!--:: log ::-->

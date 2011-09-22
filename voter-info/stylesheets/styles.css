@@ -94,12 +94,12 @@ img{ vertical-align:middle;}
 
 
 /*-- results --*/
-.results{ font-family:Arial, Helvetica, sans-serif; font-size:18px; font-weight:bold;}
+.results{ font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;}
 .results table{ margin-bottom:40px; }
 .results table th{ text-align:right; background:#eee;}
 .results table th, .results table td{ padding:10px 20px; border:1px solid #ddd;}
 .results table tr.even td { background:#f7f7f7;}
-.results h1{font-size:36px; color:#c00; margin:10px 0 30px;}
+.results h1{font-size:28px; color:#c00; margin:10px 0 30px;}
 .results h2{ text-align:center; font-size:36px; color:#c00; margin:20px 0; }
 .results h3{ font-size:30px; margin-bottom:10px;}
 .results h3 span{ font-size:12px; font-family:Tahoma, Geneva, sans-serif; }
