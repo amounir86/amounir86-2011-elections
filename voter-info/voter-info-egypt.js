@@ -407,7 +407,7 @@ function getContests() {
 }
 
 function formatLocations( locations, info, icon, title, infowindow, extra, mapped ) {
-	
+	alert(info.toSource());
 	function formatLocationRow( info ) {
 		var address = T( 'address', {
 			location: H( info.location ),
@@ -578,8 +578,10 @@ function(poll) {
 			return;
 		}
 		var location = {};
-		if (locations && locations.length)
+		if (locations && locations.length){
 			location = locations[0];
+			location.address = location.unparsed_address;
+		}
 		
 		if( location.lng && location.lat ){
 			log( 'Polling address found' );			
