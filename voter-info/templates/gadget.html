@@ -33,6 +33,7 @@
   #Poll411InputCell { width:99%; padding-right:8px; } 
   #Poll411ButtonCell { width:1%; } 
   #nid { width:82%; } 
+  #cid { width:82%; } 
   #Poll411Frame { display:none; margin-top:6px; } 
 </style> 
  
@@ -67,6 +68,7 @@ body{direction: rtl;}
     body.sidebar #detailsbox { width:24em; /*position:absolute; left:0; top:0;*/ display:block; }
     body.sidebar #details { margin:8px; }
     body.sidebar #mapbox { position:absolute; }
+    label.error {color: red;display: block;float: left;margin-top: 0;text-align: right;width: 100%;}
 </style>
 <link href="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/stylesheets/styles.css" type="text/css" rel="stylesheet" />
 
@@ -76,6 +78,7 @@ body{direction: rtl;}
 
 </head>
 <body>
+
 <div>
 
 <!--:: header ::-->
@@ -101,11 +104,35 @@ body{direction: rtl;}
       <span>
       </span>
     </div>
+<!-------------------- ADDING MENU ITEMS ---------------------->
+
+<div class="menu">
+  <div class="container clearfix">
+    		<div class="moduletable">
+				<div id="horizmenu-surround">
+    				<ul class="menutop level1">
+			               <li class="item101 active root">
+			                	<a href="http://www.elections2011.eg/" class="item active item-active">
+			           				 <span>الرئيسية</span>
+			            		</a>
+			              </li>
+		                  <li class="item118 parent root">
+			                   <a href="/index.php/about-committee" class="daddy item">
+			            	 		<span>عن اللجنة</span>
+			            	   </a>
+		            	  </li>       
+                    </ul>
+				</div>			
+			</div>
+  		</div>
+</div>
+
+
+<!------------------ ADDING MENU ITEMS ------------------------>
 
     <table class="Poll411SearchTable" cellpadding="0" cellspacing="0" style="width:100%;">
       <tr valign="middle">
         <td id="Poll411InputCell">
-
 
 <div class="intro clearfix">
 	<div class="wrapper">
@@ -114,8 +141,8 @@ body{direction: rtl;}
 		<form>
 			<fieldset class="clearfix">
 			<div>
-			<label>الرقم القومى</label>
-			<input type="text" id="nid" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
+				<label id ="nid_label">الرقم القومى</label>
+				<input name="nid" type="text" id="nid" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
 			</div>
 			<div>
 			<label>المحافظة</label>
@@ -181,7 +208,7 @@ body{direction: rtl;}
 			</div>
 			<div>
 						
-			<label>القسم</label>
+			<label id="pid_label">القسم</label>
 			<select name="pid" id="pid">
 
 			<option value="">اختر القسم</option>
@@ -1003,7 +1030,124 @@ body{direction: rtl;}
 </div>
 
 <div class="elec-info">
-<p>أدخل رقمك القومي ومحافظتك والقسم الذي تتبعه كما هو مدون في بطاقة الرقم القومي الخاصة بك للتأكد من وجود إسمك في كشوف الناخبين.</p>
+<p id="feature_description">أدخل رقمك القومي ومحافظتك والقسم الذي تتبعه كما هو مدون في بطاقة الرقم القومي الخاصة بك للتأكد من وجود إسمك في كشوف الناخبين.</p>
+<div class="id-demo">
+<div class="station border"></div>
+<div class="gov border"></div>
+<div class="id-num border"></div>
+</div>
+
+</div>
+</div>
+
+<!--------   BALLOTS FEATURE      ---------------->
+
+<!--<tr id ="cid_feature" valign="middle">
+        <td id="Poll411InputCell">
+
+<div class="intro clearfix">
+	<div class="wrapper">
+<div class="voter-id" >
+		<h2>خدمة الاستعلام عن الدوائر الانتخابية  </h2>
+		<form>
+			<fieldset class="clearfix">
+			<div>
+			<label>اسم الدائرة</label>
+			<input type="text" id="cid" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
+			</div>
+			<div>
+			<label>المحافظة</label>
+			<select id="gid" name="gid">
+
+			<option value="">اختر المحافظة</option>
+
+			<option value="19">القاهرة</option>
+
+			<option value="27">الأسكندرية</option>
+
+			<option value="35">بورسعيد</option>
+
+			<option value="43">السويس</option>
+
+			<option value="51">دمياط</option>
+
+			<option value="61">الدقهلية</option>
+
+			<option value="78">الشرقية</option>
+
+			<option value="86">القليوبية</option>
+
+			<option value="94">كفر الشيخ</option>
+
+			<option value="108">الغربية</option>
+
+			<option value="116">المنوفية</option>
+
+			<option value="124">البحيرة</option>
+
+			<option value="132">الإسماعيلية</option>
+
+			<option value="141">الجيزة</option>
+
+			<option value="159">بني سويف</option>
+
+			<option value="167">الفيوم</option>
+
+			<option value="175">المنيا</option>
+
+			<option value="183">أسيوط</option>
+
+			<option value="191">سوهاج</option>
+
+			<option value="205">قنا</option>
+
+			<option value="213">أسوان</option>
+
+			<option value="221">البحر الأحمر</option>
+
+			<option value="231">الوادي الجديد</option>
+
+			<option value="248">مطروح</option>
+
+			<option value="256">شمال سيناء</option>
+
+			<option value="264">جنوب سيناء</option>
+
+			<option value="311">الأقصر</option> 
+
+			</select>
+			</div>
+			<div>
+						
+			<label>نوع الدائرة</label>
+			<select name="ct" id="ct">
+
+			<option value="">اختر نوع الدائرة</option>
+
+			<option value="35" class="19">15 مايو</option>
+
+			<option value="124" class="19">الأزبكية</option>
+
+			<option value="3867" class="19">الأميرية</option>
+
+			<option value="345" class="19">البساتين</option>
+
+			</select>
+
+
+
+			</div>
+			<div>
+			<label>&nbsp;</label>
+			<input type="submit" id="Poll411Button" value="تحقق" />
+			</div>
+
+			</fieldset>
+		</form>
+</div>
+
+<div class="elec-info">
+<p>استعلم عن الدوائر</p>
 
 <div class="id-demo">
 <div class="station border"></div>
@@ -1013,14 +1157,17 @@ body{direction: rtl;}
 
 </div>
 </div>
+
+
+
 </div><!--end intro-->
 
-</td>
+<!--</td> 
 
-  
+<!-------- END OF BALLOTS FEATURE ----------->
 
 
-</tr>
+<!-- </tr> -->
 </table>
 </form>
 

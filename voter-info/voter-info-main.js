@@ -885,12 +885,12 @@ function setGadgetPoll411() {
 		},
 		
 		submit: function() {
-			//alert("Poll411.submit");
-			$previewmap.hide();
+		   $previewmap.hide();
 			if( sidebar ) {
 				submit( nid.value,gid.value,pid.value );
 			}
 			else {
+				
 				$map.hide().css({ visibility:'hidden' });
 				$search.slideUp( 250, function() {
 					$spinner.show();
@@ -905,11 +905,20 @@ function setGadgetPoll411() {
 // Input form submit handler.
 // Turns on logging if input address is prefixed with !
 function submit( nid,gid,pid ) {
-	//alert("submit");
+	if( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ){
+		if(!sidebar ) {
+			$map.show().css({ visibility:'visible' });
+			$search.slideDown( 250, function() {
+				$spinner.hide();
+			});
+		}
+		return false;
+	}
 	analytics( 'lookup' );
 	
 	home = {};
 	vote = {};
+	
 	clearOverlays();
 	$spinner.show();
 	$details.empty();
@@ -1278,7 +1287,7 @@ function polyState( abbr ) {
 			fillColor: '#000000',
 			fillOpacity: .07
 		});
-		//gme.addListener(polygon,'click',function(){alert('sss');});
+		gme.addListener(polygon,'click',function(){alert('sss');});
 		//gme.addListener(polygon,'click',function(){alert('sss');});
 		addOverlay( polygon );
 	};
