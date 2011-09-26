@@ -407,7 +407,7 @@ function getContests() {
 }
 
 function formatLocations( locations, info, icon, title, infowindow, extra, mapped ) {
-	alert(info.toSource());
+	//alert(info.toSource());
 	function formatLocationRow( info ) {
 		var address = T( 'address', {
 			location: H( info.location ),
