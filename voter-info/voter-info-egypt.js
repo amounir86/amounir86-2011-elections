@@ -7,9 +7,9 @@
 function functionTabs() {
 	
 	 if (document.location.href.indexOf('cid=yes') > 0) {
-	 	alert("hey");
+	 	alert
 	 	$("#elec-info").remove();  
-        $('.wrapper').append('<div class="map-demo"><img src="../images/graphics/map-demo.png" width="300" height="230" /> </div>');
+        $('.wrapper').append('<div class="map-demo"><img src="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/graphics/map-demo.png" width="300" height="230" /> </div>');
 	 	$("#nid_tab").attr('class' , "" );
 	 	$("#cid_tab").attr('class' , "selected" );
        	$("#pid").hide(); 
