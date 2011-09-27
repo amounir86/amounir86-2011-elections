@@ -154,7 +154,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	/*--intro--*/
 	.intro{ background: url(../images/graphics/intro-bg.png) repeat-x top; padding:30px 0; height:280px;}
 	.intro .voter-id{ float:right; width:480px;}
-	.intro .voter-id h2{ font-size:30px; color:#c00; margin-bottom:20px; margin-right:35px;}
+	.intro .voter-id h2{ font-size:30px !important; color:#c00; margin-bottom:20px; margin-right:35px;}
 	.intro .elec-info{ float:right; width:410px; padding-right:30px; background:none; text-align:center;}
 	.intro .elec-info p{ margin:-5px 0 10px; font-weight:bold;}
 	.intro .id-demo{ background:url(../images/graphics/id-2.png) no-repeat; width:303px; height:190px; position:relative; margin-right:55px;}
