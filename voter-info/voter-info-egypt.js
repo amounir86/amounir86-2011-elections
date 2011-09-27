@@ -7,6 +7,8 @@
 function functionTabs() {
 	
 	 if (document.location.href.indexOf('cid=yes') > 0) {
+	 	$("#nid_tab").attr('class' , "" );
+	 	$("#cid_tab").attr('class' , "selected" );
        	$("#pid").hide(); 
        
        	//<input type="text" id="nid" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
