@@ -6,18 +6,18 @@
 
 function functionTabs() {
 	
-	 if (document.location.href.indexOf('cid=yes') > 0) {
+	/* if (document.location.href.indexOf('cid=yes') > 0) {
+	 	$("#elec-info").remove();  
+        $('.wrapper').append('<div class="map-demo"><img src="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/graphics/map-demo.png" width="300" height="230" /> </div>');
 	 	$("#nid_tab").attr('class' , "" );
 	 	$("#cid_tab").attr('class' , "selected" );
        	$("#pid").hide(); 
-       
-       	//<input type="text" id="nid" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
        	cid_input = $("input[type='text']/").attr('id' , "cid" ).attr('class' , 'example').attr('onfocus' , 'Poll411.focus()').attr('onblur' , 'Poll411.blur()');
        	$("#nid").replaceWith(cid_input);
        	$("#pid_label").hide(); 
        	$("#nid_label").html("اسم الدائرة"); 
        	
-    }
+    }*/
 	
 }
 
@@ -75,56 +75,7 @@ $(window).load(function() {
    setTimeout("functionTabs(); ",1000);
    setTimeout("functionColoring(); ",1000);
    setTimeout("functionValidaing(); ",1000);
-  
-	
-	/*$("#Poll411Form").validate({
-		rules: {
-			nid: { 
-				required: true,
-				digits: true,
-				rangelength: [14, 14],
-                validAge: true
-			},
-			gid: "required",
-			pid: "required"
-		},
-		messages: {
-			nid: {
-				required: "من فضلك ادخل الرقم القومى",
-				digits: "من فضلك ادخل ارقام فقط",
-				rangelength: "من فضلك أدخل الأربعة عشر رقم",
-                validAge: "عفوا, غير مسموح لإقل من 18 سنة بالإنتخاب"
-			},
-			gid:"من فضلك اختر المحافظة",
-			pid:"من فضلك اختر القسم"
-		}
-		});*/
-	/*$(function() {      
-		$('#pid').chained('#gid'); 
-	});
-	*/
-	/*$("input#nid").focus(function () {
-         $('.id-demo > .id-num').fadeIn(500);
-    });
-    $("input#nid").blur(function () {
-         $('.id-demo > .id-num').fadeOut(500);
-    });
     
-    $("select#gid").focus(function () {
-         $('.id-demo > .gov').fadeIn(500);
-    });
-    $("select#gid").blur(function () {
-         $('.id-demo > .gov').fadeOut(500);
-    });
-    
-    $("select#pid").focus(function () {
-         $('.id-demo > .station').fadeIn(500);
-    });
-    $("select#pid").blur(function () {
-         $('.id-demo > .station').fadeOut(500);
-    });*/
-    
-  
 });
 	
 $(document).ready(function(){

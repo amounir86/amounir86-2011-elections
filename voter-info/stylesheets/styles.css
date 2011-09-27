@@ -10,7 +10,27 @@ a.more{ float:left; clear:both;}
 table{ border-collapse:collapse;}
 img{ vertical-align:middle;}
 .center{ text-align:center;}
-
+.id-num {
+    bottom: 17px;
+    display: none;
+    height: 20px;
+    right: 10px;
+    width: 100px;
+}
+.gov {
+    bottom: 58px;
+    display: none;
+    height: 20px;
+    right: 93px;
+    width: 60px;
+}
+.station {
+    bottom: 58px;
+    display: none;
+    height: 20px;
+    right: 10px;
+    width: 79px;
+}
 
 
 /*--Clearfix--*/
@@ -134,7 +154,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	/*--intro--*/
 	.intro{ background: url(../images/graphics/intro-bg.png) repeat-x top; padding:30px 0; height:280px;}
 	.intro .voter-id{ float:right; width:480px;}
-	.intro .voter-id h2{ font-size:30px; color:#c00; margin-bottom:20px; margin-right:35px;}
+	.intro .voter-id h2{ font-size:30px !important; color:#c00; margin-bottom:20px; margin-right:35px;}
 	.intro .elec-info{ float:right; width:410px; padding-right:30px; background:none; text-align:center;}
 	.intro .elec-info p{ margin:-5px 0 10px; font-weight:bold;}
 	.intro .id-demo{ background:url(../images/graphics/id-2.png) no-repeat; width:303px; height:190px; position:relative; margin-right:55px;}
@@ -147,6 +167,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 		/*--Form--*/
 	fieldset{ border:none;}
 	fieldset div{ padding: 5px 90px 5px 0;}
+	
 	fieldset div label{display: block;float: right; font-weight: bold; line-height: 1.2;  margin: 7px -90px 0 0; width: 80px; text-align:left;}
 	fieldset div input[type=text],fieldset div input[type=password], fieldset div input[type=file], textarea, select{font-size:16px; display:block; border:1px solid #ccc; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px; background: #fff url(../images/graphics/input-bg.png) repeat-x top; width:300px;}
 	fieldset div input[type=text]:focus, textarea:focus, select:focus{ border:1px solid #999;}
@@ -188,7 +209,6 @@ border-bottom: 1px solid #ccc; /* set border COLOR as desired */
 list-style-type: none;
 padding: 4px 10px 4px 10px; /* THIRD number must change with respect to padding-top (X) below */
 margin:0 0 25px;
-background:#ccc;
 }
 
 ul.tabnav li { /* do not change */
@@ -203,7 +223,7 @@ padding-top: 8px; /* must change with respect to padding (X) above and below */}
 
 
 ul.tabnav li a { /* settings for all tab links */
-padding: 8px 10px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+padding: 7px 10px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
 border: 1px solid #ccc; /* set border COLOR as desired; usually matches border color specified in .tabnav */
 background: #ddd ; /* set unselected tab background color as desired */
 color: #666; /* set unselected tab link color as desired */
@@ -222,3 +242,12 @@ background: #f2f2f2; /* set desired hover color */
 }
 
 /* end tabs */
+
+/*------ timeline -----*/
+.timeline{ background:#E9EDF2;}
+.timeline ul{ list-style:none;  }
+.timeline ul li{ float:right; margin-left:20px; width:130px; text-align:center;}
+.timeline ul li p{background:#fff; border: 1px solid #ddd; box-shadow: 3px 3px 3px #ddd; padding:5px; margin-bottom:20px; font-weight:bold; font-size:16px;}
+.timeline ul li span{ color:#c00;}
+.submit-button{margin-top: 10px;}
+.map-demo{float:right; width:410px; padding-right:30px; background:none; text-align:center;}
