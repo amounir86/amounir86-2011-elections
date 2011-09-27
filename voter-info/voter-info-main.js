@@ -1100,7 +1100,7 @@ clearOverlays();
 	for(var i=0;i<states.length;i++){polyState(states[i]);}
 }*/
 if(states){
-if(states[0]=='c01'){
+if(states[0]=='c02'){
 	polyState('01_13');
 	polyState('01_14');
 	polyState('01_15');
