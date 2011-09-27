@@ -69,10 +69,10 @@ function functionValidaing(){
 
 $(window).load(function() {
 	
-   setTimeout("$('#pid').chained('#gid'); ",200);
-   setTimeout("functionTabs(); ",200);
-   setTimeout("functionColoring(); ",200);
-   setTimeout("functionValidaing(); ",200);
+   setTimeout("$('#pid').chained('#gid'); ",1000);
+   setTimeout("functionTabs(); ",1000);
+   setTimeout("functionColoring(); ",1000);
+   setTimeout("functionValidaing(); ",1000);
   
 	
 	/*$("#Poll411Form").validate({
