@@ -167,6 +167,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 		/*--Form--*/
 	fieldset{ border:none;}
 	fieldset div{ padding: 5px 90px 5px 0;}
+	
 	fieldset div label{display: block;float: right; font-weight: bold; line-height: 1.2;  margin: 7px -90px 0 0; width: 80px; text-align:left;}
 	fieldset div input[type=text],fieldset div input[type=password], fieldset div input[type=file], textarea, select{font-size:16px; display:block; border:1px solid #ccc; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px; background: #fff url(../images/graphics/input-bg.png) repeat-x top; width:300px;}
 	fieldset div input[type=text]:focus, textarea:focus, select:focus{ border:1px solid #999;}
@@ -248,5 +249,5 @@ background: #f2f2f2; /* set desired hover color */
 .timeline ul li{ float:right; margin-left:20px; width:130px; text-align:center;}
 .timeline ul li p{background:#fff; border: 1px solid #ddd; box-shadow: 3px 3px 3px #ddd; padding:5px; margin-bottom:20px; font-weight:bold; font-size:16px;}
 .timeline ul li span{ color:#c00;}
-
+.submit-button{margin-top: 10px;}
 .map-demo{float:right; width:410px; padding-right:30px; background:none; text-align:center;}
