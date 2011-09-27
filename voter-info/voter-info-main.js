@@ -685,6 +685,7 @@ function loadMap( a,z ) {
 					html: ! only ? formatHome(true) : vote.htmlInfowindow || formatHome(true)
 				});
 			if( vote.info  &&  vote.info.latlng )
+				map.setCenter( vote.info.latlng );
 				setMarker({
 					place: vote,
 					html: vote.htmlInfowindow,
@@ -754,7 +755,6 @@ function loadMap( a,z ) {
 			});
 		}
 		else if( voteLatLng ) {
-			map.setCenter( voteLatLng );
 			if (!z) map.setZoom( 15 );
 			else map.setZoom( z );
 		}
@@ -1096,8 +1096,26 @@ function setMap( a,states,z ) {//set width and height
 	//end phase1
 
 clearOverlays();
-if(states){
+/*if(states){
 	for(var i=0;i<states.length;i++){polyState(states[i]);}
+}*/
+if(states){
+if(states[0]=='c01'){
+	polyState('01_13');
+	polyState('01_14');
+	polyState('01_15');
+	polyState('01_16');
+	polyState('01_17');
+	polyState('01_18');
+	polyState('01_25');
+}else{
+	polyState('01_13');
+	polyState('01_14');
+	polyState('01_15');
+	polyState('01_16');
+	polyState('01_17');
+
+}
 }
 //polyState('nv');
 //polyState('ne');
@@ -1132,6 +1150,8 @@ polyState('28_');
 */
 
 loadMap( a,z );
+
+	
 	
 }
 
@@ -1165,13 +1185,11 @@ function mapInfo( contests,place, extra ) {//place and location
 	}
 	
 	var formatted =  extra.address 
-	//alert(formatted);
 	log( 'Formatted address:', formatted );
 	return {
 		place: place,
 		address: formatted,
 		latlng: place.geometry.location,
-		//contests: vote.poll.contests[0].police_stations[0].pname,
 		contests: vote.poll.contests,
 		location: extra.name,
 		_:''
@@ -1193,13 +1211,19 @@ function setupTabs() {
 
 // Activate the named tab
 function selectTab( tab ) {
+	//alert(tab);	
 	analytics( tab );
 	$( $tabs.find('span')[0].className ).hide();
 	if( tab == '#Poll411Gadget' ) {
 		$details.empty();
+		nid = $('#nid');
+		if(nid) nid.val('');
+		cid = $('#cid');
+		if(cid) cid.val('');
 		$tabs.hide();
 		$spinner.css({ display:'none' });
 		$map.hide();
+		clearOverlays();
 		$search.slideDown( 250, function() {
 			//$previewmap.show();
 			setLayout();

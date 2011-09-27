@@ -427,6 +427,16 @@ function perElectionInfo( state, electionDay, electionName ) {
 	}
 }
 
+function gotoConstit(code){
+	setMap(vote.info,['c'+code],12);
+	if(vote.info.latlng ){
+		map.setCenter( vote.info.latlng );
+	}else{
+		map.setCenter(new gm.LatLng(  30.01,31.14)); 
+	}
+	return selectTab('#mapbox');
+}
+
 function setVoteHtml() {
 	if( !( vote.info || vote.locations ) ) {
 		$details.append( log.print() );
@@ -486,8 +496,7 @@ function setVoteHtml() {
 			//boundries
 			var contestButtonsHtml = '';
 			for(var i = 0;i <contests.length; i++){
-				contestButtonsHtml += ('<li><a href="#mapbox" onclick="setMap(vote.info,[\'c'+contests[i].constituency_code
-+'\'],7);return selectTab(\'#mapbox\');">'+contests[i].type+' '+contests[i].constituency+'</a></li>');
+				contestButtonsHtml += ('<li><a href="#mapbox" onclick="gotoConstit(\''+contests[i].constituency_code+'\')">'+contests[i].type+' '+contests[i].constituency+'</a></li>');
 			} 
 
 			boundriesHtml = S(
@@ -518,7 +527,7 @@ function setVoteHtml() {
 								  '<td>'+candidates[j].nick_name+'</td>',
 								  '<td>'+candidates[j].party_name+'</td>',
 								  '<td>'+candidates[j].type+'</td>',
-								  '<td><img src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
+								  '<td><img width="50" height="50" src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
 								'</tr>'
 						);
 					}
@@ -531,7 +540,7 @@ function setVoteHtml() {
 					var lists = contests[i].ballot_choices.choices;
 					for(var l= 0;l<lists.length;l++){
 						listingsHtml += '<li>';
-						listingsHtml += '<img src="'+lists[l].symbol_url+'" class="img-border" /> <a href="'+lists[l].url+'">قائمة '+lists[l].name+'</a>';
+						listingsHtml += '<img width="50" height="50"src="'+lists[l].symbol_url+'" class="img-border" /> <a href="'+lists[l].url+'">قائمة '+lists[l].name+'</a>';
 						listingsHtml += S('<table width="100%" cellspacing="0">',
 									'<tr>',
 									  '<th scope="col">الاسم</th>',
@@ -550,7 +559,7 @@ function setVoteHtml() {
 									  '<td>'+candidates[j].nick_name+'</td>',
 									  '<td>'+candidates[j].party_name+'</td>',
 									  '<td>'+candidates[j].type+'</td>',
-									  '<td><img src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
+									  '<td><img width="50" height="50" src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
 									'</tr>'
 							);
 						}
@@ -600,7 +609,6 @@ function getContests() {
 }
 
 function formatLocations( locations, info, icon, title, infowindow, extra, mapped ) {
-	//alert(info.toSource());
 	function formatLocationRow( info ) {
 		var address = T( 'address', {
 			location: H( info.location ),
@@ -647,7 +655,6 @@ function formatLocations( locations, info, icon, title, infowindow, extra, mappe
 // Set up map and sidebar when the polling place location is known
 function setVoteGeo(location) {
 	
-	//alert(vote.poll.contests.toSource());
 	if( location ) {
 /*		var place = {address_components:[{long_name:"", short_name:"", types:["street_number"]}, {long_name:location[0].address.location_name, short_name:location[0].address.location_name, types:["route"]}, {long_name:"Oakton", short_name:"Oakton", types:["locality", "political"]}, {long_name:"Providence", short_name:"Providence", types:["administrative_area_level_3", "political"]}, {long_name:"Fairfax", short_name:"Fairfax", types:["administrative_area_level_2", "political"]}, {long_name:"Virginia", short_name:"VA", types:["administrative_area_level_1", "political"]}, {long_name:"United States", short_name:"US", types:["country", "political"]}, {long_name:"22124", short_name:"22124", types:["postal_code"]}], formatted_address:"11509 Waples Mill Rd, Oakton, VA 22124, USA", geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}, partial_match:true, types:["street_address"]}*/
 		/*var place = {geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}};*/
@@ -669,11 +676,16 @@ function setVoteGeo(location) {
 	    //place.geometry.location = new gm.LatLng(  30.0647,31.2495);
 	    log( 'Getting polling place map info' );
 	    setMap( vote.info = mapInfo( vote.poll.contests, place, location ),null,null );
-	    //map.setCenter(new gm.LatLng(  30.01,31.14));  //cairo
-	    //alert(vote.info.latlng);    
-	    //map.setCenter( vote.info.latlng );
+	    if(vote.info.latlng ){
+		map.setCenter( vote.info.latlng );
+	    }else{
+		map.setCenter(new gm.LatLng(  30.01,31.14)); 
+	    }
+		
+	
 	}
 	setVoteNoGeo();
+	if(vote.info.latlng ) selectTab('#mapbox');
 }
 
 // Set up map and sidebar with no polling place location
