@@ -6,7 +6,7 @@
 
 $(window).load(function() {
 	
- alert("window is loaded");
+ //alert("window is loaded");
     if (document.location.href.indexOf('cid=yes') > 0) {
        	$("#pid").hide(); 
        
