@@ -4,10 +4,9 @@
 
 // Language and prefs
 
-$(window).load(function() {
+function functionTabs() {
 	
- //alert("window is loaded");
-    if (document.location.href.indexOf('cid=yes') > 0) {
+	 if (document.location.href.indexOf('cid=yes') > 0) {
        	$("#pid").hide(); 
        
        	//<input type="text" id="nid" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
@@ -17,9 +16,33 @@ $(window).load(function() {
        	$("#nid_label").html("اسم الدائرة"); 
        	
     }
-
-  
 	
+}
+
+function functionColoring() {
+	$("input#nid").focus(function () {
+         $('.id-demo > .id-num').fadeIn(500);
+    });
+    $("input#nid").blur(function () {
+         $('.id-demo > .id-num').fadeOut(500);
+    });
+    
+    $("select#gid").focus(function () {
+         $('.id-demo > .gov').fadeIn(500);
+    });
+    $("select#gid").blur(function () {
+         $('.id-demo > .gov').fadeOut(500);
+    });
+    
+    $("select#pid").focus(function () {
+         $('.id-demo > .station').fadeIn(500);
+    });
+    $("select#pid").blur(function () {
+         $('.id-demo > .station').fadeOut(500);
+    });
+}
+
+function functionValidaing(){
 	$("#Poll411Form").validate({
 		rules: {
 			nid: { 
@@ -42,11 +65,43 @@ $(window).load(function() {
 			pid:"من فضلك اختر القسم"
 		}
 		});
-	$(function() {      
+}
+
+$(window).load(function() {
+	
+   setTimeout("$('#pid').chained('#gid'); ",200);
+   setTimeout("functionTabs(); ",200);
+   setTimeout("functionColoring(); ",200);
+   setTimeout("functionValidaing(); ",200);
+  
+	
+	/*$("#Poll411Form").validate({
+		rules: {
+			nid: { 
+				required: true,
+				digits: true,
+				rangelength: [14, 14],
+                validAge: true
+			},
+			gid: "required",
+			pid: "required"
+		},
+		messages: {
+			nid: {
+				required: "من فضلك ادخل الرقم القومى",
+				digits: "من فضلك ادخل ارقام فقط",
+				rangelength: "من فضلك أدخل الأربعة عشر رقم",
+                validAge: "عفوا, غير مسموح لإقل من 18 سنة بالإنتخاب"
+			},
+			gid:"من فضلك اختر المحافظة",
+			pid:"من فضلك اختر القسم"
+		}
+		});*/
+	/*$(function() {      
 		$('#pid').chained('#gid'); 
 	});
-	
-	$("input#nid").focus(function () {
+	*/
+	/*$("input#nid").focus(function () {
          $('.id-demo > .id-num').fadeIn(500);
     });
     $("input#nid").blur(function () {
@@ -65,7 +120,7 @@ $(window).load(function() {
     });
     $("select#pid").blur(function () {
          $('.id-demo > .station').fadeOut(500);
-    });
+    });*/
     
   
 });
