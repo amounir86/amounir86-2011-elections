@@ -4,9 +4,9 @@
 
 // Language and prefs
 
-$(window).load(function() {
+//$(window).load(function() {
 	
-
+$(document).ready(function(){
     if (document.location.href.indexOf('cid=yes') > 0) {
        	$("#pid").hide(); 
        
