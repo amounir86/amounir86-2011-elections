@@ -188,7 +188,6 @@ border-bottom: 1px solid #ccc; /* set border COLOR as desired */
 list-style-type: none;
 padding: 4px 10px 4px 10px; /* THIRD number must change with respect to padding-top (X) below */
 margin:0 0 25px;
-/*background:#ccc;*/
 }
 
 ul.tabnav li { /* do not change */
@@ -222,3 +221,12 @@ background: #f2f2f2; /* set desired hover color */
 }
 
 /* end tabs */
+
+/*------ timeline -----*/
+.timeline{ background:#E9EDF2;}
+.timeline ul{ list-style:none;  }
+.timeline ul li{ float:right; margin-left:20px; width:130px; text-align:center;}
+.timeline ul li p{background:#fff; border: 1px solid #ddd; box-shadow: 3px 3px 3px #ddd; padding:5px; margin-bottom:20px; font-weight:bold; font-size:16px;}
+.timeline ul li span{ color:#c00;}
+
+.map-demo{float:right; width:410px; padding-right:30px; background:none; text-align:center;}
