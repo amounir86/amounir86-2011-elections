@@ -10,7 +10,27 @@ a.more{ float:left; clear:both;}
 table{ border-collapse:collapse;}
 img{ vertical-align:middle;}
 .center{ text-align:center;}
-
+.id-num {
+    bottom: 17px;
+    display: none;
+    height: 20px;
+    right: 10px;
+    width: 100px;
+}
+.gov {
+    bottom: 58px;
+    display: none;
+    height: 20px;
+    right: 93px;
+    width: 60px;
+}
+.station {
+    bottom: 58px;
+    display: none;
+    height: 20px;
+    right: 10px;
+    width: 79px;
+}
 
 
 /*--Clearfix--*/
