@@ -6,7 +6,7 @@
 
 function functionTabs() {
 	
-	 if (document.location.href.indexOf('cid=yes') > 0) {
+	/* if (document.location.href.indexOf('cid=yes') > 0) {
 	 	$("#elec-info").remove();  
         $('.wrapper').append('<div class="map-demo"><img src="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/graphics/map-demo.png" width="300" height="230" /> </div>');
 	 	$("#nid_tab").attr('class' , "" );
@@ -17,7 +17,7 @@ function functionTabs() {
        	$("#pid_label").hide(); 
        	$("#nid_label").html("اسم الدائرة"); 
        	
-    }
+    }*/
 	
 }
 
