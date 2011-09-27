@@ -1,0 +1,224 @@
+@charset "utf-8";
+/*--Reset--*/
+*{ margin:0; padding:0; outline:none;}
+html{ direction:rtl;}
+body{ font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.5em; background:#fff; color:#222;}
+h1,h2,h3,h4{ font-family:Arial, Helvetica, sans-serif;}
+a img{border:none;}
+a{color:#c00;}
+a.more{ float:left; clear:both;}
+table{ border-collapse:collapse;}
+img{ vertical-align:middle;}
+.center{ text-align:center;}
+
+
+
+/*--Clearfix--*/
+.clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
+.clearfix, .container {display:block;}
+.clear {clear:both;}
+
+
+
+/*--Layout--*/
+.wrapper{ width:950px; margin:0 auto;}
+
+/*--content--*/
+.content{ background:#e9edf2 url(../images/graphics/content-bg.png) repeat-x top; padding:30px 0;}
+.main{padding:30px; background:#fff; border:1px solid #ddd; -moz-box-shadow: 3px 3px 3px #ddd; -webkit-box-shadow: 3px 3px 3px #ddd;}
+.main h2{margin-bottom:20px; font-size:24px; }
+.main p{ margin:20px 0;}
+.main a{ color:#03C;} 
+.main a:hover{ color:#c00;}
+
+/*--header--*/
+.header{ background: url(../images/graphics/header-bg.png) repeat-x; padding:10px 0; height:94px;}
+.header .top-service{ float:left; font-size:12px;}
+.header .top-service a{ color:#222;}
+	
+	/*--social--*/
+	.header .top-service .social, .header .top-service .search{ margin:10px 0; float:left; clear:both;}
+	.header .top-service .social-icons a{margin-right:5px; }
+	
+	/*--search--*/
+	.header .top-service .search form label{ display:none;}
+	.header .top-service .search form div{ margin:0; padding:0;}
+	.header .top-service .search form input[type="text"]{ width:200px; padding:6px; display:inline;}
+	.header .top-service .search form input[type="submit"]{ padding:5px; background:#ddd url(../images/icons/search.png) no-repeat 8px 3px; border-color:#ccc; text-indent:-99999px; width:40px; display:inline; }
+
+/*--footer--*/
+.footer{ background:#444; padding:20px 0; text-align:center; color:#fff; font-size:12px;}
+.footer a{ color:#fff;}
+
+/*--menu--*/
+.menu{ background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; }
+.menu ul{ list-style:none;}
+.menu ul li{ float:right;}
+.menu ul li a{ display:block; color:#fff; padding: 14px 35px; text-decoration:none; font-family:Arial, Helvetica, sans-serif; font-size:18px; font-weight:bold; text-shadow:1px 1px 1px #666; background:url(../images/graphics/menu-seprator.png) repeat-y right;}
+.menu ul li a.first{ background:none;}
+.menu ul li a:hover, .menu ul li a.selected{ background:#444; color:#fff;}
+
+/*--home--*/
+	
+	
+	/*--main-service--*/
+	.main-service { padding-bottom:30px;}
+	.main-service .item{ float:right; width:258px; margin-right:40px; padding:15px; background:#fff; border:1px solid #ddd; -moz-box-shadow: 3px 3px 3px #ddd; -webkit-box-shadow: 3px 3px 3px #ddd; }
+	.main-service .item.first{margin:0;}
+	.main-service h2{ color:#c00; margin:10px 0; font-size:24px;}
+	.main-service p{ margin:10px 0;}
+	
+	/*--sec-service--*/
+	.sec-service { padding:10px 0; text-align:center;}
+	.sec-service .item{ float:right; width:258px; margin-right:40px; padding:15px;}
+	.sec-service .item.first{margin:0;}
+	.sec-service h2{ margin:10px 0; font-size:21px; text-shadow: 1px 1px 1px #fff;}
+	.sec-service p{ margin:10px 0; text-align:right;}
+
+	/*--judge--*/
+	.judge{padding:10px 0; padding-right:130px; background:url(../images/graphics/judge.png) no-repeat right;}
+	.judge h2{ margin:10px 0; font-size:21px; text-shadow: 1px 1px 1px #fff;}
+	.judge form fieldset div{ padding:0; margin:0;}
+	.judge form fieldset div label{ display:block; float:none; margin:0 0 10px; padding:0; width:auto; text-align:right;}
+	.judge form fieldset div input{ display:inline;}
+
+
+/*--messages--*/
+.not-found, .found, .not-associated{ margin:10px 10px 40px;}
+.not-found ul, .not-found ol{ margin-right:40px;}
+.not-found li{ margin-bottom:10px;}
+.not-found h2, .found h2, .not-associated h2{ font-size:36px; color:#c00; margin-bottom:30px;}
+.not-found h3{ font-size:24px; margin-bottom:15px;}
+.not-found h4{ font-size:14px; margin-bottom:10px; font-family:Tahoma, Geneva, sans-serif;}
+.not-associated p{color:#c00;}
+
+
+/*-- results --*/
+.results{ font-family:Arial, Helvetica, sans-serif; font-size:18px; font-weight:bold;}
+.results table{ margin-bottom:40px; }
+.results table th{ text-align:right; background:#eee;}
+.results table th, .results table td{ padding:10px 20px; border:1px solid #ddd;}
+.results table tr.even td { background:#f7f7f7;}
+.results h1{font-size:36px; color:#c00; margin:10px 0 30px;}
+.results h2{ text-align:center; font-size:36px; color:#c00; margin:20px 0; }
+.results h3{ font-size:30px; margin-bottom:10px;}
+.results h3 span{ font-size:12px; font-family:Tahoma, Geneva, sans-serif; }
+.results p{ margin:10px 0;}
+.results .list-info{ background:#eee;}
+
+ul.lists{ list-style:none; }
+ul.lists li { padding:5px 0; }
+img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px 2px 2px #ddd;}
+
+
+.map{ margin:20px 0 40px;}
+.area-cover{ list-style:none; margin-bottom:20px;}
+.area-cover li{ float:right; margin-left:40px;}
+.area-cover li a{ display:block; padding:10px 20px; background: #dedede url(../images/graphics/area-button-bg.png) repeat-x; border:1px solid #ccc; box-shadow:3px 3px 3px #ddd; color:#666; text-decoration:none; text-shadow: 1px 1px 1px #fff;}
+.area-cover li a:hover, .area-cover li a.selected{ color:#fff; background:  url(../images/graphics/menu-bg.png) repeat-x; border:1px solid #900; text-shadow: 1px 1px 1px #666666;}	
+
+
+/*--- added and modified styles --*/
+	
+	.header h1.logo a{ display:block; background:url(../images/graphics/logo.png) no-repeat;  float:right; width:265px; height:85px; text-indent:-9999px; overflow:hidden; text-decoration:none; margin-top:9px;}
+	
+	
+	/*-- pre-intro --*/
+	.pre-intro{ background:#E9EDF2 url(../images/graphics/content-bg.png) repeat-x; padding:30px 0; border-bottom:#fff solid 10px; }
+	.pre-intro h2{ font-size:24px; margin-bottom:10px; color:#c00; }
+	.pre-intro strong{ margin-bottom:5px; display:block;}
+	.pre-intro .item{float:right; width:410px; padding:20px; background:#fff; border:1px solid #ddd; -moz-box-shadow: 3px 3px 3px #ddd; -webkit-box-shadow: 3px 3px 3px #ddd; min-height:120px;}
+	.pre-intro .item.counselor{ float:left; position:relative; padding-right:120px; width:310px; }
+	.pre-intro .item.counselor img{ position:absolute; right:20px; top:20px;}
+	
+	/*--intro--*/
+	.intro{ background: url(../images/graphics/intro-bg.png) repeat-x top; padding:30px 0; height:280px;}
+	.intro .voter-id{ float:right; width:480px;}
+	.intro .voter-id h2{ font-size:30px; color:#c00; margin-bottom:20px; margin-right:35px;}
+	.intro .elec-info{ float:right; width:410px; padding-right:30px; background:none; text-align:center;}
+	.intro .elec-info p{ margin:-5px 0 10px; font-weight:bold;}
+	.intro .id-demo{ background:url(../images/graphics/id-2.png) no-repeat; width:303px; height:190px; position:relative; margin-right:55px;}
+	.intro .id-demo .border{ border:2px solid #c00; position:absolute; -moz-border-radius:5px;  -webkit-border-radius:5px;}
+	.intro .id-demo .gov{bottom:58px; right:57px;width:60px; height:20px; }
+	.intro .id-demo .station{bottom:58px; right:10px; width:45px; height:20px; }
+	.intro .id-demo .id-num{ bottom:17px; right:10px; width:100px; height:20px;}
+	
+	
+		/*--Form--*/
+	fieldset{ border:none;}
+	fieldset div{ padding: 5px 90px 5px 0;}
+	fieldset div label{display: block;float: right; font-weight: bold; line-height: 1.2;  margin: 7px -90px 0 0; width: 80px; text-align:left;}
+	fieldset div input[type=text],fieldset div input[type=password], fieldset div input[type=file], textarea, select{font-size:16px; display:block; border:1px solid #ccc; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px; background: #fff url(../images/graphics/input-bg.png) repeat-x top; width:300px;}
+	fieldset div input[type=text]:focus, textarea:focus, select:focus{ border:1px solid #999;}
+	fieldset div select{ width:318px;}
+	fieldset div input[type=submit]{ background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; color:#fff; border:1px solid #900; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px 16px; font-family:Tahoma, Geneva, sans-serif; cursor:pointer; font-weight:bold; text-shadow:1px 1px 1px #666;}
+	fieldset div ul { list-style:none;}
+	fieldset div ul li { margin: 0 0 5px;}
+	fieldset div ul li label {display: inline;float: none;font-size: 12px; font-weight: normal; margin: 0; padding: 0;}
+	fieldset div ul li input {background: none;border: none; display: inline; margin: 0 0 0 5px ; padding: 0;width: auto;}
+	fieldset div.controls a{ margin-right:5px;}
+	
+	
+	/*-- share --*/
+	.wrapper{ position:relative;}
+	.header .top-service .social, .header .top-service .search { float:right; margin:10px 0; clear:none;}
+	.header .top-service .social{ margin:15px 0 0 10px;}
+	.share{ position:absolute; left:0; top:68px; padding:10px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:5px; -webkit-border-top-left-radius:5px; -webkit-border-top-right-radius:5px; box-shadow:0 -3px 3px #ddd; background:#fff;}
+	
+	
+
+/*-- lagna-logo --*/
+
+.pre-intro .lagna-logo{ width: 290px; padding-left:150px; position:relative;}
+.pre-intro .lagna-logo img{ position:absolute; top:15px; left:10px;}
+
+.hlight{ background:#FFC;}
+	
+
+
+
+/* begin tabs */
+
+ul.tabnav { /* general settings */
+text-align: right; /* set to left, right or center */
+font-family:Arial, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;  /* set font as desired */
+border-bottom: 1px solid #ccc; /* set border COLOR as desired */
+list-style-type: none;
+padding: 4px 10px 4px 10px; /* THIRD number must change with respect to padding-top (X) below */
+margin:0 0 25px;
+/*background:#ccc;*/
+}
+
+ul.tabnav li { /* do not change */
+display: inline;
+
+}
+ul.tabnav li a.selected{background: #f2f2f2; /* set selected tab background color as desired */
+color: #000; /* set selected tab link color as desired */
+position: relative;
+top: 0;
+padding-top: 8px; /* must change with respect to padding (X) above and below */}
+
+
+ul.tabnav li a { /* settings for all tab links */
+padding: 8px 10px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+border: 1px solid #ccc; /* set border COLOR as desired; usually matches border color specified in .tabnav */
+background: #ddd ; /* set unselected tab background color as desired */
+color: #666; /* set unselected tab link color as desired */
+margin-right: 0px; /* set additional spacing between tabs as desired */
+text-decoration: none;
+border-bottom: none;
+-moz-border-radius-topleft:5px;
+-moz-border-radius-topright:5px;
+-webkit-border-top-left-radius:5px;
+-webkit-border-top-right-radius:5px;
+
+}
+
+ul.tabnav a:hover { /* settings for hover effect */
+background: #f2f2f2; /* set desired hover color */
+}
+
+/* end tabs */
