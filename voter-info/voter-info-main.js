@@ -1158,7 +1158,6 @@ function formatPlaces( places ) {
 // Return an 'info' object for either home.info or vote.info
 function mapInfo( contests,place, extra ) {//place and location
 	
-	//alert(vote.poll.contests[0].police_stations[0].pname);
 	extra = extra || {};
 	if( place  &&  ! isGeocodeAccurate(place) ) {
 		log( 'Not accurate enough' );
