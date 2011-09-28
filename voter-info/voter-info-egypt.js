@@ -612,7 +612,7 @@ function setVoteGeo(location) {
 
 		var place ={geometry: {
 		location: {},
-		location_type: "ROOFTOP",
+		location_type: "ROOFTOP"//,
 		/*viewport: {
 			southwest: {lat: location.lat-0.02,lng: location.lng-0.01},
 			northeast: {lat: location.lat+0.02,lng: location.lng+0.01}
