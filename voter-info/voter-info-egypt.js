@@ -379,7 +379,7 @@ function perElectionInfo( state, electionDay, electionName ) {
 }
 
 function gotoConstit(code){
-	setMap(vote.info,['c'+code],12);
+	setMap(vote.info,['c'+code],13);
 	if(vote.info.latlng ){
 		map.setCenter( vote.info.latlng );
 	}else{
