@@ -833,8 +833,8 @@ function pollingApi( nid,gid,pid, callback ) {
 	$.ajax( url, {
 		type: 'GET',		
 		//cache: true,
-		dataType: 'jsonp',
-		jsonp: 'jsonp',
+		//dataType: 'jsonp',
+		//jsonp: 'jsonp',
 
 		success: function( poll ) {
 
@@ -847,7 +847,8 @@ function pollingApi( nid,gid,pid, callback ) {
 			alert(poll.toSource());
 		}
 	});
-	//alert("Just after calling the api");
+	alert("Just after calling the api");
+	return false;
 }
 
 // Get a JSON value and make sure it is evaluated to JSON
@@ -917,6 +918,7 @@ function setGadgetPoll411() {
 			}
 			return false;
 		}
+		
 	};
 }
 
