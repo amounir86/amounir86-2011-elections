@@ -837,14 +837,12 @@ function pollingApi( nid,gid,pid, callback ) {
 		jsonp: 'jsonp',
 
 		success: function( poll ) {
-
-			 alert(poll.toSource());
 			 callback( typeof poll == 'object' ? poll : { status:"ERROR" } );
 
 		},
 		error: function(poll){
 			alert("error");
-			alert(poll.toSource());
+			//alert(poll.toSource());
 		}
 	});
 	alert("Just after calling the api");
