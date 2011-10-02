@@ -53,9 +53,7 @@ function functionValidaing(){
 				rangelength: [14, 14],
                 validAge: true
 			},
-			gid: { 
-				required: true
-			},
+			gid: "required",
 			pid: "required"
 		},
 		messages: {
