@@ -44,6 +44,15 @@ function functionColoring() {
     });
 }
 
+function foorBar() {
+	alert("inside foor bar");
+	$('#Poll411Form').submit(function() {
+		alert('asasd');
+		Poll411.submit();
+		return false;
+	});
+}
+
 function functionValidaing(){
 	
        $("#Poll411Form").validate({
@@ -77,6 +86,7 @@ $(window).load(function() {
    setTimeout("functionTabs(); ",1000);
    setTimeout("functionColoring(); ",1000);
    setTimeout("functionValidaing(); ",1000);
+   setTimeout("fooBar(); ",1000);
     
 });
         
