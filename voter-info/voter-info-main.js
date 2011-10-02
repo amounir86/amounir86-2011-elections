@@ -893,15 +893,25 @@ function setGadgetPoll411() {
 		submit: function() {
 		   $previewmap.hide();
 			if( sidebar ) {
-				submit( nid.value,gid.value,pid.value );
+				if( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ){
+				
+					return false;
+				}else{
+					submit( nid.value,gid.value,pid.value );
+				}
+				
 			}
 			else {
+				if( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ){
 				
-				$map.hide().css({ visibility:'hidden' });
-				$search.slideUp( 250, function() {
-					$spinner.show();
-					submit( nid.value,gid.value,pid.value );
-				});
+					return false;
+				}else{
+					$map.hide().css({ visibility:'hidden' });
+					$search.slideUp( 250, function() {
+						$spinner.show();
+						submit( nid.value,gid.value,pid.value );
+					});
+				}
 			}
 			return false;
 		}
