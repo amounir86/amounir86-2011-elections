@@ -696,9 +696,11 @@ function loadMap( a,z ) {
 	}
 	
 	function setMarker( a ) {
-		var mo = {
-			position: a.place.info.latlng
-		};
+		if(a != null && a.place != null && a.place.info != null && a.place.info.latlng){
+			var mo = {
+				position: a.place.info.latlng
+			};
+		}
 		if( a.image ) mo.icon = imgUrl( a.image );
 		var marker = a.place.marker = new gm.Marker( mo );
 		addOverlay( marker );
