@@ -833,8 +833,8 @@ function pollingApi( nid,gid,pid, callback ) {
 	$.ajax( url, {
 		type: 'GET',		
 		//cache: true,
-		//dataType: 'jsonp',
-		//jsonp: 'jsonp',
+		dataType: 'jsonp',
+		jsonp: 'jsonp',
 
 		success: function( poll ) {
 
