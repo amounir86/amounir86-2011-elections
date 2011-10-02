@@ -71,11 +71,14 @@ function functionValidaing(){
 
 $(window).load(function() {
 	
-   setTimeout("$('#pid').chained('#gid'); ",1000);
+  /* setTimeout("$('#pid').chained('#gid'); ",1000);
    setTimeout("functionTabs(); ",1000);
    setTimeout("functionColoring(); ",1000);
-   setTimeout("functionValidaing(); ",1000);
-    
+   setTimeout("functionValidaing(); ",1000);*/
+  $('#pid').chained('#gid');
+  functionTabs();
+  functionColoring();
+  functionValidaing(); 
 });
 	
 $(document).ready(function(){
