@@ -56,9 +56,7 @@ function functionValidaing(){
 			gid: { 
 				required: true
 			},
-			pid: { 
-				required: true
-			}
+			pid: "required"
 		},
 		messages: {
 			nid: {
@@ -67,12 +65,8 @@ function functionValidaing(){
 				rangelength: "من فضلك أدخل الأربعة عشر رقم",
                 validAge: "عفوا, غير مسموح لإقل من 18 سنة بالإنتخاب"
 			},
-			gid: {
-				required: "من فضلك اختر المحافظة"
-			},
-			pid: {
-				required: "من فضلك اختر القسم"
-			}
+			gid:"من فضلك اختر المحافظة",
+			pid:"من فضلك اختر القسم"
 		}
 		});
 }
