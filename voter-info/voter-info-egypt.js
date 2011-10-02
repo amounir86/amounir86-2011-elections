@@ -691,7 +691,7 @@ function fixInputAddress( addr ) {
 // Geocoding and Election Center API
 
 function lookupPollingPlace( nid,gid,pid, callback ) {
-        //alert ("lookupPollingPlace");
+        alert ("lookupPollingPlace");
         function ok( poll ) { return poll.status == 'SUCCESS'; }
         function countyAddress() {
                 return S( info.street, ', ', info.county, ', ', info.state.abbr, ' ', info.zip );
@@ -711,7 +711,7 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
 }
 
 function findPrecinct( nid,gid,pid ) {
-        //alert("findPrecinct");
+        alert("findPrecinct");
         lookupPollingPlace( nid,gid,pid, 
 
 

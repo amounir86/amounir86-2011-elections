@@ -898,7 +898,7 @@ function setGadgetPoll411() {
 					return false;
 				}else{
 					alert("first inside");
-					//submit( nid.value,gid.value,pid.value );
+					submit( nid.value,gid.value,pid.value );
 				}
 				
 			}
@@ -907,11 +907,11 @@ function setGadgetPoll411() {
 				
 					return false;
 				}else{
-					// $map.hide().css({ visibility:'hidden' });
-					// $search.slideUp( 250, function() {
-						// $spinner.show();
-						// submit( nid.value,gid.value,pid.value );
-					//});
+					 $map.hide().css({ visibility:'hidden' });
+					 $search.slideUp( 250, function() {
+						 $spinner.show();
+						 submit( nid.value,gid.value,pid.value );
+					});
 					alert("second inside");
 				}
 			}
@@ -923,6 +923,7 @@ function setGadgetPoll411() {
 // Input form submit handler.
 // Turns on logging if input address is prefixed with !
 function submit( nid,gid,pid ) {
+	alert("I Entered");
 	if( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ){
 		if(!sidebar ) {
 			$map.show().css({ visibility:'visible' });
@@ -930,6 +931,7 @@ function submit( nid,gid,pid ) {
 				$spinner.hide();
 			});
 		}
+		alert("Internal error");
 		return false;
 	}
 	analytics( 'lookup' );
@@ -953,7 +955,7 @@ function submit( nid,gid,pid ) {
 
 // Submit an ID for a voter ID election - no geocoding
 function submitID( nid,gid,pid) {
-	//alert("submitID");
+	alert("submitID");
 	findPrecinct( nid,gid,pid );
 }
 
