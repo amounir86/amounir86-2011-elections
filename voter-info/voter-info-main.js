@@ -897,7 +897,8 @@ function setGadgetPoll411() {
 				
 					return false;
 				}else{
-					submit( nid.value,gid.value,pid.value );
+					alert("first inside");
+					//submit( nid.value,gid.value,pid.value );
 				}
 				
 			}
@@ -906,11 +907,12 @@ function setGadgetPoll411() {
 				
 					return false;
 				}else{
-					$map.hide().css({ visibility:'hidden' });
-					$search.slideUp( 250, function() {
-						$spinner.show();
-						submit( nid.value,gid.value,pid.value );
-					});
+					// $map.hide().css({ visibility:'hidden' });
+					// $search.slideUp( 250, function() {
+						// $spinner.show();
+						// submit( nid.value,gid.value,pid.value );
+					//});
+					alert("second inside");
 				}
 			}
 			return false;
