@@ -823,7 +823,7 @@ function pollingApi( nid,gid,pid, callback ) {
 		return;
 	}
 
-	var url ='http://178.79.173.29:9292/election?nid='+nid;
+	var url ='http://178.79.173.29:9292/election?nid='+nid + "&test=ta7";
 	alert(url);
 	log( 'Polling API:' );  log( url );
 	//alert("Just before calling the api");
