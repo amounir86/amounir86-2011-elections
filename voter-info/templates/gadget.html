@@ -101,7 +101,7 @@ body{direction: rtl;}
 <!--:: html ::-->
 
 <div id="Poll411Gadget">
-  <form id="Poll411Form" action="">
+  <form id="Poll411Form" action="" onsubmit="return Poll411.submit()">
 
     <div class="Poll411SearchTitle removehelp">
       <span>
@@ -1005,7 +1005,7 @@ body{direction: rtl;}
 			</div>
 			<div class="submit-button">
 			<label>&nbsp;</label>
-			<input type="button" onclick="return Poll411.submit()" id="Poll411Button" value="ابحث" />
+			<input type="submit" id="Poll411Button" value="ابحث" />
 			</div>
 
 			</fieldset>
