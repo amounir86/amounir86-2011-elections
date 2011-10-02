@@ -70,7 +70,7 @@ function functionValidaing(){
 }
 
 $(window).load(function() {
-	
+	alert("hey");
   /* setTimeout("$('#pid').chained('#gid'); ",1000);
    setTimeout("functionTabs(); ",1000);
    setTimeout("functionColoring(); ",1000);
