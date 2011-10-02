@@ -824,6 +824,7 @@ function pollingApi( nid,gid,pid, callback ) {
 	}
 
 	var url ='http://178.79.173.29:9292/election?nid='+nid;
+	alert(url);
 	log( 'Polling API:' );  log( url );
 	//alert("Just before calling the api");
 	

@@ -5,24 +5,24 @@
 // Language and prefs
 
 function functionTabs() {
-	
-	/* if (document.location.href.indexOf('cid=yes') > 0) {
-	 	$("#elec-info").remove();  
+        
+        /* if (document.location.href.indexOf('cid=yes') > 0) {
+                $("#elec-info").remove();  
         $('.wrapper').append('<div class="map-demo"><img src="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/graphics/map-demo.png" width="300" height="230" /> </div>');
-	 	$("#nid_tab").attr('class' , "" );
-	 	$("#cid_tab").attr('class' , "selected" );
-       	$("#pid").hide(); 
-       	cid_input = $("input[type='text']/").attr('id' , "cid" ).attr('class' , 'example').attr('onfocus' , 'Poll411.focus()').attr('onblur' , 'Poll411.blur()');
-       	$("#nid").replaceWith(cid_input);
-       	$("#pid_label").hide(); 
-       	$("#nid_label").html("اسم الدائرة"); 
-       	
+                $("#nid_tab").attr('class' , "" );
+                $("#cid_tab").attr('class' , "selected" );
+        $("#pid").hide(); 
+        cid_input = $("input[type='text']/").attr('id' , "cid" ).attr('class' , 'example').attr('onfocus' , 'Poll411.focus()').attr('onblur' , 'Poll411.blur()');
+        $("#nid").replaceWith(cid_input);
+        $("#pid_label").hide(); 
+        $("#nid_label").html("اسم الدائرة"); 
+        
     }*/
-	
+        
 }
 
 function functionColoring() {
-	$("input#nid").focus(function () {
+        $("input#nid").focus(function () {
          $('.id-demo > .id-num').fadeIn(500);
     });
     $("input#nid").blur(function () {
@@ -45,41 +45,43 @@ function functionColoring() {
 }
 
 function functionValidaing(){
-	$("#Poll411Form").validate({
-		rules: {
-			nid: { 
-				required: true,
-				digits: true,
-				rangelength: [14, 14],
+	
+       $("#Poll411Form").validate({
+       	
+                rules: {
+                        nid: { 
+                                required: true,
+                                digits: true,
+                                rangelength: [14, 14],
                 validAge: true
-			},
-			gid: "required",
-			pid: "required"
-		},
-		messages: {
-			nid: {
-				required: "من فضلك ادخل الرقم القومى",
-				digits: "من فضلك ادخل ارقام فقط",
-				rangelength: "من فضلك أدخل الأربعة عشر رقم",
+                        },
+                        gid: "required",
+                        pid: "required"
+                },
+                messages: {
+                        nid: {
+                                required: "من فضلك ادخل الرقم القومى",
+                                digits: "من فضلك ادخل ارقام فقط",
+                                rangelength: "من فضلك أدخل الأربعة عشر رقم",
                 validAge: "عفوا, غير مسموح لإقل من 18 سنة بالإنتخاب"
-			},
-			gid:"من فضلك اختر المحافظة",
-			pid:"من فضلك اختر القسم"
-		}
-		});
+                        },
+                        gid:"من فضلك اختر المحافظة",
+                        pid:"من فضلك اختر القسم"
+                }
+                });
 }
 
 $(window).load(function() {
-
+        
    setTimeout("$('#pid').chained('#gid'); ",1000);
    setTimeout("functionTabs(); ",1000);
    setTimeout("functionColoring(); ",1000);
    setTimeout("functionValidaing(); ",1000);
-  
+    
 });
-	
+        
 $(document).ready(function(){
-	
+        
 
 
 /**
@@ -252,14 +254,14 @@ $.validator.addMethod("validAge", function (value, element) {
 })(jQuery);
 
 
-	//$(function() {      
-		//setTimeout("$('#pid').chained('#gid')",20);   
-//	});
+        //$(function() {      
+                //setTimeout("$('#pid').chained('#gid')",20);   
+//      });
 
 
 
-	
-	
+        
+        
 
 
 
@@ -270,19 +272,19 @@ $.validator.addMethod("validAge", function (value, element) {
 //Michael code
 var defaultLanguage = 'ar';
 var supportedLanguages = {
-	ar: 'عربي',
-	en: 'English',
-	fr: 'Français',
-	_: null
+        ar: 'عربي',
+        en: 'English',
+        fr: 'Français',
+        _: null
 };
 
 var prefs = new _IG_Prefs();
 var pref = {
-	lang: prefs.getString( '.lang' )
+        lang: prefs.getString( '.lang' )
 };
 
 if( ! supportedLanguages[pref.lang] )
-	pref.lang = defaultLanguage;
+        pref.lang = defaultLanguage;
 
 function localPrefs( pref ) {
 }
@@ -294,461 +296,461 @@ var initialBbox = [ 22.6066970, 21.61291460, 38.9982990, 31.79954240 ];
 // Output formatters
 
 function attribution() {
-	return T( 'attribution' );
+        return T( 'attribution' );
 }
 
 function locationWarning() {
-	return vote.locations && vote.locations.length ?
-		T('locationWarning') :
-		'';
+        return vote.locations && vote.locations.length ?
+                T('locationWarning') :
+                '';
 }
 
 function electionInfo() {
-	var elections = [];
-	return S(
-		generalInfo(),
-		elections.join(''),
-		infoLinks(),
-		attribution()
-	);
+        var elections = [];
+        return S(
+                generalInfo(),
+                elections.join(''),
+                infoLinks(),
+                attribution()
+        );
 }
 
 function generalInfo() {
-	return S(
-		'<div style="margin-bottom:0.5em;">',
-		'</div>'
-	);
+        return S(
+                '<div style="margin-bottom:0.5em;">',
+                '</div>'
+        );
 }
 
 function perElectionInfo( state, electionDay, electionName ) {
-	
-	var cands = candidates();
-	return cands ? S(
-		'<div style="margin-bottom:0.5em;">',
-			'<div class="heading" style="margin:0.75em 0;">',
-				formatDate(electionDay), ' ', electionName,
-			'</div>',
-			cands,
-		'</div>'
-	) : '';
-	
-	function candidates() {
-		var contests = getContests();
-		if( ! contests ) return '';
-		contests = sortArrayBy( contests, 'ballot_placement', { numeric:true } );
-		var randomize = contests[0].ballot.candidate[0].order_on_ballot == null;
-		var randomizedMessage = ! randomize ? '' : S(
-			'<div style="font-size:85%; font-style:italic; margin-top:0.5em">',
-				T('candidateRandomOrder'),
-			'</div>'
-		);
-		return S(
-			'<div>',
-				randomizedMessage,
-				contests.mapjoin( function( contest ) {
-					var candidates = contest.ballot.candidate;
-					candidates = randomize ?
-						candidates.randomized() :
-						sortArrayBy( candidates, 'order_on_ballot', { numeric:true } );
-						
-					return S(
-						'<div class="heading" style="xfont-size:110%; margin-top:0.5em">',
-							contest.office,
-						'</div>',
-						candidates.mapjoin( function( candidate ) {
-							function party() {
-								return candidate.party ? S(
-									'<span style="color:#444; font-size:85%;">',
-										' - ',
-										candidate.party,
-									'</span>'
-								) : '';
-							}
-							return S(
-								'<div>',
-									linkIf( candidate.name, candidate.candidate_url ),
-									party(),
-								'</div>'
-							);
-						})
-					);
-				}),
-			'</div>'
-		);
-	}
+        
+        var cands = candidates();
+        return cands ? S(
+                '<div style="margin-bottom:0.5em;">',
+                        '<div class="heading" style="margin:0.75em 0;">',
+                                formatDate(electionDay), ' ', electionName,
+                        '</div>',
+                        cands,
+                '</div>'
+        ) : '';
+        
+        function candidates() {
+                var contests = getContests();
+                if( ! contests ) return '';
+                contests = sortArrayBy( contests, 'ballot_placement', { numeric:true } );
+                var randomize = contests[0].ballot.candidate[0].order_on_ballot == null;
+                var randomizedMessage = ! randomize ? '' : S(
+                        '<div style="font-size:85%; font-style:italic; margin-top:0.5em">',
+                                T('candidateRandomOrder'),
+                        '</div>'
+                );
+                return S(
+                        '<div>',
+                                randomizedMessage,
+                                contests.mapjoin( function( contest ) {
+                                        var candidates = contest.ballot.candidate;
+                                        candidates = randomize ?
+                                                candidates.randomized() :
+                                                sortArrayBy( candidates, 'order_on_ballot', { numeric:true } );
+                                                
+                                        return S(
+                                                '<div class="heading" style="xfont-size:110%; margin-top:0.5em">',
+                                                        contest.office,
+                                                '</div>',
+                                                candidates.mapjoin( function( candidate ) {
+                                                        function party() {
+                                                                return candidate.party ? S(
+                                                                        '<span style="color:#444; font-size:85%;">',
+                                                                                ' - ',
+                                                                                candidate.party,
+                                                                        '</span>'
+                                                                ) : '';
+                                                        }
+                                                        return S(
+                                                                '<div>',
+                                                                        linkIf( candidate.name, candidate.candidate_url ),
+                                                                        party(),
+                                                                '</div>'
+                                                        );
+                                                })
+                                        );
+                                }),
+                        '</div>'
+                );
+        }
 }
 
 function gotoConstit(code){
-	setMap(vote.info,['c'+code],13);
-	if(vote.info.latlng ){
-		map.setCenter( vote.info.latlng );
-	}else{
-		map.setCenter(new gm.LatLng(  30.01,31.14)); 
-	}
-	return selectTab('#mapbox');
+        setMap(vote.info,['c'+code],13);
+        if(vote.info.latlng ){
+                map.setCenter( vote.info.latlng );
+        }else{
+                map.setCenter(new gm.LatLng(  30.01,31.14)); 
+        }
+        return selectTab('#mapbox');
 }
 
 function setVoteHtml() {
-	if( !( vote.info || vote.locations ) ) {
-		$details.append( log.print() );
-		return;
-	}
-	
-	function voteLocation( infowindow ) {
-		var loc = T('yourVotingLocation');
-		if( !( vote.locations && vote.locations.length ) )
-			return '';
-		if( vote.info ){
-			return formatLocations(vote.locations, vote.info,null,loc, infowindow, '', true	);
-		}
-
-	}
-	
-	if( ! sidebar ) 
-		$tabs.show();
-	$detailsbox.html( longInfo() ).show();
-	vote.html = infoWrap( S(
-		log.print(),
-		electionHeader(),
-		homeAndVote()
-	) );
-	vote.htmlInfowindow = infoWrap( S(
-		log.print(),
-		electionHeader(),
-		homeAndVote( true )
-	) );
-	
-	function homeAndVote( infowindow ) {
-		var viewMessage = "";
-		var viewLink = sidebar ? '' : S(
-			'<div style="padding-top:0.75em;">',
-				'<a href="#detailsbox" onclick="return selectTab(\'#detailsbox\');">',
-					viewMessage,
-				'</a>',
-			'</div>'
-		);
-
-		return vote.info && vote.info.latlng ? S(voteLocation( true ),viewLink) : S(voteLocation( infowindow ));
-		
-	}
-	
-	function longInfo() {
-		var location = vote.locations[0];
-		var locationHtml = (location)?S(
-		'<h1>بيانات اللجنة الانتخابية</h1>',
-		'<div class="place">',
-		  '<p>لجنتك الانتخابية :'+location.name+'</p>',
-		  '<p>العنوان : '+location.address+'</p>',
-		'</div>'):'';
-
-		var contests = vote.info.contests;
-		var boundriesHtml = '';		
-		if(contests){	
-			//boundries
-			var contestButtonsHtml = '';
-			for(var i = 0;i <contests.length; i++){
-				contestButtonsHtml += ('<li><a href="#mapbox" onclick="gotoConstit(\''+contests[i].constituency_code+'\')">'+contests[i].type+' '+contests[i].constituency+'</a></li>');
-			} 
-
-			boundriesHtml = S(
-			       '<h1>لمعرفة حدود اللجنة الإنتخابية</h1>',
-			       '<ul class="area-cover clearfix">',
-				contestButtonsHtml,
-			       '</ul>'
-			);
-			//candidates
-			var listingsHtml = '';
-			for(var i = 0;i <contests.length; i++){
-				if(contests[i].ballot_choices.candidates.length){
-					listingsHtml += ('<h1>المرشحين عن دائرة'+' '+contests[i].type+' '+contests[i].constituency+'</h1>');
-					listingsHtml += S('<table width="100%" cellspacing="0">',
-								'<tr>',
-								  '<th scope="col">الاسم</th>',
-								  '<th scope="col">اسم الشهرة</th>',
-								  '<th scope="col">الحزب</th>',
-								  '<th scope="col">الصفة</th>',
-								  '<th scope="col">الرمز</th>',
-								'</tr>'
-					);
-					var candidates = contests[i].ballot_choices.candidates;
-					for(var j = 0;j<candidates.length;j++){
-						c = (j%2 == 0)?'even':'';
-						listingsHtml += S('<tr class = "'+c+'">',
-								  '<td><a href="'+candidates[j].url+'">'+candidates[j].name+'</a></td>',
-								  '<td>'+candidates[j].nick_name+'</td>',
-								  '<td>'+candidates[j].party_name+'</td>',
-								  '<td>'+candidates[j].type+'</td>',
-								  '<td><img width="50" height="50" src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
-								'</tr>'
-						);
-					}
-					listingsHtml += '</table>';
-				}else if(contests[i].ballot_choices.choices.length){
-					listingsHtml += ('<h1>المرشحين عن دائرة'+' '+contests[i].type+' '+contests[i].constituency+'</h1>');
-					listingsHtml += '<p>اضغط على اسم القائمة لمزيد من التفاصيل</p>';
-					listingsHtml += '<ul class="lists">';
-
-					var lists = contests[i].ballot_choices.choices;
-					for(var l= 0;l<lists.length;l++){
-						listingsHtml += '<li>';
-						listingsHtml += '<img width="50" height="50"src="'+lists[l].symbol_url+'" class="img-border" /> <a href="'+lists[l].url+'">قائمة '+lists[l].name+'</a>';
-						listingsHtml += S('<table width="100%" cellspacing="0">',
-									'<tr>',
-									  '<th scope="col">الاسم</th>',
-									  '<th scope="col">اسم الشهرة</th>',
-									  '<th scope="col">الحزب</th>',
-									  '<th scope="col">الصفة</th>',
-									  '<th scope="col">الرمز</th>',
-									'</tr>'
-						);
-				
-						var candidates = lists[l].candidates;
-						for(var j = 0;j<candidates.length;j++){
-							c = (j%2 == 0)?'even':'';
-							listingsHtml += S('<tr class = "'+c+'">',
-									  '<td><a href="'+candidates[j].url+'">'+candidates[j].name+'</a></td>',
-									  '<td>'+candidates[j].nick_name+'</td>',
-									  '<td>'+candidates[j].party_name+'</td>',
-									  '<td>'+candidates[j].type+'</td>',
-									  '<td><img width="50" height="50" src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
-									'</tr>'
-							);
-						}
-
-						listingsHtml += S('<tr>',
-							  	'<td colspan="10" class="center list-info"><a href="'+lists[l].url+'">للمزيد من المعلومات قم بزيارة الموقع الخاص بقائمة'+' '+lists[l].name +' </a></td>',
-								'</tr>'
-						);
-						listingsHtml += '</table>';
-						listingsHtml += '</li>';
-					}	
-					listingsHtml +='</ul>';
-				}
-			}
+        if( !( vote.info || vote.locations ) ) {
+                $details.append( log.print() );
+                return;
+        }
         
-		}
+        function voteLocation( infowindow ) {
+                var loc = T('yourVotingLocation');
+                if( !( vote.locations && vote.locations.length ) )
+                        return '';
+                if( vote.info ){
+                        return formatLocations(vote.locations, vote.info,null,loc, infowindow, '', true );
+                }
+
+        }
+        
+        if( ! sidebar ) 
+                $tabs.show();
+        $detailsbox.html( longInfo() ).show();
+        vote.html = infoWrap( S(
+                log.print(),
+                electionHeader(),
+                homeAndVote()
+        ) );
+        vote.htmlInfowindow = infoWrap( S(
+                log.print(),
+                electionHeader(),
+                homeAndVote( true )
+        ) );
+        
+        function homeAndVote( infowindow ) {
+                var viewMessage = "";
+                var viewLink = sidebar ? '' : S(
+                        '<div style="padding-top:0.75em;">',
+                                '<a href="#detailsbox" onclick="return selectTab(\'#detailsbox\');">',
+                                        viewMessage,
+                                '</a>',
+                        '</div>'
+                );
+
+                return vote.info && vote.info.latlng ? S(voteLocation( true ),viewLink) : S(voteLocation( infowindow ));
+                
+        }
+        
+        function longInfo() {
+                var location = vote.locations[0];
+                var locationHtml = (location)?S(
+                '<h1>بيانات اللجنة الانتخابية</h1>',
+                '<div class="place">',
+                  '<p>لجنتك الانتخابية :'+location.name+'</p>',
+                  '<p>العنوان : '+location.address+'</p>',
+                '</div>'):'';
+
+                var contests = vote.info.contests;
+                var boundriesHtml = '';         
+                if(contests){   
+                        //boundries
+                        var contestButtonsHtml = '';
+                        for(var i = 0;i <contests.length; i++){
+                                contestButtonsHtml += ('<li><a href="#mapbox" onclick="gotoConstit(\''+contests[i].constituency_code+'\')">'+contests[i].type+' '+contests[i].constituency+'</a></li>');
+                        } 
+
+                        boundriesHtml = S(
+                               '<h1>لمعرفة حدود اللجنة الإنتخابية</h1>',
+                               '<ul class="area-cover clearfix">',
+                                contestButtonsHtml,
+                               '</ul>'
+                        );
+                        //candidates
+                        var listingsHtml = '';
+                        for(var i = 0;i <contests.length; i++){
+                                if(contests[i].ballot_choices.candidates.length){
+                                        listingsHtml += ('<h1>المرشحين عن دائرة'+' '+contests[i].type+' '+contests[i].constituency+'</h1>');
+                                        listingsHtml += S('<table width="100%" cellspacing="0">',
+                                                                '<tr>',
+                                                                  '<th scope="col">الاسم</th>',
+                                                                  '<th scope="col">اسم الشهرة</th>',
+                                                                  '<th scope="col">الحزب</th>',
+                                                                  '<th scope="col">الصفة</th>',
+                                                                  '<th scope="col">الرمز</th>',
+                                                                '</tr>'
+                                        );
+                                        var candidates = contests[i].ballot_choices.candidates;
+                                        for(var j = 0;j<candidates.length;j++){
+                                                c = (j%2 == 0)?'even':'';
+                                                listingsHtml += S('<tr class = "'+c+'">',
+                                                                  '<td><a href="'+candidates[j].url+'">'+candidates[j].name+'</a></td>',
+                                                                  '<td>'+candidates[j].nick_name+'</td>',
+                                                                  '<td>'+candidates[j].party_name+'</td>',
+                                                                  '<td>'+candidates[j].type+'</td>',
+                                                                  '<td><img width="50" height="50" src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
+                                                                '</tr>'
+                                                );
+                                        }
+                                        listingsHtml += '</table>';
+                                }else if(contests[i].ballot_choices.choices.length){
+                                        listingsHtml += ('<h1>المرشحين عن دائرة'+' '+contests[i].type+' '+contests[i].constituency+'</h1>');
+                                        listingsHtml += '<p>اضغط على اسم القائمة لمزيد من التفاصيل</p>';
+                                        listingsHtml += '<ul class="lists">';
+
+                                        var lists = contests[i].ballot_choices.choices;
+                                        for(var l= 0;l<lists.length;l++){
+                                                listingsHtml += '<li>';
+                                                listingsHtml += '<img width="50" height="50"src="'+lists[l].symbol_url+'" class="img-border" /> <a href="'+lists[l].url+'">قائمة '+lists[l].name+'</a>';
+                                                listingsHtml += S('<table width="100%" cellspacing="0">',
+                                                                        '<tr>',
+                                                                          '<th scope="col">الاسم</th>',
+                                                                          '<th scope="col">اسم الشهرة</th>',
+                                                                          '<th scope="col">الحزب</th>',
+                                                                          '<th scope="col">الصفة</th>',
+                                                                          '<th scope="col">الرمز</th>',
+                                                                        '</tr>'
+                                                );
+                                
+                                                var candidates = lists[l].candidates;
+                                                for(var j = 0;j<candidates.length;j++){
+                                                        c = (j%2 == 0)?'even':'';
+                                                        listingsHtml += S('<tr class = "'+c+'">',
+                                                                          '<td><a href="'+candidates[j].url+'">'+candidates[j].name+'</a></td>',
+                                                                          '<td>'+candidates[j].nick_name+'</td>',
+                                                                          '<td>'+candidates[j].party_name+'</td>',
+                                                                          '<td>'+candidates[j].type+'</td>',
+                                                                          '<td><img width="50" height="50" src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
+                                                                        '</tr>'
+                                                        );
+                                                }
+
+                                                listingsHtml += S('<tr>',
+                                                                '<td colspan="10" class="center list-info"><a href="'+lists[l].url+'">للمزيد من المعلومات قم بزيارة الموقع الخاص بقائمة'+' '+lists[l].name +' </a></td>',
+                                                                '</tr>'
+                                                );
+                                                listingsHtml += '</table>';
+                                                listingsHtml += '</li>';
+                                        }       
+                                        listingsHtml +='</ul>';
+                                }
+                        }
+        
+                }
 
 
-		var html = S(
-			'<div class="content">',
-				'<div class="wrapper">',
-					'<div class="main">',
-						'<div class="results">',
-							locationHtml,
-							boundriesHtml,
-							listingsHtml,
-						'</div>',
-					'</div>',
-				'</div>',
-			'</div>'
-		);
-		return T('longInfo',{html: html});
+                var html = S(
+                        '<div class="content">',
+                                '<div class="wrapper">',
+                                        '<div class="main">',
+                                                '<div class="results">',
+                                                        locationHtml,
+                                                        boundriesHtml,
+                                                        listingsHtml,
+                                                '</div>',
+                                        '</div>',
+                                '</div>',
+                        '</div>'
+                );
+                return T('longInfo',{html: html});
 
-		/*return T( 'longInfo', {
-			log: log.print(),
-			header: electionHeader(),
-			location: voteLocation(),
-			warning: locationWarning(),
-			info: electionInfo()
-		});*/
-	}
+                /*return T( 'longInfo', {
+                        log: log.print(),
+                        header: electionHeader(),
+                        location: voteLocation(),
+                        warning: locationWarning(),
+                        info: electionInfo()
+                });*/
+        }
 }
 
 function getContests() {
-	var contests = vote && vote.poll && vote.poll.contests && vote.poll.contests[0];
-	return contests && contests.length && contests;
+        var contests = vote && vote.poll && vote.poll.contests && vote.poll.contests[0];
+        return contests && contests.length && contests;
 }
 
 function formatLocations( locations, info, icon, title, infowindow, extra, mapped ) {
-	function formatLocationRow( info ) {
-		var address = T( 'address', {
-			location: H( info.location ),
-			address: multiLineAddress( info.address )
-		});
-		
+        function formatLocationRow( info ) {
+                var address = T( 'address', {
+                        location: H( info.location ),
+                        address: multiLineAddress( info.address )
+                });
+                
 
 
-		return T( 'locationRow', {
-			iconSrc: "",//imgUrl(icon.url),
-			iconWidth: 0,//icon.width,
-			iconHeight: 0,//icon.height,
-			address: address,
-			directions: info.directions || '',
-			hours: info.hours ? 'Hours: ' + info.hours : '',
-			extra: extra || ''
-		});
-	}
-	
-	var rows = info ?
-		[ formatLocationRow(info) ] :
-		locations.map( function( location ) {
-			var a = location.address;
-			return formatLocationRow({
-				location: a && a.location_name || '',
-				directions: location.directions || '',
-				hours: location.pollinghours || '',
-				address: a
-			});
-		});
-	
-	return S(
-		T( 'locationHead', {
-			select: includeMap() ? 'onclick="return maybeSelectTab(\'#mapbox\',event);" style="cursor:pointer;"' : '',
-			title: title
-		}),
-		rows.join(''),
-		T( 'locationFoot', {
-			unable: info && info.latlng || mapped ? '' : T('locationUnable')
-		})
-	);
+                return T( 'locationRow', {
+                        iconSrc: "",//imgUrl(icon.url),
+                        iconWidth: 0,//icon.width,
+                        iconHeight: 0,//icon.height,
+                        address: address,
+                        directions: info.directions || '',
+                        hours: info.hours ? 'Hours: ' + info.hours : '',
+                        extra: extra || ''
+                });
+        }
+        
+        var rows = info ?
+                [ formatLocationRow(info) ] :
+                locations.map( function( location ) {
+                        var a = location.address;
+                        return formatLocationRow({
+                                location: a && a.location_name || '',
+                                directions: location.directions || '',
+                                hours: location.pollinghours || '',
+                                address: a
+                        });
+                });
+        
+        return S(
+                T( 'locationHead', {
+                        select: includeMap() ? 'onclick="return maybeSelectTab(\'#mapbox\',event);" style="cursor:pointer;"' : '',
+                        title: title
+                }),
+                rows.join(''),
+                T( 'locationFoot', {
+                        unable: info && info.latlng || mapped ? '' : T('locationUnable')
+                })
+        );
 }
 
 // Set up map and sidebar when the polling place location is known
 function setVoteGeo(location) {
-	
-	if( location ) {
-/*		var place = {address_components:[{long_name:"", short_name:"", types:["street_number"]}, {long_name:location[0].address.location_name, short_name:location[0].address.location_name, types:["route"]}, {long_name:"Oakton", short_name:"Oakton", types:["locality", "political"]}, {long_name:"Providence", short_name:"Providence", types:["administrative_area_level_3", "political"]}, {long_name:"Fairfax", short_name:"Fairfax", types:["administrative_area_level_2", "political"]}, {long_name:"Virginia", short_name:"VA", types:["administrative_area_level_1", "political"]}, {long_name:"United States", short_name:"US", types:["country", "political"]}, {long_name:"22124", short_name:"22124", types:["postal_code"]}], formatted_address:"11509 Waples Mill Rd, Oakton, VA 22124, USA", geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}, partial_match:true, types:["street_address"]}*/
-		/*var place = {geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}};*/
+        
+        if( location ) {
+/*              var place = {address_components:[{long_name:"", short_name:"", types:["street_number"]}, {long_name:location[0].address.location_name, short_name:location[0].address.location_name, types:["route"]}, {long_name:"Oakton", short_name:"Oakton", types:["locality", "political"]}, {long_name:"Providence", short_name:"Providence", types:["administrative_area_level_3", "political"]}, {long_name:"Fairfax", short_name:"Fairfax", types:["administrative_area_level_2", "political"]}, {long_name:"Virginia", short_name:"VA", types:["administrative_area_level_1", "political"]}, {long_name:"United States", short_name:"US", types:["country", "political"]}, {long_name:"22124", short_name:"22124", types:["postal_code"]}], formatted_address:"11509 Waples Mill Rd, Oakton, VA 22124, USA", geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}, partial_match:true, types:["street_address"]}*/
+                /*var place = {geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}};*/
 
-		var place ={geometry: {
-		location: {},
-		location_type: "ROOFTOP"//,
-		/*viewport: {
-			southwest: {lat: location.lat-0.02,lng: location.lng-0.01},
-			northeast: {lat: location.lat+0.02,lng: location.lng+0.01}
-      		},*/
-		/*bounds: {
-			southwest: {lat: location.lat-0.0005,lng: location.lng-0.001},
-			northeast: {lat: location.lat+0.0015,lng: location.lng+0.001}
+                var place ={geometry: {
+                location: {},
+                location_type: "ROOFTOP"//,
+                /*viewport: {
+                        southwest: {lat: location.lat-0.02,lng: location.lng-0.01},
+                        northeast: {lat: location.lat+0.02,lng: location.lng+0.01}
+                },*/
+                /*bounds: {
+                        southwest: {lat: location.lat-0.0005,lng: location.lng-0.001},
+                        northeast: {lat: location.lat+0.0015,lng: location.lng+0.001}
 
-      		}*/
-	    }};
-	    place.geometry.location =new gm.LatLng( location.lat, location.lng );
-	    //place.geometry.location = new gm.LatLng(  30.0647,31.2495);
-	    log( 'Getting polling place map info' );
-	    setMap( vote.info = mapInfo( vote.poll.contests, place, location ),null,null );
-	    if(vote.info.latlng ){
-		map.setCenter( vote.info.latlng );
-	    }else{
-		map.setCenter(new gm.LatLng(  30.01,31.14)); 
-	    }
-		
-	
-	}
-	setVoteNoGeo();
-	if(vote.info.latlng ) selectTab('#mapbox');
+                }*/
+            }};
+            place.geometry.location =new gm.LatLng( location.lat, location.lng );
+            //place.geometry.location = new gm.LatLng(  30.0647,31.2495);
+            log( 'Getting polling place map info' );
+            setMap( vote.info = mapInfo( vote.poll.contests, place, location ),null,null );
+            if(vote.info.latlng ){
+                map.setCenter( vote.info.latlng );
+            }else{
+                map.setCenter(new gm.LatLng(  30.01,31.14)); 
+            }
+                
+        
+        }
+        setVoteNoGeo();
+        if(vote.info.latlng ) selectTab('#mapbox');
 }
 
 // Set up map and sidebar with no polling place location
 function setVoteNoGeo() {
-	setVoteHtml();
-	forceDetails();
+        setVoteHtml();
+        forceDetails();
 }
 
 // Return a single line formatted address, from either a string or
 // an address object
 function oneLineAddress( address ) {
-	if( ! address )
-		return '';
-	//if( typeof address == 'string' )
-	//	return H(address).replace( /, USA$/, '' );
-	return H( S(
-		address.line1 ? address.line1 + ', ' : '',
-		address.line2 ? address.line2 + ', ' : '',
-		address.city, ', ', address.state,
-		address.zip ? ' ' + address.zip : ''
-	) );
+        if( ! address )
+                return '';
+        //if( typeof address == 'string' )
+        //      return H(address).replace( /, USA$/, '' );
+        return H( S(
+                address.line1 ? address.line1 + ', ' : '',
+                address.line2 ? address.line2 + ', ' : '',
+                address.city, ', ', address.state,
+                address.zip ? ' ' + address.zip : ''
+        ) );
 }
 
 // Return a multiline formatted address, from either a string or
 // an address object
 function multiLineAddress( address ) {
-	if( ! address )
-		return '';
-	if( typeof address == 'string' )
-		return H(address)
-			//.replace( /, USA$/, '' )
-			.replace( /, (\w\w) /, '\| $1 ' )
-			.replace( /, /g, '<br>' )
-			.replace( /\|/g, ',' );
-	return S(
-		address.line1 ? H(address.line1) + '<br>' : '',
-		address.line2 ? H(address.line2) + '<br>' : '',
-		H(address.city), ', ', H(address.state),
-		address.zip ? ' ' + H(address.zip) : ''
-	);
+        if( ! address )
+                return '';
+        if( typeof address == 'string' )
+                return H(address)
+                        //.replace( /, USA$/, '' )
+                        .replace( /, (\w\w) /, '\| $1 ' )
+                        .replace( /, /g, '<br>' )
+                        .replace( /\|/g, ',' );
+        return S(
+                address.line1 ? H(address.line1) + '<br>' : '',
+                address.line2 ? H(address.line2) + '<br>' : '',
+                H(address.city), ', ', H(address.state),
+                address.zip ? ' ' + H(address.zip) : ''
+        );
 }
 
 // Apply any local fixups to an address
 function fixInputAddress( addr ) {
-	//if( addr == pref.example )
-	//	addr = addr.replace( /^.*: /, '' );
-	return addr;
+        //if( addr == pref.example )
+        //      addr = addr.replace( /^.*: /, '' );
+        return addr;
 }
 
 // Geocoding and Election Center API
 
 function lookupPollingPlace( nid,gid,pid, callback ) {
-	//alert ("lookupPollingPlace");
-	function ok( poll ) { return poll.status == 'SUCCESS'; }
-	function countyAddress() {
-		return S( info.street, ', ', info.county, ', ', info.state.abbr, ' ', info.zip );
-	}
-	pollingApi( nid,gid,pid, function( poll ) {
-		if( ok(poll) ){
-			if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
-				notTheSame();
-				return;
-			}
-			callback( poll );
-		}else{
-			sorry();
-			return;
-		}
-	});
+        //alert ("lookupPollingPlace");
+        function ok( poll ) { return poll.status == 'SUCCESS'; }
+        function countyAddress() {
+                return S( info.street, ', ', info.county, ', ', info.state.abbr, ' ', info.zip );
+        }
+        pollingApi( nid,gid,pid, function( poll ) {
+                if( ok(poll) ){
+                        if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
+                                notTheSame();
+                                return;
+                        }
+                        callback( poll );
+                }else{
+                        sorry();
+                        return;
+                }
+        });
 }
 
 function findPrecinct( nid,gid,pid ) {
-	//alert("findPrecinct");
-	lookupPollingPlace( nid,gid,pid, 
+        //alert("findPrecinct");
+        lookupPollingPlace( nid,gid,pid, 
 
 
 function(poll) {
-		//alert("callback called");
-		log( 'API status code: ' + poll.status || '(OK)' );
-		vote.poll = poll;
-		var locations = vote.locations = poll.locations;
-		var contests = poll.contests;
-		//Phase1
-		/*if( poll.status != 'SUCCESS'  ||  ! locations  ||  ! locations.length ) {
-			sorry();
-			return;
-		}*/
-		if( poll.status != 'SUCCESS') {
-			sorry();
-			return;
-		}
-		//end phase1		
-		if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
-			notTheSame();
-			return;
-		}
-		var location = {};
-		if (locations && locations.length){
-			location = locations[0];
-			location.address = location.unparsed_address;
-		}
-		
-		if( location.lng && location.lat ){
-			log( 'Polling address found' );			
-			setVoteGeo( location );
-		}
-		else {
-			log( 'No polling address' );    		
-			setMap( null);
-			setVoteNoGeo();
-		}
-	}
+                //alert("callback called");
+                log( 'API status code: ' + poll.status || '(OK)' );
+                vote.poll = poll;
+                var locations = vote.locations = poll.locations;
+                var contests = poll.contests;
+                //Phase1
+                /*if( poll.status != 'SUCCESS'  ||  ! locations  ||  ! locations.length ) {
+                        sorry();
+                        return;
+                }*/
+                if( poll.status != 'SUCCESS') {
+                        sorry();
+                        return;
+                }
+                //end phase1            
+                if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
+                        notTheSame();
+                        return;
+                }
+                var location = {};
+                if (locations && locations.length){
+                        location = locations[0];
+                        location.address = location.unparsed_address;
+                }
+                
+                if( location.lng && location.lat ){
+                        log( 'Polling address found' );                 
+                        setVoteGeo( location );
+                }
+                else {
+                        log( 'No polling address' );                    
+                        setMap( null);
+                        setVoteNoGeo();
+                }
+        }
 
 );
 }
@@ -756,20 +758,20 @@ function(poll) {
 // Gadget initialization
 
 function zoomTo( bbox ) {
-	var bounds = new gm.LatLngBounds(
-		new gm.LatLng( bbox[1], bbox[0] ),
-		new gm.LatLng( bbox[3], bbox[2] )
-	);
-	map.fitBounds( bounds );
+        var bounds = new gm.LatLngBounds(
+                new gm.LatLng( bbox[1], bbox[0] ),
+                new gm.LatLng( bbox[3], bbox[2] )
+        );
+        map.fitBounds( bounds );
 }
 
 function gadgetReady( json ) {
-	initMap( function() {
-		setupTabs();
-		if( pref.ready ){
-			submit( pref.address || pref.example );
-		}else{
-			zoomTo( initialBbox );
-		}
-	});
+        initMap( function() {
+                setupTabs();
+                if( pref.ready ){
+                        submit( pref.address || pref.example );
+                }else{
+                        zoomTo( initialBbox );
+                }
+        });
 }
