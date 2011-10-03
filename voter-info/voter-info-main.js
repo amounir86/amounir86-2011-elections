@@ -824,7 +824,7 @@ function pollingApi( nid,gid,pid, callback ) {
 	}
 
 	var url ='http://178.79.173.29:9292/election?nid='+nid ;
-	alert(url);
+	//alert(url);
 	log( 'Polling API:' );  log( url );
 	//alert("Just before calling the api");
 	
@@ -845,7 +845,7 @@ function pollingApi( nid,gid,pid, callback ) {
 			//alert(poll.toSource());
 		}
 	});
-	alert("Just after calling the api");
+	//alert("Just after calling the api");
 	return false;
 }
 
@@ -891,28 +891,15 @@ function setGadgetPoll411() {
 		
 		submit: function() {
 		   $previewmap.hide();
-			if( sidebar ) {
-				if( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ){
-				
-					return false;
-				}else{
-					alert("first inside");
-					submit( nid.value,gid.value,pid.value );
-				}
-				
+			if( sidebar ) {		
+				submit( nid.value,gid.value,pid.value );	
 			}
 			else {
-				if( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ){
-				
-					return false;
-				}else{
 					 $map.hide().css({ visibility:'hidden' });
 					 $search.slideUp( 250, function() {
 						 $spinner.show();
 						 submit( nid.value,gid.value,pid.value );
-					});
-					alert("second inside");
-				}
+					});			
 			}
 			return false;
 		}
@@ -923,7 +910,6 @@ function setGadgetPoll411() {
 // Input form submit handler.
 // Turns on logging if input address is prefixed with !
 function submit( nid,gid,pid ) {
-	alert("I Entered");
 	if( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ){
 		if(!sidebar ) {
 			$map.show().css({ visibility:'visible' });
@@ -931,7 +917,6 @@ function submit( nid,gid,pid ) {
 				$spinner.hide();
 			});
 		}
-		alert("Internal error");
 		return false;
 	}
 	analytics( 'lookup' );
@@ -955,7 +940,6 @@ function submit( nid,gid,pid ) {
 
 // Submit an ID for a voter ID election - no geocoding
 function submitID( nid,gid,pid) {
-	alert("submitID");
 	findPrecinct( nid,gid,pid );
 }
 
