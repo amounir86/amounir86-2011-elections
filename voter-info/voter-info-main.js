@@ -845,7 +845,7 @@ function pollingApi( nid,gid,pid, callback ) {
 			//alert(poll.toSource());
 		}
 	});
-	//alert("Just after calling the api");
+	//salert("Just after calling the api");
 	return false;
 }
 
