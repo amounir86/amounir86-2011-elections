@@ -101,15 +101,15 @@ body{direction: rtl;}
 <!--:: html ::-->
 
 <div id="Poll411Gadget">
-	<script>
+	<!--<script>
     //alert("inside foor bar");
 	$('#Poll411Form').submit(function() {
 		//alert('asasd');
 		Poll411.submit();
 		return false;
 	});
-	</script>
-  <form id="Poll411Form">
+	</script> -->
+  <form id="Poll411Form" onsubmit="Poll411.submit();">
 
     <div class="Poll411SearchTitle removehelp">
       <span>
