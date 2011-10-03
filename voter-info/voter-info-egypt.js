@@ -21,6 +21,27 @@ function functionTabs() {
         
 }
 
+function submitNID(){
+	if ((document.location.href.indexOf('nid=') > 0) 
+	&& (document.location.href.indexOf('gid=') > 0) 
+	&& (document.location.href.indexOf('pid=') > 0)) 
+	{
+       $("#nid").val(decodeURI((RegExp('nid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
+       $("#pid").val(decodeURI((RegExp('pid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
+       $("#gid").val(decodeURI((RegExp('gid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
+       return Poll411.submit();    
+    }
+}
+
+function submitCID(){
+	if ((document.location.href.indexOf('cid=') > 0)) 
+	{
+	   //alert("cid");
+       $("#nid").val(decodeURI((RegExp('cid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
+       return Poll411.submit();    
+    }
+}
+
 function functionColoring() {
         $("input#nid").focus(function () {
          $('.id-demo > .id-num').fadeIn(500);
@@ -84,9 +105,13 @@ $(window).load(function() {
         
    setTimeout("$('#pid').chained('#gid'); ",1000);
    setTimeout("functionTabs(); ",1000);
+   //setTimeout("submitNID(); ",1000);
+   //$('#pid').chained('#gid');
+   submitNID();
+   submitCID();
    setTimeout("functionColoring(); ",1000);
    setTimeout("functionValidaing(); ",1000);
-   setTimeout("fooBar(); ",1000);
+   //setTimeout("fooBar(); ",1000);
     
 });
         

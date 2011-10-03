@@ -542,6 +542,15 @@ function tabLinks( active ) {
 			label: label
 		});
 	}
+	if (((document.location.href.indexOf('nid=') > 0) 
+	&& (document.location.href.indexOf('gid=') > 0) 
+	&& (document.location.href.indexOf('pid=') > 0)) || (document.location.href.indexOf('cid=') > 0)) {
+		return T( 'tabLinks', {
+			tab1: tab( '#detailsbox', 'معلومات' ),
+			tab2: includeMap() ? tab( '#mapbox', 'الخـريطة' ) : '',
+			tab3: '' 
+		});	
+	}
 	return T( 'tabLinks', {
 		tab1: tab( '#detailsbox', 'معلومات' ),
 		tab2: includeMap() ? tab( '#mapbox', 'الخـريطة' ) : '',
@@ -823,8 +832,12 @@ function pollingApi( nid,gid,pid, callback ) {
 		return;
 	}
 
-	var url ='http://178.79.173.29:9292/election?nid='+nid ;
-	//alert(url);
+	if ((document.location.href.indexOf('cid=') > 0)) 
+		var url ='http://178.79.173.29:9292/election?cid='+nid ;
+	else
+		var url ='http://178.79.173.29:9292/election?nid='+nid ;
+		
+	alert(url);
 	log( 'Polling API:' );  log( url );
 	//alert("Just before calling the api");
 	
@@ -845,7 +858,7 @@ function pollingApi( nid,gid,pid, callback ) {
 			//alert(poll.toSource());
 		}
 	});
-	//salert("Just after calling the api");
+	alert("Just after calling the api");
 	return false;
 }
 
@@ -890,6 +903,7 @@ function setGadgetPoll411() {
 		},
 		
 		submit: function() {
+		   //alert("submit")
 		   $previewmap.hide();
 			if( sidebar ) {		
 				submit( nid.value,gid.value,pid.value );	
