@@ -4,6 +4,7 @@
 
 // Language and prefs
 function sleep(milliseconds) {
+	alert("Inside sleep");
   var start = new Date().getTime();
   for (var i = 0; i < 1e7; i++) {
     if ((new Date().getTime() - start) > milliseconds){
@@ -39,7 +40,7 @@ function submitNID(){
        $("#pid").val(decodeURI((RegExp('pid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        $("#gid").val(decodeURI((RegExp('gid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        while(typeof(Poll411) == undefined){
-       	
+       	    alert("inside while");
 			sleep(500);
 		} 
        return Poll411.submit();    
@@ -52,6 +53,7 @@ function submitCID(){
 	   //alert("cid");
        $("#nid").val(decodeURI((RegExp('cid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        while(typeof(Poll411) == undefined){
+       	alert("inside while");
 			sleep(500);
 		} 
        return Poll411.submit();    
