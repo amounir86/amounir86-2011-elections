@@ -3,15 +3,6 @@
 // See UNLICENSE or http://unlicense.org/ for public domain notice.
 
 // Language and prefs
-function sleep(milliseconds) {
-	//alert("Inside sleep");
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
 
 
 function functionTabs() {
@@ -43,7 +34,7 @@ function submitNID(){
   
       //while(typeof Poll411 === "undefined") {
        	  //  alert("inside while");
-			sleep(10000);
+		//	sleep(10000);
 		//}
 		//alert('after while')
        return Poll411.submit();    
@@ -59,7 +50,7 @@ function submitCID(){
       
       //while(typeof Poll411 === "undefined") {
        //	alert("inside while");
-			sleep(10000);
+			//sleep(10000);
 		//} 
        return Poll411.submit();    
     }
@@ -130,10 +121,11 @@ $(window).load(function() {
         
    setTimeout("$('#pid').chained('#gid'); ",1000);
    setTimeout("functionTabs(); ",1000);
-   setTimeout("submitNID(); ",1000);
+  setTimeout("submitNID(); ",1000);
+  setTimeout("submitNID(); ",1000);
    //$('#pid').chained('#gid');
-   submitNID();
-   submitCID();
+  // submitNID();
+   //submitCID();
    setTimeout("functionColoring(); ",1000);
    setTimeout("functionValidaing(); ",1000);
    //setTimeout("fooBar(); ",1000);
