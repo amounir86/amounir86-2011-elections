@@ -105,7 +105,7 @@ $(window).load(function() {
         
    setTimeout("$('#pid').chained('#gid'); ",1000);
    setTimeout("functionTabs(); ",1000);
-   //setTimeout("submitNID(); ",1000);
+   setTimeout("submitNID(); ",1000);
    //$('#pid').chained('#gid');
    submitNID();
    submitCID();
