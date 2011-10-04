@@ -43,7 +43,8 @@ function submitNID(){
        while(typeof(Poll411) == "undefined"){
        	    alert("inside while");
 			sleep(500);
-		} 
+		}
+		alert('after while')
        return Poll411.submit();    
     }
 }
@@ -53,7 +54,8 @@ function submitCID(){
 	{
 	   //alert("cid");
        $("#nid").val(decodeURI((RegExp('cid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
-       alert(typeof(Poll411));
+       
+      alert(typeof(Poll411));
        while(typeof(Poll411) == "undefined"){
        	alert("inside while");
 			sleep(500);
