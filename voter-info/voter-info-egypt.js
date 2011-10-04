@@ -3,6 +3,15 @@
 // See UNLICENSE or http://unlicense.org/ for public domain notice.
 
 // Language and prefs
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
 
 function functionTabs() {
         
@@ -68,7 +77,9 @@ function functionColoring() {
 function foorBar() {
 	//alert("inside foor bar");
 	$('#Poll411Form').submit(function() {
-		//alert('asasd');
+		while(Poll411 == undefined){
+			sleep(500);
+		} 
 		Poll411.submit();
 		return false;
 	});
