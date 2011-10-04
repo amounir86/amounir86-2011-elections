@@ -39,11 +39,11 @@ function submitNID(){
        $("#nid").val(decodeURI((RegExp('nid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        $("#pid").val(decodeURI((RegExp('pid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        $("#gid").val(decodeURI((RegExp('gid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
-       alert(typeof(Poll411));
-       if(typeof(Poll411) == "undefined") {
+       //alert(typeof(Poll411));
+      if (typeof something === "undefined"){
        		alert("wallahy undefined");
        }
-       while(typeof(Poll411) == "undefined"){
+      while(typeof something === "undefined") {
        	    alert("inside while");
 			sleep(500);
 		}
@@ -58,8 +58,8 @@ function submitCID(){
 	   //alert("cid");
        $("#nid").val(decodeURI((RegExp('cid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        
-      alert(typeof(Poll411));
-       while(typeof(Poll411) == "undefined"){
+      
+      while(typeof something === "undefined") {
        	alert("inside while");
 			sleep(500);
 		} 
