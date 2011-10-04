@@ -4,7 +4,7 @@
 
 // Language and prefs
 function sleep(milliseconds) {
-	alert("Inside sleep");
+	//alert("Inside sleep");
   var start = new Date().getTime();
   for (var i = 0; i < 1e7; i++) {
     if ((new Date().getTime() - start) > milliseconds){
@@ -42,10 +42,10 @@ function submitNID(){
        //alert(typeof(Poll411));
   
       while(typeof Poll411 === "undefined") {
-       	    alert("inside while");
+       	  //  alert("inside while");
 			sleep(500);
 		}
-		alert('after while')
+		//alert('after while')
        return Poll411.submit();    
     }
 }
@@ -58,7 +58,7 @@ function submitCID(){
        
       
       while(typeof Poll411 === "undefined") {
-       	alert("inside while");
+       //	alert("inside while");
 			sleep(500);
 		} 
        return Poll411.submit();    
