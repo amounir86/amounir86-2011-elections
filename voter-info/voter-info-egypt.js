@@ -40,6 +40,9 @@ function submitNID(){
        $("#pid").val(decodeURI((RegExp('pid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        $("#gid").val(decodeURI((RegExp('gid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        alert(typeof(Poll411));
+       if(typeof(Poll411) == "undefined") {
+       		alert("wallahy undefined");
+       }
        while(typeof(Poll411) == "undefined"){
        	    alert("inside while");
 			sleep(500);
