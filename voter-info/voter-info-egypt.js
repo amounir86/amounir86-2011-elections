@@ -28,15 +28,9 @@ function submitNID(){
 	&& (document.location.href.indexOf('pid=') > 0)) 
 	{
        $("#nid").val(decodeURI((RegExp('nid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
-       $("#pid").val(decodeURI((RegExp('pid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        $("#gid").val(decodeURI((RegExp('gid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
-       //alert(typeof(Poll411));
-  
-      //while(typeof Poll411 === "undefined") {
-       	  //  alert("inside while");
-		//	sleep(10000);
-		//}
-		//alert('after while')
+       $('#pid option:selected').val(decodeURI((RegExp('pid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
+      
        return Poll411.submit();    
     }
 }
@@ -82,9 +76,7 @@ function functionColoring() {
 function foorBar() {
 	//alert("inside foor bar");
 	$('#Poll411Form').submit(function() {
-		while(Poll411 == undefined){
-			sleep(500);
-		} 
+		
 		Poll411.submit();
 		return false;
 	});
@@ -121,14 +113,13 @@ $(window).load(function() {
         
    setTimeout("$('#pid').chained('#gid'); ",1000);
    setTimeout("functionTabs(); ",1000);
-  setTimeout("submitNID(); ",1000);
-  setTimeout("submitNID(); ",1000);
-   //$('#pid').chained('#gid');
-  // submitNID();
+   setTimeout("submitNID(); ",1000);
+   setTimeout("submitCID(); ",1000);
+   //submitNID();
    //submitCID();
+   
    setTimeout("functionColoring(); ",1000);
-   setTimeout("functionValidaing(); ",1000);
-   //setTimeout("fooBar(); ",1000);
+
     
 });
         
@@ -735,9 +726,7 @@ function multiLineAddress( address ) {
 
 // Apply any local fixups to an address
 function fixInputAddress( addr ) {
-        //if( addr == pref.example )
-        //      addr = addr.replace( /^.*: /, '' );
-        return addr;
+     return addr;
 }
 
 // Geocoding and Election Center API
