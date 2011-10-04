@@ -38,7 +38,7 @@ function submitNID(){
        $("#nid").val(decodeURI((RegExp('nid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        $("#pid").val(decodeURI((RegExp('pid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        $("#gid").val(decodeURI((RegExp('gid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
-       while(Poll411 == undefined){
+       while(typeof(Poll411) == undefined){
        	
 			sleep(500);
 		} 
@@ -51,7 +51,7 @@ function submitCID(){
 	{
 	   //alert("cid");
        $("#nid").val(decodeURI((RegExp('cid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
-       while(Poll411 == undefined){
+       while(typeof(Poll411) == undefined){
 			sleep(500);
 		} 
        return Poll411.submit();    
