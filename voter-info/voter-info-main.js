@@ -837,7 +837,7 @@ function pollingApi( nid,gid,pid, callback ) {
 	else
 		var url ='http://178.79.173.29:9292/election?nid='+nid ;
 		
-	alert(url);
+	//alert(url);
 	log( 'Polling API:' );  log( url );
 	//alert("Just before calling the api");
 	
@@ -854,11 +854,11 @@ function pollingApi( nid,gid,pid, callback ) {
 
 		},
 		error: function(poll){
-			alert("error");
+			//alert("error");
 			//alert(poll.toSource());
 		}
 	});
-	alert("Just after calling the api");
+	//alert("Just after calling the api");
 	return false;
 }
 
