@@ -499,14 +499,14 @@ function setVoteHtml() {
                         } 
 
                         boundriesHtml = S(
-                               '<p><h1>لمعرفة حدود الدائرة الإنتخابية</h1>',
+                               '<div><h1>لمعرفة حدود الدائرة الإنتخابية</h1>',
 				'اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة',
                                '<ul style="margin-top:10px;" class="area-cover clearfix">',
                                 contestButtonsHtml,
-                               '</ul></p>'
+                               '</ul></div>'
                         );
 			//info
-			infoHtml = '<p><h1>بيانات هامة عن الدائرة الانتخابية</h1>';
+			infoHtml = '<div><h1>بيانات هامة عن الدائرة الانتخابية</h1>';
 			for( var i=0;i< contests.length; i++){
 				if( 	(document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || 
 					!(document.location.href.indexOf('cid=') > 0 )
@@ -522,7 +522,7 @@ function setVoteHtml() {
 					//infoHtml += '</ul>';
 				}
 			}
-			infoHtml += '<span style="color:red;margin-top:20px">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</span></p>';
+			infoHtml += '<span style="color:red;margin-top:20px">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</span></div>';
                         //candidates
                         var listingsHtml = '';
                         for(var i = 0;i <contests.length; i++){
