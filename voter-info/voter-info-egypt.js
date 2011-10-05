@@ -426,7 +426,7 @@ function perElectionInfo( state, electionDay, electionName ) {
 
 function gotoConstit(index){
 	
-        setMap(vote.info,vote.poll.contests[index],15);
+        setMap(vote.info,vote.poll.contests[index],12);
         if(vote.info && vote.info.latlng ){
                 map.setCenter( vote.info.latlng );
         }else{
@@ -826,8 +826,18 @@ function zoomTo( bbox ) {
                 new gm.LatLng( bbox[1], bbox[0] ),
                 new gm.LatLng( bbox[3], bbox[2] )
         );
+	map.fitBounds(bounds);
+	zoomChangeBoundsListener = 
+	    google.maps.event.addListener(map, 'bounds_changed', function(event) {
+		if (this.getZoom()){
+		    this.setZoom(12);
+		}
+	    google.maps.event.removeListener(zoomChangeBoundsListener);
+	});
+
+
         //map.fitBounds( bounds );
-	map.setZoom( 11 );
+	//map.setZoom( 12 );
 }
 
 function gadgetReady( json ) {

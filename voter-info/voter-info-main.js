@@ -1286,6 +1286,8 @@ function polyState( abbr ) {
 		//gme.addListener(polygon,'click',function(){alert('sss');});
 		//gme.addListener(polygon,'click',function(){alert('sss');});
 		addOverlay( polygon );
+		//alert(polygon.latLngs.b[0].b[0].toSource());
+		map.setCenter(polygon.latLngs.b[0].b[0]);
 	};
 	$.getScript( cacheUrl( S( opt.codeUrl, 'shapes/json/', abbr, '.js' ) ) );
 }
