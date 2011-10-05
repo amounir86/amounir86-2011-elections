@@ -7,7 +7,7 @@
 
 function functionTabs() {
         
-        /* if (document.location.href.indexOf('cid=yes') > 0) {
+        if (document.location.href.indexOf('cid=yes') > 0) {
                 $("#elec-info").remove();  
         $('.wrapper').append('<div class="map-demo"><img src="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/graphics/map-demo.png" width="300" height="230" /> </div>');
                 $("#nid_tab").attr('class' , "" );
@@ -18,7 +18,7 @@ function functionTabs() {
         $("#pid_label").hide(); 
         $("#nid_label").html("اسم الدائرة"); 
         
-    }*/
+    }
         
 }
 var given_cid;
@@ -506,7 +506,7 @@ function setVoteHtml() {
                                '</ul></div>'
                         );
 			//info
-			infoHtml = '<div><h1>بيانات هامة عن الدائرة الانتخابية</h1>';
+			infoHtml = 'sssss<br/><br/><div><h1>بيانات هامة عن الدائرة الانتخابية</h1>';
 			for( var i=0;i< contests.length; i++){
 				if( 	(document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || 
 					!(document.location.href.indexOf('cid=') > 0 )
