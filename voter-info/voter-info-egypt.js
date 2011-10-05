@@ -21,6 +21,7 @@ function functionTabs() {
     }*/
         
 }
+var given_cid;
 
 function submitNID(){
 	if ((document.location.href.indexOf('nid=') > 0) 
@@ -40,7 +41,7 @@ function submitCID(){
 	{
 	   //alert("cid");
        $("#nid").val(decodeURI((RegExp('cid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
-       
+       given_cid = $("#nid").val();
       
       //while(typeof Poll411 === "undefined") {
        //	alert("inside while");
@@ -334,7 +335,7 @@ function localPrefs( pref ) {
 
 var initialBbox = [ 22.6066970, 21.61291460, 38.9982990, 31.79954240 ];
 
-//var initialBbox = [ 22.6066970, 21.61291460, 38.9982990, 31.79954240 ];
+//var initialBbox = [ 20.6066970, 18.61291460, 50.9982990, 31.79954240 ];
 
 // Output formatters
 
@@ -423,9 +424,10 @@ function perElectionInfo( state, electionDay, electionName ) {
         }
 }
 
-function gotoConstit(code){
-        setMap(vote.info,['c'+code],13);
-        if(vote.info.latlng ){
+function gotoConstit(index){
+	
+        setMap(vote.info,vote.poll.contests[index],15);
+        if(vote.info && vote.info.latlng ){
                 map.setCenter( vote.info.latlng );
         }else{
                 map.setCenter(new gm.LatLng(  30.01,31.14)); 
@@ -479,28 +481,48 @@ function setVoteHtml() {
         
         function longInfo() {
                 var location = vote.locations[0];
-                var locationHtml = (location)?S(
+                var locationHtml = (location && location.lng)?S(
                 '<h1>بيانات اللجنة الانتخابية</h1>',
                 '<div class="place">',
                   '<p>لجنتك الانتخابية :'+location.name+'</p>',
                   '<p>العنوان : '+location.address+'</p>',
                 '</div>'):'';
-
-                var contests = vote.info.contests;
+                var contests = vote.poll.contests;
                 var boundriesHtml = '';         
                 if(contests){   
                         //boundries
                         var contestButtonsHtml = '';
-                        for(var i = 0;i <contests.length; i++){
-                                contestButtonsHtml += ('<li><a href="#mapbox" onclick="gotoConstit(\''+contests[i].constituency_code+'\')">'+contests[i].type+' '+contests[i].constituency+'</a></li>');
+			                        
+			for(var i = 0;i <contests.length; i++){
+				if( (document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || !(document.location.href.indexOf('cid=') > 0 ))
+                                contestButtonsHtml += ('<li><a href="#mapbox" onclick="gotoConstit('+i+')">'+contests[i].constituency+' '+contests[i].type+'</a></li>');
                         } 
 
                         boundriesHtml = S(
-                               '<h1>لمعرفة حدود اللجنة الإنتخابية</h1>',
-                               '<ul class="area-cover clearfix">',
+                               '<h1>لمعرفة حدود الدائرة الإنتخابية</h1>',
+				'اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة',
+                               '<ul style="margin-top:10px;" class="area-cover clearfix">',
                                 contestButtonsHtml,
                                '</ul>'
                         );
+			//info
+			infoHtml = '<h1>بيانات هامة عن الدائرة الانتخابية</h1>';
+			for( var i=0;i< contests.length; i++){
+				if( 	(document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || 
+					!(document.location.href.indexOf('cid=') > 0 )
+				){
+					infoHtml += '<span style="color:red;margin-top:20px;"><strong>'+contests[i].constituency+' '+ contests[i].type+'</strong></span>';
+					infoHtml += ('<p style="margin-top:20px;"><strong>عدد المقاعد</strong>: '+contests[i].number_of_seats+'</p>');
+					infoHtml += ('<p style="margin-bottom:20px;"><strong>مكونة من الأقسام و المراكز التالية</strong>:</p>');
+					//infoHtml += '<ul>';
+					for(var p=0;p<contests[i].police_stations.length;p++){				
+						//if(p != 0) infoHtml += ", ";
+						infoHtml += ('<li style="margin-bottom:20px;">'+ contests[i].police_stations[p].pname+'</li>');
+					}
+					//infoHtml += '</ul>';
+				}
+			}
+			infoHtml += '<span style="color:red;margin-top:20px">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</span>';
                         //candidates
                         var listingsHtml = '';
                         for(var i = 0;i <contests.length; i++){
@@ -581,6 +603,7 @@ function setVoteHtml() {
                                                 '<div class="results">',
                                                         locationHtml,
                                                         boundriesHtml,
+							infoHtml,
                                                         listingsHtml,
                                                 '</div>',
                                         '</div>',
@@ -739,7 +762,7 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
         }
         pollingApi( nid,gid,pid, function( poll ) {
                 if( ok(poll) ){
-                        if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
+                        if( ( !(document.location.href.indexOf('cid=') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
                                 notTheSame();
                                 return;
                         }
