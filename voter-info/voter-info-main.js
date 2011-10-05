@@ -833,9 +833,9 @@ function pollingApi( nid,gid,pid, callback ) {
 	}
 
 	if ((document.location.href.indexOf('cid=') > 0)) 
-		var url ='http://178.79.173.29:9292/election?cid='+nid ;
+		var url ='http://178.79.173.29:9000/election?cid='+nid ;
 	else
-		var url ='http://178.79.173.29:9292/election?nid='+nid ;
+		var url ='http://178.79.173.29:9000/election?nid='+nid ;
 		
 	//alert(url);
 	log( 'Polling API:' );  log( url );
@@ -1098,7 +1098,7 @@ function notTheSameHtml() {
 
 
 // Make the map visible and load the home/vote icons
-function setMap( a,states,z ) {//set width and height
+function setMap( a,contest,z ) {//set width and height
 	//Phase1	
 	/*if( ! a ) return;
 	a.width = $map.width();
@@ -1114,58 +1114,13 @@ function setMap( a,states,z ) {//set width and height
 	//end phase1
 
 clearOverlays();
-/*if(states){
-	for(var i=0;i<states.length;i++){polyState(states[i]);}
-}*/
-if(states){
-if(states[0]=='c02'){
-	polyState('01_13');
-	polyState('01_14');
-	polyState('01_15');
-	polyState('01_16');
-	polyState('01_17');
-	polyState('01_18');
-	polyState('01_25');
-}else{
-	polyState('01_13');
-	polyState('01_14');
-	polyState('01_15');
-	polyState('01_16');
-	polyState('01_17');
-
+if(contest){
+	
+		gov = contest.constituency_code.split('_')[1]		
+		for(var i=0;i<contest.police_stations.length;i++){		
+			polyState(gov+'_'+contest.police_stations[i].pid);
+		}
 }
-}
-//polyState('nv');
-//polyState('ne');
-
-/*polyState('01_');
-polyState('04_');
-polyState('13_');
-polyState('16_');
-polyState('19_');
-polyState('23_');
-polyState('26_');
-polyState('31_');
-polyState('34_');
-polyState('02_');
-polyState('11_');
-polyState('14_');
-polyState('17_');
-polyState('21_');
-polyState('24_');
-polyState('27_');
-polyState('32_');
-polyState('35_');
-polyState('03_');
-polyState('12_');
-polyState('15_');
-polyState('18_');
-polyState('22_');
-polyState('25_');
-polyState('29_');
-polyState('33_');
-polyState('28_');
-*/
 
 loadMap( a,z );
 
@@ -1328,7 +1283,7 @@ function polyState( abbr ) {
 			fillColor: '#000000',
 			fillOpacity: .07
 		});
-		gme.addListener(polygon,'click',function(){alert('sss');});
+		//gme.addListener(polygon,'click',function(){alert('sss');});
 		//gme.addListener(polygon,'click',function(){alert('sss');});
 		addOverlay( polygon );
 	};
