@@ -506,7 +506,7 @@ function setVoteHtml() {
                                '</ul></div>'
                         );
 			//info
-			infoHtml = '<br/><br/><div><h1 style="margin-top:20px;>بيانات هامة عن الدائرة الانتخابية</h1>';
+			infoHtml = '<br/><br/><div><h1 style="margin-top:20px;">بيانات هامة عن الدائرة الانتخابية</h1>';
 			for( var i=0;i< contests.length; i++){
 				if( 	(document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || 
 					!(document.location.href.indexOf('cid=') > 0 )
