@@ -499,11 +499,11 @@ function setVoteHtml() {
                         } 
 
                         boundriesHtml = S(
-                               '<h1>لمعرفة حدود الدائرة الإنتخابية</h1>',
+                               '<p><h1>لمعرفة حدود الدائرة الإنتخابية</h1>',
 				'اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة',
                                '<ul style="margin-top:10px;" class="area-cover clearfix">',
                                 contestButtonsHtml,
-                               '</ul>'
+                               '</ul></p>'
                         );
 			//info
 			infoHtml = '<h1>بيانات هامة عن الدائرة الانتخابية</h1>';
@@ -826,7 +826,8 @@ function zoomTo( bbox ) {
                 new gm.LatLng( bbox[1], bbox[0] ),
                 new gm.LatLng( bbox[3], bbox[2] )
         );
-        map.fitBounds( bounds );
+        //map.fitBounds( bounds );
+	map.setZoom( 11 );
 }
 
 function gadgetReady( json ) {
