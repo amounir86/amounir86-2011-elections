@@ -424,7 +424,7 @@ function perElectionInfo( state, electionDay, electionName ) {
         }
 }
 
-function gotoConstit(index){
+function gotoConstit(index,donot_go){
 	
         setMap(vote.info,vote.poll.contests[index],12);
         if(vote.info && vote.info.latlng ){
@@ -432,8 +432,10 @@ function gotoConstit(index){
         }else{
                 map.setCenter(new gm.LatLng(  30.01,31.14)); 
         }
-        return selectTab('#mapbox');
+        if (!donot_go) return selectTab('#mapbox');
 }
+
+
 
 function setVoteHtml() {
         if( !( vote.info || vote.locations ) ) {
@@ -830,7 +832,7 @@ function zoomTo( bbox ) {
 	zoomChangeBoundsListener = 
 	    google.maps.event.addListener(map, 'bounds_changed', function(event) {
 		if (this.getZoom()){
-		    this.setZoom(12);
+		    this.setZoom(10);
 		}
 	    google.maps.event.removeListener(zoomChangeBoundsListener);
 	});

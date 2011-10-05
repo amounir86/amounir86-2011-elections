@@ -1182,6 +1182,7 @@ function setupTabs() {
 	});
 }
 
+
 // Activate the named tab
 function selectTab( tab ) {
 	//alert(tab);	
@@ -1203,7 +1204,13 @@ function selectTab( tab ) {
 			$map.show();
 		});
 	}
-	else {
+	else if(tab == "#mapbox"){
+		//alert('z');
+		//setMap(vote.info,vote.poll.contests[0],12);		
+		//gotoConstit(0,true);
+		$(tab).show().css({ visibility:'visible' });
+		$tabs.html( tabLinks(tab) );
+	}else {
 		$(tab).show().css({ visibility:'visible' });
 		$tabs.html( tabLinks(tab) );
 	}
