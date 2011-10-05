@@ -832,10 +832,14 @@ function pollingApi( nid,gid,pid, callback ) {
 		return;
 	}
 
-	if ((document.location.href.indexOf('cid=') > 0)) 
-		var url ='http://178.79.173.29:9000/election?cid='+nid ;
+	if ((document.location.href.indexOf('cid=') > 0))
+		//var url ='http://elections2011.eg/proxy.php?type=cid&id='+nid 
+		var url ='http://elections.espace-technologies.com/proxy.php?type=cid&id='+nid 
+		//var url ='http://178.79.173.29:9000/election?cid='+nid ;
 	else
-		var url ='http://178.79.173.29:9000/election?nid='+nid ;
+		//var url ='http://elections2011.eg/proxy.php?type=nid&id='+nid  
+		var url ='http://elections.espace-technologies.com/proxy.php?type=nid&id='+nid 
+		//var url ='http://178.79.173.29:9000/election?nid='+nid ;
 		
 	//alert(url);
 	log( 'Polling API:' );  log( url );

@@ -832,7 +832,7 @@ function zoomTo( bbox ) {
 	zoomChangeBoundsListener = 
 	    google.maps.event.addListener(map, 'bounds_changed', function(event) {
 		if (this.getZoom()){
-		    this.setZoom(10);
+		    this.setZoom(9);
 		}
 	    google.maps.event.removeListener(zoomChangeBoundsListener);
 	});
