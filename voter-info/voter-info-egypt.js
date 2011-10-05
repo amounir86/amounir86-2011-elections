@@ -495,7 +495,7 @@ function setVoteHtml() {
 			                        
 			for(var i = 0;i <contests.length; i++){
 				if( (document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || !(document.location.href.indexOf('cid=') > 0 ))
-                                contestButtonsHtml += ('<li"><a href="#mapbox" onclick="gotoConstit('+i+')">'+contests[i].constituency+' '+contests[i].type+'</a></li>');
+                                contestButtonsHtml += ('<li><a href="#mapbox" onclick="gotoConstit('+i+')">'+contests[i].constituency+' '+contests[i].type+'</a></li>');
                         } 
 
                         boundriesHtml = S(
