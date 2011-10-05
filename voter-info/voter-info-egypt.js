@@ -506,7 +506,7 @@ function setVoteHtml() {
                                '</ul></p>'
                         );
 			//info
-			infoHtml = '<h1>بيانات هامة عن الدائرة الانتخابية</h1>';
+			infoHtml = '<p><h1>بيانات هامة عن الدائرة الانتخابية</h1>';
 			for( var i=0;i< contests.length; i++){
 				if( 	(document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || 
 					!(document.location.href.indexOf('cid=') > 0 )
@@ -522,7 +522,7 @@ function setVoteHtml() {
 					//infoHtml += '</ul>';
 				}
 			}
-			infoHtml += '<span style="color:red;margin-top:20px">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</span>';
+			infoHtml += '<span style="color:red;margin-top:20px">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</span></p>';
                         //candidates
                         var listingsHtml = '';
                         for(var i = 0;i <contests.length; i++){
