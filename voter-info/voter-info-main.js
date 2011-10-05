@@ -542,6 +542,15 @@ function tabLinks( active ) {
 			label: label
 		});
 	}
+	if (((document.location.href.indexOf('nid=') > 0) 
+	&& (document.location.href.indexOf('gid=') > 0) 
+	&& (document.location.href.indexOf('pid=') > 0)) || (document.location.href.indexOf('cid=') > 0)) {
+		return T( 'tabLinks', {
+			tab1: tab( '#detailsbox', 'معلومات' ),
+			tab2: includeMap() ? tab( '#mapbox', 'الخـريطة' ) : '',
+			tab3: '' 
+		});	
+	}
 	return T( 'tabLinks', {
 		tab1: tab( '#detailsbox', 'معلومات' ),
 		tab2: includeMap() ? tab( '#mapbox', 'الخـريطة' ) : '',
@@ -696,9 +705,11 @@ function loadMap( a,z ) {
 	}
 	
 	function setMarker( a ) {
-		var mo = {
-			position: a.place.info.latlng
-		};
+		if(a != null && a.place != null && a.place.info != null && a.place.info.latlng){
+			var mo = {
+				position: a.place.info.latlng
+			};
+		}
 		if( a.image ) mo.icon = imgUrl( a.image );
 		var marker = a.place.marker = new gm.Marker( mo );
 		addOverlay( marker );
@@ -821,7 +832,12 @@ function pollingApi( nid,gid,pid, callback ) {
 		return;
 	}
 
-	var url ='http://178.79.173.29:9292/election?nid='+nid;
+	if ((document.location.href.indexOf('cid=') > 0)) 
+		var url ='http://178.79.173.29:9292/election?cid='+nid ;
+	else
+		var url ='http://178.79.173.29:9292/election?nid='+nid ;
+		
+	//alert(url);
 	log( 'Polling API:' );  log( url );
 	//alert("Just before calling the api");
 	
@@ -834,14 +850,16 @@ function pollingApi( nid,gid,pid, callback ) {
 		jsonp: 'jsonp',
 
 		success: function( poll ) {
-
-			//alert(poll);
 			 callback( typeof poll == 'object' ? poll : { status:"ERROR" } );
 
+		},
+		error: function(poll){
+			//alert("error");
+			//alert(poll.toSource());
 		}
-		//error: function(poll){alert("error");alert(poll);}
 	});
 	//alert("Just after calling the api");
+	return false;
 }
 
 // Get a JSON value and make sure it is evaluated to JSON
@@ -885,20 +903,21 @@ function setGadgetPoll411() {
 		},
 		
 		submit: function() {
+		   //alert("submit")
 		   $previewmap.hide();
-			if( sidebar ) {
-				submit( nid.value,gid.value,pid.value );
+			if( sidebar ) {		
+				submit( nid.value,gid.value,pid.value );	
 			}
 			else {
-				
-				$map.hide().css({ visibility:'hidden' });
-				$search.slideUp( 250, function() {
-					$spinner.show();
-					submit( nid.value,gid.value,pid.value );
-				});
+					 $map.hide().css({ visibility:'hidden' });
+					 $search.slideUp( 250, function() {
+						 $spinner.show();
+						 submit( nid.value,gid.value,pid.value );
+					});			
 			}
 			return false;
 		}
+		
 	};
 }
 
@@ -935,7 +954,6 @@ function submit( nid,gid,pid ) {
 
 // Submit an ID for a voter ID election - no geocoding
 function submitID( nid,gid,pid) {
-	//alert("submitID");
 	findPrecinct( nid,gid,pid );
 }
 
