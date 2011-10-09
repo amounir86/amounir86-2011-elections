@@ -1121,8 +1121,7 @@ if(contest){
 	
 		gov = contest.constituency_code.split('_')[1];
 		for(var i=0;i<contest.police_stations.length;i++){
-					
-			polyState(gov+'_'+contest.police_stations[i].pid,contest.police_stations[i].pname );
+			polyState(gov+'_'+contest.police_stations[i].pid ,contest);
 //alert(gov+'_'+contest.police_stations[i].pid);
 	//alert(contest.police_stations[i].pname);
 		}
@@ -1317,8 +1316,8 @@ function captureMousePosition(e) {
 }
 
 
-function polyState( abbr,pname ) {
-	//alert('');
+function polyState( abbr,contest) {
+        
 	GoogleElectionMap.currentAbbr = abbr = abbr.toLowerCase();
 	GoogleElectionMap.shapeReady = function( json ) {
 		//if( json.state != GoogleElectionMap.currentAbbr ) return;
@@ -1354,9 +1353,14 @@ function polyState( abbr,pname ) {
 		}
 
 		//gme.addListener(polygon,'click',function(){alert('sss');});
-                log('adding listener for ' + pname)
+				
 		gme.addListener(polygon,'mouseover',function() {
-                        log('in handler ' + pname)
+			var pname;
+			for(var i=0;i<contest.police_stations.length;i++){
+				if (contest.police_stations[i].pid == json.name.split('_')[1]){
+					pname = contest.police_stations[i].pname;
+				}
+			}
 			$("div#popup").html(pname);
 			$("div#popup").css('top', yMousePos + 10).css('left', xMousePos + 20);
 			$('div#popup').show();
@@ -1370,7 +1374,15 @@ function polyState( abbr,pname ) {
 
 		map.setCenter(polygon.latLngs.b[0].b[0]);
 	};
-	$.getScript( cacheUrl( S( opt.codeUrl, 'shapes/json/', abbr, '.js' ) ) );
+
+	$.ajax({
+	  url: cacheUrl( S( opt.codeUrl, 'shapes/json/', abbr, '.js' ) ),
+	  dataType: "script",
+		async: false
+	
+	});
+
+	//$.getScript( , function(){} );
 }
 
 
