@@ -482,6 +482,14 @@ function setVoteHtml() {
         }
         
         function longInfo() {
+		var existsHtml = '';
+		if ($("#nid").val().length == 14){
+			existsHtml = '<div class="found">'; 			
+			existsHtml += '<h1 style="color:green;">الرقم القومي ('+$("#nid").val()+') موجود!</h1>';
+			existsHtml += '<p>اسمك مسجل بكشوف الناخبين، ومن حقك التصويت في الانتخابات البرلمانية المقبلة.</p>';
+			existsHtml += '<p class="note">البيانات المدرجة في هذه القاعدة هي بيانات أولية وجاري تنقيتها بناء على ما يرد من ملاحظات/طعون، ومن الجهات المعنية، وذلك حتى إشعار آخر من اللجنة القضائية العليا للانتخابات. وعلى من لديه ملاحظات تقديم طلب بها إلى اللجنة المختصة بالمحكمة الابتدائية بالمحافظة المذكورة ببطاقة الرقم القومي الخاصة بالمواطن حتى موعد أقصاه ١٥ سبتمبر ٢٠١١، وفقاً لنص المادة ٥ مكرر من قانون مباشرة الحقوق السياسية.</p>';
+			existsHtml += '</div>'
+		}
                 var location = vote.locations[0];
                 var locationHtml = (location && location.lng)?S(
                 '<h1>بيانات اللجنة الانتخابية</h1>',
@@ -506,7 +514,7 @@ function setVoteHtml() {
                                '<ul style="margin-top:10px;" class="area-cover clearfix">',
                                 contestButtonsHtml,
                                '</ul></div>',
-				'هذه الخرائط و حدود الأقسام و الدوائر المبينة عليها تقريبية و لا يعتد بها كحدود دقيقة للدوائر الانتخابية و لا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها'
+				'هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها'
                         );
 			//info
 			infoHtml = '<br/><br/><br/><div><h1 style="margin-top:20px;">بيانات هامة عن الدائرة الانتخابية</h1>';
@@ -598,13 +606,14 @@ function setVoteHtml() {
         
                 }
 
-
+	
                 var html = S(
                         '<div class="content">',
                                 '<div class="wrapper">',
                                         '<div class="main">',
                                                 '<div class="results">',
-                                                        locationHtml,
+							existsHtml,
+							locationHtml,
                                                         boundriesHtml,
 							infoHtml,
                                                         listingsHtml,
