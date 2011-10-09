@@ -834,11 +834,11 @@ function pollingApi( nid,gid,pid, callback ) {
 
 	if ((document.location.href.indexOf('cid=') > 0))
 		//var url ='http://elections2011.eg/proxy.php?type=cid&id='+nid 
-		var url ='http://elections.espace-technologies.com/proxy.php?staging=true&type=cid&id='+nid 
+		var url ='http://elections.espace-technologies.com/proxy.php?staging=true&type=cid&id='+nid;
 		//var url ='http://178.79.173.29:9000/election?cid='+nid ;
 	else
 		//var url ='http://elections2011.eg/proxy.php?type=nid&id='+nid  
-		var url ='http://elections.espace-technologies.com/proxy.php?staging=true&type=nid&id='+nid 
+		var url ='http://elections.espace-technologies.com/proxy.php?staging=true&type=nid&id='+nid; 
 		//var url ='http://178.79.173.29:9000/election?nid='+nid ;
 		
 	//alert(url);
