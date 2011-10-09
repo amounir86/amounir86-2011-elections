@@ -72,6 +72,18 @@ body{direction: rtl;}
     body.sidebar #details { margin:8px; }
     body.sidebar #mapbox { position:absolute; }
     label.error {color: red;display: block;float: left;margin-top: 0;text-align: right;width: 100%;}
+
+div#popup {
+	display: none;
+	position: absolute;
+	width: 180px;
+	padding: 10px;
+	background: #eeeeee;
+	color: #000000;
+	border: 1px solid #1a1a1a;
+	font-size: 90%;
+	z-index:1000;
+	}
 </style>
 <link href="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/stylesheets/styles.css" type="text/css" rel="stylesheet" >
 
@@ -99,7 +111,7 @@ body{direction: rtl;}
 </div>
 
 <!--:: html ::-->
-
+<div id="popup" style="display:none">xxxx</div>
 <div id="Poll411Gadget">
 	<!--<script>
     //alert("inside foor bar");
