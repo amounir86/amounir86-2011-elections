@@ -1318,7 +1318,7 @@ function captureMousePosition(e) {
 
 
 function polyState( abbr,pname ) {
-	alert('');
+	//alert('');
 	GoogleElectionMap.currentAbbr = abbr = abbr.toLowerCase();
 	GoogleElectionMap.shapeReady = function( json ) {
 		//if( json.state != GoogleElectionMap.currentAbbr ) return;
