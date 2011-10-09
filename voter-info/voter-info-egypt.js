@@ -807,7 +807,7 @@ function(poll) {
                         return;
                 }
                 //end phase1            
-                if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
+                if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) /*|| ( pid != poll.stateInfo.pid)*/)) {
                         notTheSame();
                         return;
                 }
