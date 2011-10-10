@@ -1043,7 +1043,6 @@ function forceDetails() {
 
 // Return the HTML for basic election info
 function sorryHtml() {
-	setMap( home.info );
 	if( ! sidebar ) {
 		//$map.hide();
 		$tabs.html( tabLinks('#detailsbox') ).show();
@@ -1096,9 +1095,7 @@ function sorryHtml() {
 
 // Return the HTML for basic election info
 function notTheSameHtml() {
-	setMap( home.info );
 	if( ! sidebar ) {
-		//$map.hide();
 		$tabs.html( tabLinks('#detailsbox') ).show();
 		$detailsbox.html(
 		"<div class='not-associated'>" +
