@@ -1,0 +1,1350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" [ <!ATTLIST a target CDATA #IMPLIED> ]>
+
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=8"> 
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<title>انتخابات مصر 2011</title>
+
+<!--
+  templates/gadget.html
+  By Michael Geary - http://mg.to/
+  See UNLICENSE or http://unlicense.org/ for public domain notice.
+-->
+
+<!--:: style ::-->
+
+<!-- Begin Google Election Center gadget --> 
+<!-- Copy this entire block of code into your HTML page --> 
+ 
+<style type="text/css"> 
+  /* Font */ 
+  #Poll411Gadget, #Poll411Gadget * { {{fontStyle}} } 
+  /* Sizes */ 
+  #Poll411Gadget, #Poll411Form { width:{{width}}px; } 
+  #Poll411Frame { width:100%; height:{{height}}px; } 
+  /* Colors */ 
+  /*#Poll411Gadget { border:1px solid #AAA; }*/ 
+  #nid.example { color:#666; } 
+  #Poll411Frame { border-top:1px solid #DDD; } 
+  /* Layout */ 
+  #Poll411Gadget { margin:0; padding:4px 0 4px 2px; } 
+  #Poll411SelectState { margin-bottom:4px; } 
+  #Poll411Title { padding-bottom:4px; } 
+  #Poll411Form { margin:0; padding:0; vertical-align:middle; } 
+  #Poll411InputCell { width:99%; padding-right:8px; } 
+  #Poll411ButtonCell { width:1%; } 
+  #nid { width:82%; } 
+  #cid { width:82%; } 
+  #Poll411Frame { display:none; margin-top:6px; } 
+</style> 
+ 
+<!--:: gadgetStyle ::-->
+
+<style type="text/css">
+body{direction: rtl;}
+    body.gadget { margin:0; padding:0; }
+    body, body td { {{fontStyle}} }
+    /*body { height:{{height}}px; }*/
+    .heading { font-weight:bold; padding-top:10px; }
+    .orange { padding:6px; width:95%; background-color:#FFEAC0; border:1px solid #FFBA90; }
+    .pink { padding:6px; width:95%; background-color:#FFD0D0; border:1px solid #FF9090; }
+    #spinner { z-index: 1; position:absolute; width:100%; height:100%; background-image:url({{spinImage}}); background-position:center; background-repeat:no-repeat; opacity:0.30; -moz-opacity:0.30; {{spinDisplay}} }
+    #spinner { filter:alpha(opacity=30); }
+    #header-pad { padding:10px 10px 8px 6px; }
+    #logo img { border:none; width:288px; height:43px; }
+    #tabs { width:100%; background-color:#E8ECF9; }
+    #tablinks { padding:4px; }
+    #tablinks span, #tablinks a { margin-right:1em; }
+    #tablinks span { font-weight:bold; }
+    #tablinks a { color:#0000CC; }
+    #previewmap { display:none; }
+    #previewmap, #mapbox { overflow:auto; width:100%; }
+    #detailsbox { height:100%; width:100%; overflow:scroll; overflow-x:auto; overflow-y:scroll; display:none; }
+    body.logo .Poll411SearchTitle span, body.logo .Poll411SearchTitle strong, body.logo .Poll411SearchTitle b, body.logo .Poll411SearchTitle i { font-size:17px !important; }
+    body.logo #nid, body.logo #Poll411Button { font-size:17px; }
+    body.logo .heading { font-size:16px; }
+    body.sidebar #outerlimits { position:relative; border-top:1px solid #BBB; }
+    body.sidebar #Poll411Gadget { padding: 4px 4px 12px 8px; }
+    body.sidebar #Poll411Gadget, body.sidebar #Poll411Form { width:auto; }
+    body.sidebar #detailsbox { width:24em; /*position:absolute; left:0; top:0;*/ display:block; }
+    body.sidebar #details { margin:8px; }
+    body.sidebar #mapbox { position:absolute; }
+    label.error {color: red;display: block;float: left;margin-top: 0;text-align: right;width: 100%;}
+
+div#popup {
+	display: none;
+	position: absolute;
+	width: 180px;
+	padding: 10px;
+	background: #eeeeee;
+	color: #000000;
+	border: 1px solid #1a1a1a;
+	font-size: 90%;
+	z-index:1000;
+	}
+</style>
+<link href="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/stylesheets/styles.css" type="text/css" rel="stylesheet" >
+
+
+<!--:: ignore ::-->
+
+
+</head>
+<body>
+
+<div>
+
+<!--:: header ::-->
+
+<div id="header">
+  <div id="header-pad">
+    <a id="logo"
+       href="http://electioncenter.googlelabs.com/"
+       target="_blank"
+       onclick="analytics('logo');"
+    >
+      <img src="{{logoImage}}">
+    </a>
+  </div>
+</div>
+
+<!--:: html ::-->
+<div id="popup" style="display:none">xxxx</div>
+<div id="Poll411Gadget">
+	<!--<script>
+    //alert("inside foor bar");
+	$('#Poll411Form').submit(function() {
+		//alert('asasd');
+		return Poll411.submit();
+		return false;
+	});
+	</script> -->
+  <form style="display:none;" id="Poll411Form" onsubmit="return Poll411.submit();">
+
+    <div class="Poll411SearchTitle removehelp">
+      <span>
+      </span>
+    </div>
+
+
+    <table class="Poll411SearchTable" cellpadding="0" cellspacing="0" style="width:100%;">
+      <tr valign="middle">
+        <td id="Poll411InputCell">
+
+<div class="intro clearfix">
+	<div class="wrapper">
+		  <!--  <ul class="tabnav">
+		      <li><a id="nid_tab" href="http://www.gmodules.com/ig/ifr?url=http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/voter-info-gadget-egypt.xml" class="selected">بحث الرقم القومى</a></li>
+		      <li><a id="cid_tab" href="http://www.gmodules.com/ig/ifr?cid=yes&url=http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/voter-info-gadget-egypt.xml">بحث الدائرة الانتخابية</a></li>
+    </ul> -->
+	<div class="voter-id">
+		<h2>خدمة الاستعلام عن الكشوف الانتخابية</h2>
+		<form>
+			<fieldset class="clearfix">
+			<div>
+				<label id ="nid_label">الرقم القومى</label>
+				<input name="nid" type="text" id="nid" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
+			</div>
+			<div>
+			<label>المحافظة</label>
+			<select id="gid" name="gid">
+
+			<option value="">اختر المحافظة</option>
+
+			<option value="19">القاهرة</option>
+
+			<option value="27">الأسكندرية</option>
+
+			<option value="35">بورسعيد</option>
+
+			<option value="43">السويس</option>
+
+			<option value="51">دمياط</option>
+
+			<option value="61">الدقهلية</option>
+
+			<option value="78">الشرقية</option>
+
+			<option value="86">القليوبية</option>
+
+			<option value="94">كفر الشيخ</option>
+
+			<option value="108">الغربية</option>
+
+			<option value="116">المنوفية</option>
+
+			<option value="124">البحيرة</option>
+
+			<option value="132">الإسماعيلية</option>
+
+			<option value="141">الجيزة</option>
+
+			<option value="159">بني سويف</option>
+
+			<option value="167">الفيوم</option>
+
+			<option value="175">المنيا</option>
+
+			<option value="183">أسيوط</option>
+
+			<option value="191">سوهاج</option>
+
+			<option value="205">قنا</option>
+
+			<option value="213">أسوان</option>
+
+			<option value="221">البحر الأحمر</option>
+
+			<option value="231">الوادي الجديد</option>
+
+			<option value="248">مطروح</option>
+
+			<option value="256">شمال سيناء</option>
+
+			<option value="264">جنوب سيناء</option>
+
+			<option value="311">الأقصر</option> 
+
+			</select>
+			</div>
+			<div>
+						
+			<label id="pid_label">القسم</label>
+			<select name="pid" id="pid">
+
+			<option value="">اختر القسم</option>
+
+			<option value="35" class="19">15 مايو</option>
+
+			<option value="124" class="19">الأزبكية</option>
+
+			<option value="3867" class="19">الأميرية</option>
+
+			<option value="345" class="19">البساتين</option>
+
+			<option value="19" class="19">التبين</option>
+
+			<option value="141" class="19">الجمالية</option>
+
+			<option value="78" class="19">الخليفة</option>
+
+			<option value="132" class="19">الدرب الاحمر</option>
+
+			<option value="302" class="19">الزاوية الحمراء</option>
+
+			<option value="329" class="19">الزمالك</option>
+
+			<option value="231" class="19">الزيتون</option>
+
+			<option value="205" class="19">الساحل</option>
+
+			<option value="311" class="19">السلام</option>
+
+			<option value="61" class="19">السيدة زينب</option>
+
+			<option value="175" class="19">الشرابية</option>
+
+			<option value="3646" class="19">الشروق</option>
+
+			<option value="167" class="19">الظاهر</option>
+
+			<option value="361" class="19">المرج</option>
+
+			<option value="248" class="19">المطرية</option>
+
+			<option value="43" class="19">المعادى</option>
+
+			<option value="4073" class="19">المقطم</option>
+
+			<option value="94" class="19">الموسكي</option>
+
+			<option value="272" class="19">النزهة</option>
+
+			<option value="213" class="19">الوايلي</option>
+
+			<option value="4049" class="19">أول السلام</option>
+
+			<option value="3735" class="19">أول القاهره الجديدة</option>
+
+			<option value="159" class="19">باب الشعرية</option>
+
+			<option value="116" class="19">بولاق</option>
+
+			<option value="3778" class="19">ثالث القاهرة الجديدة</option>
+
+			<option value="4031" class="19">ثان السلام</option>
+
+			<option value="3751" class="19">ثان القاهرة الجديدة</option>
+
+			<option value="221" class="19">حدائق القبة</option>
+
+			<option value="27" class="19">حلوان</option>
+
+			<option value="4431" class="19">دار السلام</option>
+
+			<option value="191" class="19">روض الفرج</option>
+
+			<option value="4121" class="19">س ج القاهره</option>
+
+			<option value="183" class="19">شبرا</option>
+
+			<option value="3204" class="19">طرة</option>
+
+			<option value="86" class="19">عابدين</option>
+
+			<option value="299" class="19">عين شمس</option>
+
+			<option value="108" class="19">قصر النيل</option>
+
+			<option value="353" class="19">مدينة الامل</option>
+
+			<option value="256" class="19">مدينة نصر أول</option>
+
+			<option value="3042" class="19">مدينة نصر ثان</option>
+
+			<option value="281" class="19">مدينه بدر</option>
+
+			<option value="264" class="19">مصر الجديدة</option>
+
+			<option value="51" class="19">مصر القديمة</option>
+
+			<option value="337" class="19">منشية ناصر</option>
+
+			<option value="469" class="27">الجمرك</option>
+
+			<option value="485" class="27">الدخيلة</option>
+
+			<option value="426" class="27">العطارين</option>
+
+			<option value="451" class="27">اللبان</option>
+
+			<option value="434" class="27">المنشية</option>
+
+			<option value="3689" class="27">أول الرمل</option>
+
+			<option value="3875" class="27">أول العامرية</option>
+
+			<option value="3824" class="27">أول المنتزه</option>
+
+			<option value="401" class="27">باب شرق</option>
+
+			<option value="515" class="27">برج العرب</option>
+
+			<option value="3697" class="27">ثان الرمل</option>
+
+			<option value="3883" class="27">ثان العامرية</option>
+
+			<option value="3859" class="27">ثان المنتزه</option>
+
+			<option value="4251" class="27">س ج الأسكندرية</option>
+
+			<option value="396" class="27">سيدي جابر</option>
+
+			<option value="507" class="27">شرطة ميناء الأسكندرية</option>
+
+			<option value="3425" class="27">غربال</option>
+
+			<option value="442" class="27">كرموز</option>
+
+			<option value="418" class="27">محرم بك</option>
+
+			<option value="477" class="27">مينا البصل</option>
+
+			<option value="3115" class="35">الجنوب</option>
+
+			<option value="3336" class="35">الزهور</option>
+
+			<option value="523" class="35">الشرق</option>
+
+			<option value="574" class="35">الضواحي</option>
+
+			<option value="531" class="35">العرب</option>
+
+			<option value="541" class="35">المناخ</option>
+
+			<option value="3131" class="35">المناصرة</option>
+
+			<option value="558" class="35">بور فؤاد</option>
+
+			<option value="3166" class="35">ثان الجنوب</option>
+
+			<option value="3123" class="35">ثان بور فؤاد</option>
+
+			<option value="4308" class="35">س ج بورسعيد</option>
+
+			<option value="566" class="35">شرطه ميناء بورسعيد</option>
+
+			<option value="3158" class="35">مبارك</option>
+
+			<option value="591" class="43">الأربعين</option>
+
+			<option value="647" class="43">الجناين</option>
+
+			<option value="582" class="43">السويس</option>
+
+			<option value="612" class="43">الشط</option>
+
+			<option value="4219" class="43">س ج السويس</option>
+
+			<option value="621" class="43">شرطه ميناء السويس</option>
+
+			<option value="604" class="43">عتاقة</option>
+
+			<option value="639" class="43">فيصل</option>
+
+			<option value="655" class="51">أول دمياط</option>
+
+			<option value="3794" class="51">ثان دمياط</option>
+
+			<option value="698" class="51">دمياط الجديدة</option>
+
+			<option value="728" class="51">رأس البر</option>
+
+			<option value="4189" class="51">س ج دمياط</option>
+
+			<option value="711" class="51">مركز الزرقا</option>
+
+			<option value="663" class="51">مركز دمياط</option>
+
+			<option value="671" class="51">مركز فارسكور</option>
+
+			<option value="4006" class="51">مركز كفر البطيخ</option>
+
+			<option value="681" class="51">مركز كفر سعد</option>
+
+			<option value="701" class="51">ميناء دمياط الجديد</option>
+
+			<option value="3905" class="61">الكردي</option>
+
+			<option value="736" class="61">المنصورة اول</option>
+
+			<option value="744" class="61">المنصورة ثان</option>
+
+			<option value="3328" class="61">جمصة</option>
+
+			<option value="4197" class="61">س ج الدقهليه</option>
+
+			<option value="876" class="61">مركز الجمالية</option>
+
+			<option value="779" class="61">مركز السنبلاوين</option>
+
+			<option value="787" class="61">مركز المطرية</option>
+
+			<option value="795" class="61">مركز المنزلة</option>
+
+			<option value="752" class="61">مركز المنصورة</option>
+
+			<option value="761" class="61">مركز أجا</option>
+
+			<option value="809" class="61">مركز بلقاس</option>
+
+			<option value="3093" class="61">مركز بني عبيد</option>
+
+			<option value="3239" class="61">مركز تمى الامديد</option>
+
+			<option value="817" class="61">مركز دكرنس</option>
+
+			<option value="825" class="61">مركز شربين</option>
+
+			<option value="833" class="61">مركز طلخا</option>
+
+			<option value="3212" class="61">مركز محلة دمنة</option>
+
+			<option value="868" class="61">مركز منية النصر</option>
+
+			<option value="884" class="61">مركز ميت سلسيل</option>
+
+			<option value="851" class="61">مركز ميت غمر</option>
+
+			<option value="3603" class="61">مركز نبروه</option>
+
+			<option value="841" class="61">ميت غمر</option>
+
+			<option value="892" class="78">الزقازيق أول</option>
+
+			<option value="906" class="78">الزقازيق ثان</option>
+
+			<option value="957" class="78">الصالحية الجديدة</option>
+
+			<option value="973" class="78">العاشر من رمضان</option>
+
+			<option value="1082" class="78">القرين</option>
+
+			<option value="1066" class="78">القنايات</option>
+
+			<option value="3344" class="78">ثان العاشر من رمضان</option>
+
+			<option value="4278" class="78">س ج الشرقية</option>
+
+			<option value="3557" class="78">فاقوس</option>
+
+			<option value="981" class="78">مدينة العبور</option>
+
+			<option value="1058" class="78">مركز الابراهيمية</option>
+
+			<option value="949" class="78">مركز الحسينية</option>
+
+			<option value="914" class="78">مركز الزقازيق</option>
+
+			<option value="922" class="78">مركز أبو حماد</option>
+
+			<option value="931" class="78">مركز أبو كبير</option>
+
+			<option value="1074" class="78">مركز أولاد صقر</option>
+
+			<option value="965" class="78">مركز بلبيس</option>
+
+			<option value="991" class="78">مركز ديرب نجم</option>
+
+			<option value="3832" class="78">مركز صان الحجر</option>
+
+			<option value="1007" class="78">مركز فاقوس</option>
+
+			<option value="1015" class="78">مركز كفر صقر</option>
+
+			<option value="1041" class="78">مركز مشتول السوق</option>
+
+			<option value="3964" class="78">مركز منشأة أبو عمر</option>
+
+			<option value="1023" class="78">مركز منيا القمح</option>
+
+			<option value="1031" class="78">مركز ههيا</option>
+
+			<option value="4448" class="86">الخانكة</option>
+
+			<option value="3409" class="86">الخصوص</option>
+
+			<option value="3085" class="86">العبور</option>
+
+			<option value="1091" class="86">بنها</option>
+
+			<option value="4154" class="86">س ج القليوبية</option>
+
+			<option value="1147" class="86">شبرا الخيمة أول</option>
+
+			<option value="1155" class="86">شبرا الخيمة ثان</option>
+
+			<option value="3522" class="86">قليوب</option>
+
+			<option value="3395" class="86">قها</option>
+
+			<option value="1112" class="86">مركز الخانكة</option>
+
+			<option value="1121" class="86">مركز القناطر الخيرية</option>
+
+			<option value="3514" class="86">مركز بدر</option>
+
+			<option value="1104" class="86">مركز بنها</option>
+
+			<option value="1139" class="86">مركز شبين القناطر</option>
+
+			<option value="1163" class="86">مركز طوخ</option>
+
+			<option value="1171" class="86">مركز قليوب</option>
+
+			<option value="1181" class="86">مركز كفر شكر</option>
+
+			<option value="4014" class="94">أول كفر الشيخ</option>
+
+			<option value="3816" class="94">بيلا</option>
+
+			<option value="4022" class="94">ثان كفر الشيخ</option>
+
+			<option value="1295" class="94">دسوق</option>
+
+			<option value="4261" class="94">س ج كفر الشيخ</option>
+
+			<option value="1211" class="94">مركز البرلس</option>
+
+			<option value="1287" class="94">مركز الحامول</option>
+
+			<option value="1309" class="94">مركز الرياض</option>
+
+			<option value="1228" class="94">مركز بيلا</option>
+
+			<option value="1236" class="94">مركز دسوق</option>
+
+			<option value="1244" class="94">مركز سيدي سالم</option>
+
+			<option value="1252" class="94">مركز فوة</option>
+
+			<option value="1261" class="94">مركز قلين</option>
+
+			<option value="1201" class="94">مركز كفر الشيخ</option>
+
+			<option value="1279" class="94">مركز مطوبس</option>
+
+			<option value="1351" class="108">المحلة أول</option>
+
+			<option value="1368" class="108">المحلة ثان</option>
+
+			<option value="4294" class="108">س ج الغربية</option>
+
+			<option value="1317" class="108">طنطا أول</option>
+
+			<option value="1325" class="108">طنطا ثان</option>
+
+			<option value="1341" class="108">مركز السنطة</option>
+
+			<option value="1376" class="108">مركز المحلة الكبرى</option>
+
+			<option value="1384" class="108">مركز بسيون</option>
+
+			<option value="1392" class="108">مركز زفتى</option>
+
+			<option value="1406" class="108">مركز سمنود</option>
+
+			<option value="1333" class="108">مركز طنطا</option>
+
+			<option value="1414" class="108">مركز قطور</option>
+
+			<option value="1422" class="108">مركز كفر الزيات</option>
+
+			<option value="4243" class="116">س ج المنوفية</option>
+
+			<option value="1521" class="116">سرس الليان</option>
+
+			<option value="1431" class="116">شبين الكوم</option>
+
+			<option value="1465" class="116">مركز الباجور</option>
+
+			<option value="1538" class="116">مركز السادات</option>
+
+			<option value="1473" class="116">مركز الشهداء</option>
+
+			<option value="1457" class="116">مركز أشمون</option>
+
+			<option value="1481" class="116">مركز بركة السبع</option>
+
+			<option value="1491" class="116">مركز تلا</option>
+
+			<option value="1449" class="116">مركز شبين الكوم</option>
+
+			<option value="1503" class="116">مركز قويسنا</option>
+
+			<option value="1511" class="116">مركز منوف</option>
+
+			<option value="3573" class="116">منوف</option>
+
+			<option value="3051" class="124">التحرير</option>
+
+			<option value="1554" class="124">دمنهور</option>
+
+			<option value="4201" class="124">س ج البحيرة</option>
+
+			<option value="3433" class="124">غرب النوبارية</option>
+
+			<option value="1651" class="124">كفر الدوار</option>
+
+			<option value="1694" class="124">مدينة السادات</option>
+
+			<option value="1597" class="124">مركز الدلنجات</option>
+
+			<option value="1708" class="124">مركز الرحمانية</option>
+
+			<option value="1601" class="124">مركز المحمودية</option>
+
+			<option value="1716" class="124">مركز إدكو</option>
+
+			<option value="1619" class="124">مركز إيتاى البارود</option>
+
+			<option value="1571" class="124">مركز أبو المطامير</option>
+
+			<option value="1589" class="124">مركز أبو حمص</option>
+
+			<option value="3271" class="124">مركز بدر</option>
+
+			<option value="1627" class="124">مركز حوش  عيسى</option>
+
+			<option value="1562" class="124">مركز دمنهور</option>
+
+			<option value="1635" class="124">مركز رشيد</option>
+
+			<option value="1643" class="124">مركز شبراخيت</option>
+
+			<option value="1661" class="124">مركز كفر الدوار</option>
+
+			<option value="1678" class="124">مركز كوم حماده</option>
+
+			<option value="1686" class="124">مركز وادى النطرون</option>
+
+			<option value="1724" class="132">الإسماعيلية أول</option>
+
+			<option value="1791" class="132">الإسماعيلية ثالث</option>
+
+			<option value="1732" class="132">الإسماعيلية ثان</option>
+
+			<option value="1783" class="132">القنطرة شرق</option>
+
+			<option value="4456" class="132">أبو صوير</option>
+
+			<option value="4227" class="132">س ج الإسماعيلية</option>
+
+			<option value="1741" class="132">مركز الإسماعيلية</option>
+
+			<option value="1759" class="132">مركز التل الكبير</option>
+
+			<option value="1767" class="132">مركز القنطرة غرب</option>
+
+			<option value="1775" class="132">مركز فايد</option>
+
+			<option value="3654" class="141">6 أكتوبر اول</option>
+
+			<option value="3662" class="141">6 أكتوبر ثان</option>
+
+			<option value="1831" class="141">الجيزة</option>
+
+			<option value="1872" class="141">الحوامدية</option>
+
+			<option value="1821" class="141">الدقي</option>
+
+			<option value="3387" class="141">الشيخ زايد</option>
+
+			<option value="4464" class="141">الطالبية</option>
+
+			<option value="1813" class="141">العجوزة</option>
+
+			<option value="3077" class="141">العمرانية</option>
+
+			<option value="1856" class="141">الهرم</option>
+
+			<option value="1937" class="141">الواحات البحرية</option>
+
+			<option value="3255" class="141">الوراق</option>
+
+			<option value="1805" class="141">إمبابة</option>
+
+			<option value="1848" class="141">بولاق الدكرور</option>
+
+			<option value="4138" class="141">س ج الجيزة</option>
+
+			<option value="1899" class="141">مركز البدرشين</option>
+
+			<option value="1902" class="141">مركز الصف</option>
+
+			<option value="1911" class="141">مركز العياط</option>
+
+			<option value="4057" class="141">مركز أبو النمرس</option>
+
+			<option value="1945" class="141">مركز أطفيح</option>
+
+			<option value="1953" class="141">مركز أوسيم</option>
+
+			<option value="3581" class="141">مركز كرداسة</option>
+
+			<option value="4472" class="141">منشأة القناطر</option>
+
+			<option value="1961" class="159">بني سويف</option>
+
+			<option value="1988" class="159">بني سويف الجديدة</option>
+
+			<option value="4341" class="159">س ج بني سويف</option>
+
+			<option value="1996" class="159">مركز الفشن</option>
+
+			<option value="2003" class="159">مركز الواسطي</option>
+
+			<option value="2011" class="159">مركز أهناسيا</option>
+
+			<option value="2021" class="159">مركز ببا</option>
+
+			<option value="1971" class="159">مركز بني سويف</option>
+
+			<option value="2038" class="159">مركز سمسطا</option>
+
+			<option value="2046" class="159">مركز ناصر</option>
+
+			<option value="2054" class="167">الفيوم</option>
+
+			<option value="4332" class="167">س ج الفيوم</option>
+
+			<option value="2062" class="167">مركز الفيوم</option>
+
+			<option value="2071" class="167">مركز أبشواي</option>
+
+			<option value="2089" class="167">مركز أطسا</option>
+
+			<option value="2097" class="167">مركز سنورس</option>
+
+			<option value="2101" class="167">مركز طامية</option>
+
+			<option value="3174" class="167">مركز يوسف الصديق</option>
+
+			<option value="2119" class="175">المنيا</option>
+
+			<option value="2135" class="175">المنيا الجديدة</option>
+
+			<option value="4359" class="175">س ج المنيا</option>
+
+			<option value="2151" class="175">مركز العدوة</option>
+
+			<option value="2127" class="175">مركز المنيا</option>
+
+			<option value="2143" class="175">مركز أبو قرقاص</option>
+
+			<option value="2161" class="175">مركز بني مزار</option>
+
+			<option value="2178" class="175">مركز ديرمواس</option>
+
+			<option value="2186" class="175">مركز سمالوط</option>
+
+			<option value="2194" class="175">مركز مطاى</option>
+
+			<option value="2208" class="175">مركز مغاغة</option>
+
+			<option value="2224" class="175">مركز ملوى</option>
+
+			<option value="2216" class="175">ملوى</option>
+
+			<option value="3808" class="183">أبو تيج</option>
+
+			<option value="2232" class="183">أسيوط أول</option>
+
+			<option value="2241" class="183">أسيوط ثان</option>
+
+			<option value="4367" class="183">س ج أسيوط</option>
+
+			<option value="2283" class="183">مركز البداري</option>
+
+			<option value="2305" class="183">مركز الغنايم</option>
+
+			<option value="2356" class="183">مركز الفتح</option>
+
+			<option value="2313" class="183">مركز القوصية</option>
+
+			<option value="2267" class="183">مركز أبنوب</option>
+
+			<option value="2275" class="183">مركز أبو تيج</option>
+
+			<option value="2259" class="183">مركز أسيوط</option>
+
+			<option value="2321" class="183">مركز ديروط</option>
+
+			<option value="2291" class="183">مركز ساحل سليم</option>
+
+			<option value="2331" class="183">مركز صدفا</option>
+
+			<option value="2348" class="183">مركز منفلوط</option>
+
+			<option value="3484" class="191">الكوثر</option>
+
+			<option value="2488" class="191">جرجا</option>
+
+			<option value="4383" class="191">س ج سوهاج</option>
+
+			<option value="2364" class="191">سوهاج أول</option>
+
+			<option value="2496" class="191">سوهاج ثان</option>
+
+			<option value="3565" class="191">طهطا</option>
+
+			<option value="2399" class="191">مركز البلينا</option>
+
+			<option value="3441" class="191">مركز العسيرات</option>
+
+			<option value="2402" class="191">مركز المراغة</option>
+
+			<option value="2411" class="191">مركز المنشأة</option>
+
+			<option value="2381" class="191">مركز أخميم</option>
+
+			<option value="2437" class="191">مركز جرجا</option>
+
+			<option value="2445" class="191">مركز جهينه</option>
+
+			<option value="2429" class="191">مركز دار السلام</option>
+
+			<option value="2453" class="191">مركز ساقلته</option>
+
+			<option value="2372" class="191">مركز سوهاج</option>
+
+			<option value="2461" class="191">مركز طما</option>
+
+			<option value="2471" class="191">مركز طهطا</option>
+
+			<option value="4421" class="205">س ج الأقصر</option>
+
+			<option value="4391" class="205">س ج قنا</option>
+
+			<option value="2501" class="205">قنا</option>
+
+			<option value="2631" class="205">مركز الوقف</option>
+
+			<option value="2526" class="205">مركز أبو تشت</option>
+
+			<option value="2577" class="205">مركز دشنا</option>
+
+			<option value="2615" class="205">مركز فرشوط</option>
+
+			<option value="2623" class="205">مركز قفط</option>
+
+			<option value="2518" class="205">مركز قنا</option>
+
+			<option value="2585" class="205">مركز قوص</option>
+
+			<option value="2593" class="205">مركز نجع حمادى</option>
+
+			<option value="2607" class="205">مركز نقاده</option>
+
+			<option value="3956" class="213">أول أسوان</option>
+
+			<option value="3948" class="213">ثان أسوان</option>
+
+			<option value="4405" class="213">س ج أسوان</option>
+
+			<option value="2666" class="213">مركز إدفو</option>
+
+			<option value="3611" class="213">مركز أبو سمبل</option>
+
+			<option value="2658" class="213">مركز أسوان</option>
+
+			<option value="3247" class="213">مركز دراو</option>
+
+			<option value="2674" class="213">مركز كوم أمبو</option>
+
+			<option value="2682" class="213">مركز نصر النوبة</option>
+
+			<option value="2704" class="221">القصير</option>
+
+			<option value="3719" class="221">أول الغردقة</option>
+
+			<option value="3727" class="221">ثان الغردقة</option>
+
+			<option value="2755" class="221">حاجر قنا</option>
+
+			<option value="2712" class="221">حدود أسوان</option>
+
+			<option value="3182" class="221">حلايب</option>
+
+			<option value="2721" class="221">رأس  غارب</option>
+
+			<option value="4413" class="221">س ج البحر الأحمر</option>
+
+			<option value="2739" class="221">سفاجا</option>
+
+			<option value="2763" class="221">شلاتين</option>
+
+			<option value="2747" class="221">مرسى علم</option>
+
+			<option value="2771" class="231">الواحات الخارجة</option>
+
+			<option value="4375" class="231">س ج الوادى الجديد</option>
+
+			<option value="3107" class="231">مركز الفرافرة</option>
+
+			<option value="2781" class="231">مركز الواحات الداخلة</option>
+
+			<option value="3743" class="231">مركز باريس</option>
+
+			<option value="2801" class="248">الحمام</option>
+
+			<option value="2828" class="248">السلوم</option>
+
+			<option value="2836" class="248">الضبعة</option>
+
+			<option value="2811" class="248">العامرية الجديدة</option>
+
+			<option value="3999" class="248">العلمين</option>
+
+			<option value="4065" class="248">النجيلة</option>
+
+			<option value="2844" class="248">برج العرب</option>
+
+			<option value="4286" class="248">س ج مرسى مطروح</option>
+
+			<option value="2852" class="248">سيدي براني</option>
+
+			<option value="2861" class="248">سيوة</option>
+
+			<option value="3549" class="248">مارينا</option>
+
+			<option value="2798" class="248">مرسى مطروح</option>
+
+			<option value="2917" class="256">الحسنة</option>
+
+			<option value="2933" class="256">الشيخ زويد</option>
+
+			<option value="2879" class="256">العريش اول</option>
+
+			<option value="2895" class="256">العريش ثالث</option>
+
+			<option value="2887" class="256">العريش ثان</option>
+
+			<option value="2951" class="256">العريش رابع</option>
+
+			<option value="3263" class="256">القسيمة</option>
+
+			<option value="2909" class="256">بئر العبد</option>
+
+			<option value="2941" class="256">رفح</option>
+
+			<option value="3417" class="256">رمانة</option>
+
+			<option value="4316" class="256">س ج شمال سيناء</option>
+
+			<option value="2925" class="256">نخل</option>
+
+			<option value="2992" class="264">أبو رديس</option>
+
+			<option value="2976" class="264">أبو زنيمة</option>
+
+			<option value="3026" class="264">دهب</option>
+
+			<option value="2984" class="264">رأس  سدر</option>
+
+			<option value="4324" class="264">س ج جنوب سيناء</option>
+
+			<option value="3001" class="264">سانت كاترين</option>
+
+			<option value="3018" class="264">شرم الشيخ</option>
+
+			<option value="3786" class="264">طابا</option>
+
+			<option value="2968" class="264">طور سيناء</option>
+
+			<option value="3034" class="264">نويبع</option>
+
+			<option value="2551" class="311">الأقصر</option>
+
+			<option value="3379" class="311">طيبة</option>
+
+			<option value="2569" class="311">مركز الأقصر</option>
+
+			<option value="3972" class="311">مركز القرنة</option>
+
+			<option value="2542" class="311">مركز إسنا</option>
+
+			<option value="2534" class="311">مركز أرمنت</option>
+
+			</select>
+
+
+
+			</div>
+			<div class="submit-button">
+			<label>&nbsp;</label>
+			<input type="submit" id="Poll411Button" value="ابحث" />
+			</div>
+
+			</fieldset>
+		</form>
+</div>
+
+<div id = "elec-info" class="elec-info">
+<p id="feature_description">أدخل رقمك القومي ومحافظتك والقسم الذي تتبعه كما هو مدون في بطاقة الرقم القومي الخاصة بك للتأكد من وجود إسمك في كشوف الناخبين.</p>
+<div class="id-demo">
+<div class="station border"></div>
+<div class="gov border"></div>
+<div class="id-num border"></div>
+</div>
+
+</div>
+</div>
+
+</table>
+</form>
+
+  <div id="Poll411Frame">
+  </div>
+
+</div> 
+ 
+<!--:: gadgetBody ::-->
+
+<div id="spinner">
+</div>
+<div id="tabs" style="display:none;">
+</div>
+<div id="detailsbox">
+  <div id="details">
+  	
+  </div>
+</div>
+<div id="previewmap">
+</div>
+<div id="mapbox" >
+</div>
+
+
+
+
+<!--:: attribution ::-->
+
+<div style="margin-bottom:0.5em; color:#333; {{fontStyle}}">
+    <div style="font-size:85%; margin-top:1.5em; border-top:1px solid #BBB; padding-top:1em;">
+    
+    </div>
+
+    <div style="font-size:85%; margin-top:0.75em;">
+        <!---------- LISTING  ------------------------>
+
+
+	<div class="wrapper"  >
+ 		
+    <div class="main">
+     
+      <div class="results">
+       <div style="display:none">
+        <h1>الدوائر</h1>
+        <table width="100%" cellspacing="0">
+        <tr>
+          <th scope="col">الاسم</th>
+          <th scope="col">الحزب</th>
+          <th scope="col">الفئة</th>
+          <th scope="col">الرمز</th>
+        </tr>
+        <tr>
+          <td><a href="#">محمد عبد السلام السيد</a></td>
+          <td>مستقل</td>
+          <td>فئات</td>
+          <td><img src="/images/dummy/cup.png" alt="رمز الكاس" /></td>
+        </tr>
+        <tr class="even">
+          <td>حسنين سيد جمعة</td>
+          <td>حزب المصرى الاصيل</td>
+          <td>عمال</td>
+          <td><img src="/images/dummy/bag1.png" alt="رمز الشنطة" /></td>
+        </tr>
+        <tr>
+          <td><a href="#">محمد عبد السلام السيد</a></td>
+          <td>مستقل</td>
+          <td>فئات</td>
+          <td><img src="/images/dummy/cup.png" alt="رمز الكاس" /></td>
+        </tr>
+        <tr class="even">
+          <td>حسنين سيد جمعة</td>
+          <td>حزب المصرى الاصيل</td>
+          <td>عمال</td>
+          <td><img src="/images/dummy/bag1.png" alt="رمز الشنطة" /></td>
+        </tr>
+        <tr>
+          <td><a href="#">محمد عبد السلام السيد</a></td>
+          <td>مستقل</td>
+          <td>فئات</td>
+          <td><img src="/images/dummy/cup.png" alt="رمز الكاس" /></td>
+        </tr>
+        <tr class="even">
+          <td>حسنين سيد جمعة</td>
+          <td>حزب المصرى الاصيل</td>
+          <td>عمال</td>
+          <td><img src="/images/dummy/bag1.png" alt="رمز الشنطة" /></td>
+        </tr>
+      </table>
+       </div>
+      </div><!--end results-->
+      
+    </div><!--end main-->
+      
+  </div>
+<!------------ END LIST -------------------->
+    </div>
+    
+
+
+    <div style="font-size:85%; margin:1em 0 1em 0;display: none;">
+    Help others find their voter information:
+    	<a target="_blank" href="http://gmodules.com/ig/creator?synd=open&url=http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/voter-info-gadget.xml">
+    		Get this app for your website<
+    	</a>
+    </div>
+</div>
+
+<!--:: attributionVA ::-->
+
+<a style="font-size:100%;" target="_blank" href="http://www.sbe.virginia.gov/">
+    Virginia State Board of Elections and the 
+</a>
+
+<!--:: placeRadioTable ::-->
+
+<table id="Poll411SearchPlaces" cellspacing="0">
+  <!--{{rows}}-->
+</table>
+
+<!--:: ignore ::-->
+
+<table>
+
+<!--:: placeRadioRow ::-->
+
+<tr class="Poll411SearchPlace" style="vertical-align:top;">
+    <td style="width:1%; padding:2px 0;">
+        <input type="radio" {{checked}} name="Poll411SearchPlaceRadio" class="Poll411SearchPlaceRadio" id="{{id}}" />
+    </td>
+    <td style="width:99%; padding:5px 0 2px 2px;">
+        <div>
+            <label for="{{id}}" class="Poll411SearchPlaceAddress">
+                {{address}}
+               
+            </label>
+        </div>
+    </td>
+</tr>
+
+<!--:: ignore ::-->
+
+</table>
+
+<!--:: tabLinks ::-->
+
+<div id="tablinks">
+    {{tab1}}
+    {{tab2}}
+    {{tab3}}
+</div>
+
+<!--:: tabLinkActive ::-->
+
+<span class="{{id}}">{{label}}</span>
+
+<!--:: tabLinkInactive ::-->
+
+<a href="{{id}}">{{label}}</a>
+
+<!--:: selectAddressHeader ::-->
+
+<div id="radios">
+    <div style="padding-top:0.5em;">
+        <strong>{{doYouMean}}</strong>
+    </div>
+</div>
+
+<!--:: infoWrap ::-->
+
+<div style="{{fontStyle}} margin-top:12px; padding-right:4px; overflow:auto;">
+    {{html}}
+</div>
+
+<!--:: longInfo ::-->
+
+{{html}}
+
+
+<!--:: xlongInfo ::-->
+
+{{log}}
+<div>
+    {{header}}
+	
+    <div style="padding-top:0.75em">
+    </div>
+    
+    <div style="padding-top:0.75em">
+    </div>
+    {{location}}
+    {{warning}}
+ 
+    <div style="padding-top:1em">
+    </div>
+    {{info}}
+</div>
+
+<!--:: stateLocator ::-->
+
+<div style="margin:0.5em 0">
+    Check your voting location on your
+    <a target="_blank" href="{{url}}">
+        state voting place locator
+    </a>
+</div>
+
+<!--:: locationHead ::-->
+
+<div {{select}}>
+    <div style="font-weight:bold; font-size:110%;">
+      {{title}}
+    </div>
+    <div style="padding:0.5em 0;">
+      <table cellpadding="0" cellspacing="0">
+
+<!--:: xlocationRow ::-->
+
+        <tr valign="top">
+          <td style="width:20px; padding:2px .75em 8 0;">
+            <img src="{{iconSrc}}" style="width:{{iconWidth}}px; height:{{iconHeight}}px;" alt="">
+          </td>
+          <td style="padding-bottom:6px;">
+		{{address}}
+              
+              <div>
+                {{directions}}
+              </div>
+              <div>
+                {{hours}}
+              </div>
+              {{extra}}
+          </td>
+        </tr>
+
+<!--:: locationRow ::-->
+
+        <tr valign="top">
+          
+	<td style="padding-bottom:6px;">
+		{{address}}
+ 	</td>
+        </tr>
+
+
+<!--:: locationFoot ::-->
+
+      </table>
+      {{unable}}
+    </div>
+</div>
+
+<!--:: specialLocation ::-->
+
+<!--temp-->
+
+<!--:: locationWarning ::-->
+
+<div style="font-size:90%;">
+ 
+</div>
+
+<!--:: address ::-->
+
+<div>
+  <div>
+   اللجنة: 
+    <strong>{{location}}</strong>
+  </div>
+  <div>
+ العنوان:
+    <strong>{{address}}</strong>
+   
+  </div>
+</div>
+
+<!--:: locationUnable ::-->
+
+<div style="padding-top: 0.5em">
+  {{unableToLocate}}
+</div>
+
+<!--:: infoLinks ::-->
+
+<div style="{{fontStyle}}">
+    <div style="margin-top:1.5em;">
+        <a target="_blank" href="http://spreadsheets.google.com/viewform?formkey=dG5rTHNRNWVYdGYwMmFjbDBydzlLR2c6MA">
+            {{reportAnError}}
+        </a>
+    </div>
+
+</div>
+
+<!--:: log ::-->
+
+<div style="padding:4px; margin-bottom:4px; border:1px solid red;">
+  {{content}}
+</div>
+
+<!--:: ignore ::-->
+
+</div>
+
+</body>
+</html>
