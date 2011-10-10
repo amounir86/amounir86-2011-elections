@@ -837,21 +837,19 @@ function pollingApi( nid,gid,pid, callback ) {
 		callback({ status:'ERROR' });
 		return;
 	}
-	if(nid.length > 8 && isNaN(nid) )
+	if(nid.length > 14 || nid.length <=0 )
 	{
 		$spinner.hide();
          return;
 	}
 
-
-	if ((document.location.href.indexOf('cid=P') > 0)) 
-		var url ='http://178.79.173.29:9000/election?cid='+nid ;
+	if ((document.location.href.indexOf('cid=') > 0)) 
+		var url ='http://elections2011.eg/proxy.php?type=cid&id='+nid  
 	else
 		var url ='http://elections2011.eg/proxy.php?type=nid&id='+nid  
 		//var url ='http://elections.espace-technologies.com/proxy.php?staging=true&type=nid&id='+nid; 
 		//var url ='http://178.79.173.29:9000/election?nid='+nid ;
 		
-	//alert(url);
 	log( 'Polling API:' );  log( url );
 	//alert("Just before calling the api");
 	
@@ -869,7 +867,6 @@ function pollingApi( nid,gid,pid, callback ) {
 		},
 		error: function(poll){
 			//alert("error");
-			//alert(poll.toSource());
 		}
 	});
 	//alert("Just after calling the api");
@@ -917,7 +914,6 @@ function setGadgetPoll411() {
 		},
 		
 		submit: function() {
-		   //alert("submit")
 		   $previewmap.hide();
 			if( sidebar ) {		
 				submit( nid.value,gid.value,pid.value );	
@@ -961,7 +957,6 @@ function submit( nid,gid,pid ) {
 	if( log.yes ) nid = $.trim( nid.replace( /^!!?/, '' ) );
 	
 	log( 'Input nid:', nid );
-	nid = fixInputAddress( nid );
 	
 	submitID( nid,gid,pid );
 }

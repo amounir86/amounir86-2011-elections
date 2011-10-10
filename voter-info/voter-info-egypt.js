@@ -39,15 +39,9 @@ function submitNID(){
 function submitCID(){
 	if ((document.location.href.indexOf('cid=') > 0)) 
 	{
-	   //alert("cid");
        $("#nid").val(decodeURI((RegExp('cid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        given_cid = $("#nid").val();
       
-      //while(typeof Poll411 === "undefined") {
-       //	alert("inside while");
-			//sleep(10000);
-		//} 
-	   
        return Poll411.submit();    
     }
 }
@@ -117,8 +111,6 @@ $(window).load(function() {
    setTimeout("functionTabs(); ",1000);
    setTimeout("submitNID(); ",1000);
    setTimeout("submitCID(); ",1000);
-   //submitNID();
-   //submitCID();
    
    setTimeout("functionColoring(); ",1000);
 
@@ -760,10 +752,6 @@ function multiLineAddress( address ) {
         );
 }
 
-// Apply any local fixups to an address
-function fixInputAddress( addr ) {
-     return addr;
-}
 
 // Geocoding and Election Center API
 
