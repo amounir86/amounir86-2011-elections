@@ -839,10 +839,13 @@ function pollingApi( nid,gid,pid, callback ) {
          return;
 	}
 
+
 	if ((document.location.href.indexOf('cid=P') > 0)) 
 		var url ='http://178.79.173.29:9000/election?cid='+nid ;
 	else
-		var url ='http://178.79.173.29:9000/election?nid='+nid ;
+		var url ='http://elections2011.eg/proxy.php?type=nid&id='+nid  
+		//var url ='http://elections.espace-technologies.com/proxy.php?staging=true&type=nid&id='+nid; 
+		//var url ='http://178.79.173.29:9000/election?nid='+nid ;
 		
 	//alert(url);
 	log( 'Polling API:' );  log( url );
@@ -1109,30 +1112,6 @@ function notTheSameHtml() {
 	
 }
 
-// Return the HTML for basic election info
-function blankHTML() {
-	setMap( home.info );
-	if( ! sidebar ) {
-		//$map.hide();
-		$tabs.html( tabLinks('#detailsbox') ).show();
-		$detailsbox.html(
-		"<div class='not-associated'>" +
-      		"" +
-       		"" +
-      	"</div>" 
-       
-		);
-		$detailsbox.height('100%');	
-	}
-    $detailsbox.show();
-	spin( false );
-   
-	
-
-	
-}
-
-
 // Make the map visible and load the home/vote icons
 function setMap( a,contest,z ) {//set width and height
 	//Phase1	
@@ -1152,9 +1131,11 @@ function setMap( a,contest,z ) {//set width and height
 clearOverlays();
 if(contest){
 	
-		gov = contest.constituency_code.split('_')[1]		
-		for(var i=0;i<contest.police_stations.length;i++){		
-			polyState(gov+'_'+contest.police_stations[i].pid);
+		gov = contest.constituency_code.split('_')[1];
+		for(var i=0;i<contest.police_stations.length;i++){
+			polyState(gov+'_'+contest.police_stations[i].pid ,contest);
+//alert(gov+'_'+contest.police_stations[i].pid);
+	//alert(contest.police_stations[i].pname);
 		}
 }
 
@@ -1218,6 +1199,7 @@ function setupTabs() {
 	});
 }
 
+
 // Activate the named tab
 function selectTab( tab ) {
 	//alert(tab);	
@@ -1239,7 +1221,13 @@ function selectTab( tab ) {
 			$map.show();
 		});
 	}
-	else {
+	else if(tab == "#mapbox"){
+		//alert('z');
+		//setMap(vote.info,vote.poll.contests[0],12);		
+		//gotoConstit(0,true);
+		$(tab).show().css({ visibility:'visible' });
+		$tabs.html( tabLinks(tab) );
+	}else {
 		$(tab).show().css({ visibility:'visible' });
 		$tabs.html( tabLinks(tab) );
 	}
@@ -1297,7 +1285,51 @@ function log() {
 
 
 
-function polyState( abbr ) {
+
+// Global variables
+xMousePos = 0; // Horizontal position of the mouse on the screen
+yMousePos = 0; // Vertical position of the mouse on the screen
+xMousePosMax = 0; // Width of the page
+yMousePosMax = 0; // Height of the page
+
+function captureMousePosition(e) {
+    if (document.layers) {
+        // When the page scrolls in Netscape, the event's mouse position
+        // reflects the absolute position on the screen. innerHight/Width
+        // is the position from the top/left of the screen that the user is
+        // looking at. pageX/YOffset is the amount that the user has
+        // scrolled into the page. So the values will be in relation to
+        // each other as the total offsets into the page, no matter if
+        // the user has scrolled or not.
+        xMousePos = e.pageX;
+        yMousePos = e.pageY;
+        xMousePosMax = window.innerWidth+window.pageXOffset;
+        yMousePosMax = window.innerHeight+window.pageYOffset;
+    } else if (document.all) {
+        // When the page scrolls in IE, the event's mouse position
+        // reflects the position from the top/left of the screen the
+        // user is looking at. scrollLeft/Top is the amount the user
+        // has scrolled into the page. clientWidth/Height is the height/
+        // width of the current page the user is looking at. So, to be
+        // consistent with Netscape (above), add the scroll offsets to
+        // both so we end up with an absolute value on the page, no
+        // matter if the user has scrolled or not.
+        xMousePos = window.event.x+document.body.scrollLeft;
+        yMousePos = window.event.y+document.body.scrollTop;
+        xMousePosMax = document.body.clientWidth+document.body.scrollLeft;
+        yMousePosMax = document.body.clientHeight+document.body.scrollTop;
+    } else if (document.getElementById) {
+        // Netscape 6 behaves the same as Netscape 4 in this regard
+        xMousePos = e.pageX;
+        yMousePos = e.pageY;
+        xMousePosMax = window.innerWidth+window.pageXOffset;
+        yMousePosMax = window.innerHeight+window.pageYOffset;
+    }
+}
+
+
+function polyState( abbr,contest) {
+        
 	GoogleElectionMap.currentAbbr = abbr = abbr.toLowerCase();
 	GoogleElectionMap.shapeReady = function( json ) {
 		//if( json.state != GoogleElectionMap.currentAbbr ) return;
@@ -1319,15 +1351,51 @@ function polyState( abbr ) {
 			fillColor: '#000000',
 			fillOpacity: .07
 		});
+
+		// Set Netscape up to run the "captureMousePosition" function whenever
+		// the mouse is moved. For Internet Explorer and Netscape 6, you can capture
+		// the movement a little easier.
+		if (document.layers) { // Netscape
+		    document.captureEvents(Event.MOUSEMOVE);
+		    document.onmousemove = captureMousePosition;
+		} else if (document.all) { // Internet Explorer
+		    document.onmousemove = captureMousePosition;
+		} else if (document.getElementById) { // Netcsape 6
+		    document.onmousemove = captureMousePosition;
+		}
+
 		//gme.addListener(polygon,'click',function(){alert('sss');});
-		//gme.addListener(polygon,'click',function(){alert('sss');});
+				
+		gme.addListener(polygon,'mouseover',function() {
+			var pname;
+			for(var i=0;i<contest.police_stations.length;i++){
+				if (contest.police_stations[i].pid == json.name.split('_')[1]){
+					pname = contest.police_stations[i].pname;
+				}
+			}
+			$("div#popup").html(pname);
+			$("div#popup").css('top', yMousePos + 10).css('left', xMousePos + 20);
+			$('div#popup').show();
+		});
+
+		gme.addListener(polygon,'mouseout',function() {
+			$('div#popup').hide();
+		});
+
 		addOverlay( polygon );
-		//alert(polygon.latLngs.b[0].b[0].toSource());
+
 		map.setCenter(polygon.latLngs.b[0].b[0]);
 	};
-	$.getScript( cacheUrl( S( opt.codeUrl, 'shapes/json/', abbr, '.js' ) ) );
-}
 
+	$.ajax({
+	  url: cacheUrl( S( opt.codeUrl, 'shapes/json/', abbr, '.js' ) ),
+	  dataType: "script",
+		async: false
+	
+	});
+
+	//$.getScript( , function(){} );
+}
 
 
 // Return the log array joined with <br> elements in between

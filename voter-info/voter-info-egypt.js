@@ -39,9 +39,14 @@ function submitNID(){
 function submitCID(){
 	if ((document.location.href.indexOf('cid=') > 0)) 
 	{
-	   
+	   //alert("cid");
        $("#nid").val(decodeURI((RegExp('cid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        given_cid = $("#nid").val();
+      
+      //while(typeof Poll411 === "undefined") {
+       //	alert("inside while");
+			//sleep(10000);
+		//} 
        return Poll411.submit();    
     }
 }
@@ -768,8 +773,8 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
                 return S( info.street, ', ', info.county, ', ', info.state.abbr, ' ', info.zip );
         }
         pollingApi( nid,gid,pid, function( poll ) {
-                if( ok(poll) ){ 	
-                        if( ( !(document.location.href.indexOf('cid=P') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) /*|| ( pid != poll.stateInfo.pid)*/)) {
+                if( ok(poll) ){
+                        if( ( !(document.location.href.indexOf('cid=') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) /*|| ( pid != poll.stateInfo.pid)*/)) {
                                 notTheSame();
                                 return;
                         }
@@ -801,11 +806,8 @@ function(poll) {
                         sorry();
                         return;
                 }
-                //end phase1   
-                
-                
-        		if( ( !(document.location.href.indexOf('cid=P') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) /*|| ( pid != poll.stateInfo.pid)*/)) {
-                        alert("here");
+                //end phase1            
+                if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) /*|| ( pid != poll.stateInfo.pid)*/)) {
                         notTheSame();
                         return;
                 }
