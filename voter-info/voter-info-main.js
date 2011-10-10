@@ -825,17 +825,23 @@ function isGeocodeAccurate( place ) {
 
 // Call the polling location API for an address and call the callback
 function pollingApi( nid,gid,pid, callback ) {
+	
 	//alert("pollingApi");
+	
 	if( ! nid ) {
-		//alert("NID is null!");
+		
 		callback({ status:'ERROR' });
 		return;
 	}
+	if(nid.length > 8)
+	{
+		$spinner.hide();
+         return;
+	}
 
-	if ((document.location.href.indexOf('cid=') > 0))
-		var url ='http://elections2011.eg/proxy.php?type=cid&id='+nid 
-		//var url ='http://elections.espace-technologies.com/proxy.php?staging=true&type=cid&id='+nid;
-		//var url ='http://178.79.173.29:9000/election?cid='+nid ;
+
+	if ((document.location.href.indexOf('cid=P') > 0)) 
+		var url ='http://178.79.173.29:9000/election?cid='+nid ;
 	else
 		var url ='http://elections2011.eg/proxy.php?type=nid&id='+nid  
 		//var url ='http://elections.espace-technologies.com/proxy.php?staging=true&type=nid&id='+nid; 
@@ -1008,6 +1014,12 @@ function sorry() {
 // available without a specific address
 function notTheSame() {
 	$details.html( log.print() + notTheSameHtml() );
+	forceDetails();
+}
+
+
+function blankPage() {
+	$details.html( log.print() + blankHtml() );
 	forceDetails();
 }
 
