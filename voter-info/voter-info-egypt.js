@@ -488,7 +488,7 @@ function setVoteHtml() {
 			existsHtml = '<div class="found">'; 			
 			existsHtml += '<h1 style="color:green;">الرقم القومي ('+$("#nid").val()+') موجود!</h1>';
 			existsHtml += '<p>اسمك مسجل بكشوف الناخبين، ومن حقك التصويت في الانتخابات البرلمانية المقبلة.</p>';
-			existsHtml += '<p style="color:#666666;font-size:12px;font-style:italic;">البيانات المدرجة في هذه القاعدة هي بيانات أولية وجاري تنقيتها بناء على ما يرد من ملاحظات/طعون، ومن الجهات المعنية، وذلك حتى إشعار آخر من اللجنة القضائية العليا للانتخابات. وعلى من لديه ملاحظات تقديم طلب بها إلى اللجنة المختصة بالمحكمة الابتدائية بالمحافظة المذكورة ببطاقة الرقم القومي الخاصة بالمواطن حتى موعد أقصاه ١٥ سبتمبر ٢٠١١، وفقاً لنص المادة ٥ مكرر من قانون مباشرة الحقوق السياسية.</p>';
+			/*existsHtml += '<p style="color:#666666;font-size:12px;font-style:italic;">البيانات المدرجة في هذه القاعدة هي بيانات أولية وجاري تنقيتها بناء على ما يرد من ملاحظات/طعون، ومن الجهات المعنية، وذلك حتى إشعار آخر من اللجنة القضائية العليا للانتخابات. وعلى من لديه ملاحظات تقديم طلب بها إلى اللجنة المختصة بالمحكمة الابتدائية بالمحافظة المذكورة ببطاقة الرقم القومي الخاصة بالمواطن حتى موعد أقصاه ١٥ سبتمبر ٢٠١١، وفقاً لنص المادة ٥ مكرر من قانون مباشرة الحقوق السياسية.</p>';*/
 			existsHtml += '</div>'
 		}
                 var location = vote.locations[0];
@@ -775,7 +775,7 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
         }
         pollingApi( nid,gid,pid, function( poll ) {
                 if( ok(poll) ){
-                        if( ( !(document.location.href.indexOf('cid=') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) /*|| ( pid != poll.stateInfo.pid)*/)) {
+                        if( ( !(document.location.href.indexOf('cid=') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid) )) {
                                 notTheSame();
                                 return;
                         }
@@ -808,7 +808,7 @@ function(poll) {
                         return;
                 }
                 //end phase1            
-                if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) /*|| ( pid != poll.stateInfo.pid)*/)) {
+                if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid) )) {
                         notTheSame();
                         return;
                 }
