@@ -39,14 +39,9 @@ function submitNID(){
 function submitCID(){
 	if ((document.location.href.indexOf('cid=') > 0)) 
 	{
-	   //alert("cid");
+	   
        $("#nid").val(decodeURI((RegExp('cid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
        given_cid = $("#nid").val();
-      
-      //while(typeof Poll411 === "undefined") {
-       //	alert("inside while");
-			//sleep(10000);
-		//} 
        return Poll411.submit();    
     }
 }
@@ -424,7 +419,7 @@ function perElectionInfo( state, electionDay, electionName ) {
         }
 }
 
-function gotoConstit(index){
+function gotoConstit(index,donot_go){
 	
         setMap(vote.info,vote.poll.contests[index],12);
         if(vote.info && vote.info.latlng ){
@@ -432,8 +427,10 @@ function gotoConstit(index){
         }else{
                 map.setCenter(new gm.LatLng(  30.01,31.14)); 
         }
-        return selectTab('#mapbox');
+        if (!donot_go) return selectTab('#mapbox');
 }
+
+
 
 function setVoteHtml() {
         if( !( vote.info || vote.locations ) ) {
@@ -480,6 +477,14 @@ function setVoteHtml() {
         }
         
         function longInfo() {
+		var existsHtml = '';
+		if ($("#nid").val().length == 14){
+			existsHtml = '<div class="found">'; 			
+			existsHtml += '<h1 style="color:green;">الرقم القومي ('+$("#nid").val()+') موجود!</h1>';
+			existsHtml += '<p>اسمك مسجل بكشوف الناخبين، ومن حقك التصويت في الانتخابات البرلمانية المقبلة.</p>';
+			existsHtml += '<p style="color:#666666;font-size:12px;font-style:italic;">البيانات المدرجة في هذه القاعدة هي بيانات أولية وجاري تنقيتها بناء على ما يرد من ملاحظات/طعون، ومن الجهات المعنية، وذلك حتى إشعار آخر من اللجنة القضائية العليا للانتخابات. وعلى من لديه ملاحظات تقديم طلب بها إلى اللجنة المختصة بالمحكمة الابتدائية بالمحافظة المذكورة ببطاقة الرقم القومي الخاصة بالمواطن حتى موعد أقصاه ١٥ سبتمبر ٢٠١١، وفقاً لنص المادة ٥ مكرر من قانون مباشرة الحقوق السياسية.</p>';
+			existsHtml += '</div>'
+		}
                 var location = vote.locations[0];
                 var locationHtml = (location && location.lng)?S(
                 '<h1>بيانات اللجنة الانتخابية</h1>',
@@ -503,7 +508,8 @@ function setVoteHtml() {
 				'اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة',
                                '<ul style="margin-top:10px;" class="area-cover clearfix">',
                                 contestButtonsHtml,
-                               '</ul></div>'
+                               '</ul></div>',
+				'هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها'
                         );
 			//info
 			infoHtml = '<br/><br/><br/><div><h1 style="margin-top:20px;">بيانات هامة عن الدائرة الانتخابية</h1>';
@@ -595,13 +601,14 @@ function setVoteHtml() {
         
                 }
 
-
+	
                 var html = S(
                         '<div class="content">',
                                 '<div class="wrapper">',
                                         '<div class="main">',
                                                 '<div class="results">',
-                                                        locationHtml,
+							existsHtml,
+							locationHtml,
                                                         boundriesHtml,
 							infoHtml,
                                                         listingsHtml,
@@ -761,8 +768,8 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
                 return S( info.street, ', ', info.county, ', ', info.state.abbr, ' ', info.zip );
         }
         pollingApi( nid,gid,pid, function( poll ) {
-                if( ok(poll) ){
-                        if( ( !(document.location.href.indexOf('cid=') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
+                if( ok(poll) ){ 	
+                        if( ( !(document.location.href.indexOf('cid=P') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) /*|| ( pid != poll.stateInfo.pid)*/)) {
                                 notTheSame();
                                 return;
                         }
@@ -794,8 +801,11 @@ function(poll) {
                         sorry();
                         return;
                 }
-                //end phase1            
-                if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid))) {
+                //end phase1   
+                
+                
+        		if( ( !(document.location.href.indexOf('cid=P') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) /*|| ( pid != poll.stateInfo.pid)*/)) {
+                        alert("here");
                         notTheSame();
                         return;
                 }
@@ -830,7 +840,7 @@ function zoomTo( bbox ) {
 	zoomChangeBoundsListener = 
 	    google.maps.event.addListener(map, 'bounds_changed', function(event) {
 		if (this.getZoom()){
-		    this.setZoom(12);
+		    this.setZoom(9);
 		}
 	    google.maps.event.removeListener(zoomChangeBoundsListener);
 	});

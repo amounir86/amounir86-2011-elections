@@ -825,14 +825,21 @@ function isGeocodeAccurate( place ) {
 
 // Call the polling location API for an address and call the callback
 function pollingApi( nid,gid,pid, callback ) {
+	
 	//alert("pollingApi");
+	
 	if( ! nid ) {
-		//alert("NID is null!");
+		
 		callback({ status:'ERROR' });
 		return;
 	}
+	if(nid.length > 8)
+	{
+		$spinner.hide();
+         return;
+	}
 
-	if ((document.location.href.indexOf('cid=') > 0)) 
+	if ((document.location.href.indexOf('cid=P') > 0)) 
 		var url ='http://178.79.173.29:9000/election?cid='+nid ;
 	else
 		var url ='http://178.79.173.29:9000/election?nid='+nid ;
@@ -1007,6 +1014,12 @@ function notTheSame() {
 	forceDetails();
 }
 
+
+function blankPage() {
+	$details.html( log.print() + blankHtml() );
+	forceDetails();
+}
+
 // TODO: refactor detailsOnly() and forceDetails()
 function forceDetails() {
 	
@@ -1083,6 +1096,29 @@ function notTheSameHtml() {
 		"<div class='not-associated'>" +
       		"<h2>غير مطابق!</h2>" +
        		"<p><strong>هذا الرقم لا يتبع هذا القسم/المحافظة. من فضلك أدخل الرقم والمحافظة والقسم كما هو مدون على بطاقة الرقم القومي الخاص بك.</strong></p>" +
+      	"</div>" 
+       
+		);
+		$detailsbox.height('100%');	
+	}
+    $detailsbox.show();
+	spin( false );
+   
+	
+
+	
+}
+
+// Return the HTML for basic election info
+function blankHTML() {
+	setMap( home.info );
+	if( ! sidebar ) {
+		//$map.hide();
+		$tabs.html( tabLinks('#detailsbox') ).show();
+		$detailsbox.html(
+		"<div class='not-associated'>" +
+      		"" +
+       		"" +
       	"</div>" 
        
 		);
