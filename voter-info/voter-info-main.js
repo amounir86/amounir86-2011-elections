@@ -833,11 +833,11 @@ function pollingApi( nid,gid,pid, callback ) {
 		callback({ status:'ERROR' });
 		return;
 	}
-	if(nid.length > 8)
+	/*if(nid.length > 8)
 	{
 		$spinner.hide();
          return;
-	}
+	}*/
 
 
 	if ((document.location.href.indexOf('cid=P') > 0)) 
