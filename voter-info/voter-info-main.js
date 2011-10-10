@@ -681,6 +681,7 @@ function initMap( go ) {
 // Load the home and vote markers onto the map, and load voting
 // information into the sidebar
 function loadMap( a,z ) {
+	
 	go();
 	
 	function ready() {
@@ -730,6 +731,8 @@ function loadMap( a,z ) {
 	}
 	
 	function go() {
+		
+	
 		setVoteHtml();
 		
 		var homeLatLng = home && home.info && home.info.latlng;
@@ -772,6 +775,7 @@ function loadMap( a,z ) {
 		
 		ready();
 		spin( false );
+		//$map.css({ height: '400px' });
 	}
 }
 
@@ -980,7 +984,8 @@ function setLayout() {
 	var formHeight = $('#Poll411Gadget').visibleHeight();
 	if( formHeight ) formHeight += 8;  // TODO: WHY DO WE NEED THIS?
 	var height = winHeight() - headerHeight - formHeight - $tabs.visibleHeight();
-	$map.height( height );
+	mapHeight = 400;
+	$map.height( mapHeight );
 	$detailsbox.height( height );
 	if( sidebar ) {
 		var left = $detailsbox.width();
