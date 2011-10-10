@@ -1145,7 +1145,8 @@ if(contest){
 }
 
 loadMap( a,z );
-
+$("#constit_name").html('خريطة: '+contest.constituency+' '+contest.type);
+$("#constit_name").show();
 	
 	
 }
@@ -1211,6 +1212,7 @@ function selectTab( tab ) {
 	analytics( tab );
 	$( $tabs.find('span')[0].className ).hide();
 	if( tab == '#Poll411Gadget' ) {
+		$("#constit_name").hide();		
 		$details.empty();
 		nid = $('#nid');
 		if(nid) nid.val('');
@@ -1227,12 +1229,11 @@ function selectTab( tab ) {
 		});
 	}
 	else if(tab == "#mapbox"){
-		//alert('z');
-		//setMap(vote.info,vote.poll.contests[0],12);		
-		//gotoConstit(0,true);
+		$("#constit_name").show();		
 		$(tab).show().css({ visibility:'visible' });
 		$tabs.html( tabLinks(tab) );
 	}else {
+		$("#constit_name").hide();
 		$(tab).show().css({ visibility:'visible' });
 		$tabs.html( tabLinks(tab) );
 	}
@@ -1423,7 +1424,7 @@ function polyState( abbr,contest) {
 					pname = contest.police_stations[i].pname;
 				}
 			}
-			$("div#popup").html(pname);
+			$("div#popup").html('قسم: '+pname);
 			$("div#popup").css('top', yMousePos + 10).css('left', xMousePos + 20);
 			$('div#popup').show();
 		});
