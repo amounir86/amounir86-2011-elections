@@ -776,7 +776,7 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
         pollingApi( nid,gid,pid, function( poll ) {
                 if( ok(poll) ){
                         if( ( !(document.location.href.indexOf('cid=') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid) )) {
-                                notTheSame();
+				notTheSame();
                                 return;
                         }
                         callback( poll );
@@ -809,7 +809,7 @@ function(poll) {
                 }
                 //end phase1            
                 if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid) )) {
-                        notTheSame();
+			notTheSame();
                         return;
                 }
                 var location = {};
