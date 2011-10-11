@@ -803,7 +803,6 @@ function zoomTo( bbox ) {
 	    google.maps.event.removeListener(zoomChangeBoundsListener);
 	});*/
 
-
 }
 
 function gadgetReady( json ) {
