@@ -894,6 +894,7 @@ function getJSON( url, callback, cache ) {
 	}, cache );
 }
 
+
 // Set up handlers for input form. Closely related to the makerScript
 // section of maker.html.
 function setGadgetPoll411() {
@@ -994,14 +995,9 @@ function setLayout() {
 			width: winWidth() - left
 		});
 	}
-	
 	gme && map && gme.trigger( map, 'resize' );
 }
 
-/*function setMapLayout(){
-	setLayout();
-	
-}*/
 
 // TODO: refactor detailsOnly() and forceDetails()
 function detailsOnly( html ) {
@@ -1131,7 +1127,10 @@ function setMap( a,contest,z ) {//set width and height
 	clearOverlays();
 	if(contest){
 		gov = contest.constituency_code.split('_')[1];
-		zoomChangeBoundsListener = 
+		for(var i=0;i<contest.police_stations.length;i++){
+			polyState(gov+'_'+contest.police_stations[i].pid ,contest);
+		}
+		/*zoomChangeBoundsListener = 
 		    google.maps.event.addListener(map, 'bounds_changed', function(event) {
 			if (this.getZoom()){
 				for(var i=0;i<contest.police_stations.length;i++){
@@ -1139,7 +1138,7 @@ function setMap( a,contest,z ) {//set width and height
 				}
 			}
 		    google.maps.event.removeListener(zoomChangeBoundsListener);
-		});		
+		});*/		
 
 		zoomTo(get_box(contest.constituency_code));
 		$("#constit_name").html('خريطة: '+contest.constituency+' '+contest.type);
@@ -1229,7 +1228,6 @@ function selectTab( tab ) {
 		$("#constit_name").show();		
 		$(tab).show().css({ visibility:'visible' });
 		$tabs.html( tabLinks(tab) );
-		//setMapLayout();
 	}else {
 		$("#constit_name").hide();
 		$(tab).show().css({ visibility:'visible' });
@@ -1390,7 +1388,7 @@ function get_box(constituency_code){
 }
 
 function polyState( abbr,contest) {
-        
+        //alert('y');
 	GoogleElectionMap.currentAbbr = abbr = abbr.toLowerCase();
 	GoogleElectionMap.shapeReady = function( json ) {
 		//clearOverlays();
