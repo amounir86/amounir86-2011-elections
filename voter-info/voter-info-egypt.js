@@ -69,14 +69,6 @@ function functionColoring() {
     });
 }
 
-function foorBar() {
-	//alert("inside foor bar");
-	$('#Poll411Form').submit(function() {
-		
-		Poll411.submit();
-		return false;
-	});
-}
 
 function functionValidaing(){
 	
@@ -326,9 +318,8 @@ if( ! supportedLanguages[pref.lang] )
 function localPrefs( pref ) {
 }
 
-var initialBbox = [ 22.6066970, 21.61291460, 38.9982990, 31.79954240 ];
-
-//var initialBbox = [ 20.6066970, 18.61291460, 50.9982990, 31.79954240 ];
+var initialBbox = [ 22.6066970, 21.61291460, 38.9982990, 31.79954240 ];//original
+//var initialBbox = [30.9526915031972, 26.8041997040588, 31.5416333754279, 27.3706142335369]; //test
 
 // Output formatters
 
@@ -419,11 +410,9 @@ function perElectionInfo( state, electionDay, electionName ) {
 
 function gotoConstit(index,donot_go){
 	
-        setMap(vote.info,vote.poll.contests[index],12);
+        setMap(vote.info,vote.poll.contests[index],null);
         if(vote.info && vote.info.latlng ){
                 map.setCenter( vote.info.latlng );
-        }else{
-                map.setCenter(new gm.LatLng(  30.01,31.14)); 
         }
         if (!donot_go) return selectTab('#mapbox');
 }
@@ -617,13 +606,6 @@ function setVoteHtml() {
                 );
                 return T('longInfo',{html: html});
 
-                /*return T( 'longInfo', {
-                        log: log.print(),
-                        header: electionHeader(),
-                        location: voteLocation(),
-                        warning: locationWarning(),
-                        info: electionInfo()
-                });*/
         }
 }
 
@@ -680,33 +662,17 @@ function formatLocations( locations, info, icon, title, infowindow, extra, mappe
 function setVoteGeo(location) {
         
         if( location ) {
-/*              var place = {address_components:[{long_name:"", short_name:"", types:["street_number"]}, {long_name:location[0].address.location_name, short_name:location[0].address.location_name, types:["route"]}, {long_name:"Oakton", short_name:"Oakton", types:["locality", "political"]}, {long_name:"Providence", short_name:"Providence", types:["administrative_area_level_3", "political"]}, {long_name:"Fairfax", short_name:"Fairfax", types:["administrative_area_level_2", "political"]}, {long_name:"Virginia", short_name:"VA", types:["administrative_area_level_1", "political"]}, {long_name:"United States", short_name:"US", types:["country", "political"]}, {long_name:"22124", short_name:"22124", types:["postal_code"]}], formatted_address:"11509 Waples Mill Rd, Oakton, VA 22124, USA", geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}, partial_match:true, types:["street_address"]}*/
-                /*var place = {geometry:{location:{Pa:38.875815, Qa:-77.344786}, location_type:"ROOFTOP", viewport:{ba:{b:38.8744660197085, d:38.8771639802915}, V:{d:-77.34613498029148, b:-77.34343701970852}}}};*/
 
                 var place ={geometry: {
                 location: {},
-                location_type: "ROOFTOP"//,
-                /*viewport: {
-                        southwest: {lat: location.lat-0.02,lng: location.lng-0.01},
-                        northeast: {lat: location.lat+0.02,lng: location.lng+0.01}
-                },*/
-                /*bounds: {
-                        southwest: {lat: location.lat-0.0005,lng: location.lng-0.001},
-                        northeast: {lat: location.lat+0.0015,lng: location.lng+0.001}
-
-                }*/
+                location_type: "ROOFTOP"
             }};
             place.geometry.location =new gm.LatLng( location.lat, location.lng );
-            //place.geometry.location = new gm.LatLng(  30.0647,31.2495);
             log( 'Getting polling place map info' );
             setMap( vote.info = mapInfo( vote.poll.contests, place, location ),null,null );
             if(vote.info.latlng ){
                 map.setCenter( vote.info.latlng );
-            }else{
-                map.setCenter(new gm.LatLng(  30.01,31.14)); 
             }
-                
-        
         }
         setVoteNoGeo();
         if(vote.info.latlng ) selectTab('#mapbox');
@@ -827,18 +793,18 @@ function zoomTo( bbox ) {
                 new gm.LatLng( bbox[1], bbox[0] ),
                 new gm.LatLng( bbox[3], bbox[2] )
         );
-	map.fitBounds(bounds);
-	zoomChangeBoundsListener = 
+	setTimeout( function() { map.fitBounds( bounds ); }, 1 );
+
+	//map.fitBounds(bounds);
+	/*zoomChangeBoundsListener = 
 	    google.maps.event.addListener(map, 'bounds_changed', function(event) {
 		if (this.getZoom()){
 		    this.setZoom(9);
 		}
 	    google.maps.event.removeListener(zoomChangeBoundsListener);
-	});
+	});*/
 
 
-        //map.fitBounds( bounds );
-	//map.setZoom( 12 );
 }
 
 function gadgetReady( json ) {
