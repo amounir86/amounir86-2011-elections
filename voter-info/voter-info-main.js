@@ -831,7 +831,7 @@ function isGeocodeAccurate( place ) {
 // Call the polling location API for an address and call the callback
 function pollingApi( nid,gid,pid, callback ) {
 	
-	alert("pollingApi");
+	//alert("pollingApi");
 	
 	if( ! nid ) {
 		
