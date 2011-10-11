@@ -469,7 +469,6 @@ function setVoteHtml() {
 			existsHtml = '<div class="found">'; 			
 			existsHtml += '<h1 style="color:green;">الرقم القومي ('+$("#nid").val()+') موجود!</h1>';
 			existsHtml += '<p>اسمك مسجل بكشوف الناخبين، ومن حقك التصويت في الانتخابات البرلمانية المقبلة.</p>';
-			
 			existsHtml += '</div>';
 		}
                 var location = vote.locations[0];
@@ -495,7 +494,7 @@ function setVoteHtml() {
 				'اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة',
                                '<ul style="margin-top:10px;" class="area-cover clearfix">',
                                 contestButtonsHtml,
-                               '</ul></div>',
+                               '</ul></div><br/>',
 				'هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها'
                         );
 			//info
