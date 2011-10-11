@@ -994,6 +994,11 @@ function setLayout() {
 			width: winWidth() - left
 		});
 	}
+	
+}
+
+function setMapLayout(){
+	setLayout();
 	gme && map && gme.trigger( map, 'resize' );
 }
 
@@ -1223,7 +1228,7 @@ function selectTab( tab ) {
 		$("#constit_name").show();		
 		$(tab).show().css({ visibility:'visible' });
 		$tabs.html( tabLinks(tab) );
-		setLayout();
+		setMapLayout();
 	}else {
 		$("#constit_name").hide();
 		$(tab).show().css({ visibility:'visible' });
