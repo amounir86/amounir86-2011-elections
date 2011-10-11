@@ -790,8 +790,6 @@ function addOverlay( overlay ) {
 	if( ! overlay ) return;
 	overlays.push( overlay );
 	overlay.setMap( map );
-	//alert('x');
-	//map.checkResize();
 }
 
 function clearOverlays() {
@@ -996,6 +994,7 @@ function setLayout() {
 			width: winWidth() - left
 		});
 	}
+	gme && map && gme.trigger( map, 'resize' );
 }
 
 // TODO: refactor detailsOnly() and forceDetails()
@@ -1224,6 +1223,7 @@ function selectTab( tab ) {
 		$("#constit_name").show();		
 		$(tab).show().css({ visibility:'visible' });
 		$tabs.html( tabLinks(tab) );
+		setLayout();
 	}else {
 		$("#constit_name").hide();
 		$(tab).show().css({ visibility:'visible' });
