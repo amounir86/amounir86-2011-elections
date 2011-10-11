@@ -684,6 +684,7 @@ function loadMap( a,z ) {
 	
 	go();
 	
+
 	function ready() {
 		setTimeout( function() {
 			var only = ! vote.info  ||  ! vote.info.latlng;
@@ -703,6 +704,7 @@ function loadMap( a,z ) {
 					zIndex: 1
 				});
 		}, 500 );
+		
 	}
 	
 	function setMarker( a ) {
@@ -776,7 +778,6 @@ function loadMap( a,z ) {
 		
 		ready();
 		spin( false );
-		//$map.css({ height: '400px' });
 	}
 }
 
@@ -789,6 +790,8 @@ function addOverlay( overlay ) {
 	if( ! overlay ) return;
 	overlays.push( overlay );
 	overlay.setMap( map );
+	//alert('x');
+	map.checkResize();
 }
 
 function clearOverlays() {
@@ -1084,12 +1087,7 @@ function sorryHtml() {
     $detailsbox.show();
 	spin( false );
    
-	
-
-	
 }
-
-
 
 // Return the HTML for basic election info
 function notTheSameHtml() {
@@ -1107,9 +1105,6 @@ function notTheSameHtml() {
     $detailsbox.show();
 	spin( false );
    
-	
-
-	
 }
 
 // Make the map visible and load the home/vote icons
@@ -1125,7 +1120,7 @@ function setMap( a,contest,z ) {//set width and height
 		a.width = $map.width();
 		$map.show().height( a.height = Math.floor( winHeight() - $map.offset().top ) );
 	}
-
+	
 	//end phase1
 
 	clearOverlays();
