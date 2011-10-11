@@ -831,7 +831,7 @@ function isGeocodeAccurate( place ) {
 // Call the polling location API for an address and call the callback
 function pollingApi( nid,gid,pid, callback ) {
 	
-	//alert("pollingApi");
+	alert("pollingApi");
 	
 	if( ! nid ) {
 		
@@ -843,6 +843,8 @@ function pollingApi( nid,gid,pid, callback ) {
 		$spinner.hide();
          return;
 	}
+alert((document.location.href.indexOf('cid=P') > 0));
+
 
 	if ((document.location.href.indexOf('cid=') > 0)) 
 		var url ='http://elections2011.eg/proxy.php?type=cid&id='+nid  
