@@ -791,7 +791,7 @@ function addOverlay( overlay ) {
 	overlays.push( overlay );
 	overlay.setMap( map );
 	//alert('x');
-	map.checkResize();
+	//map.checkResize();
 }
 
 function clearOverlays() {
