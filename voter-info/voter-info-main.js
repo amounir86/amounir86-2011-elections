@@ -843,7 +843,7 @@ function pollingApi( nid,gid,pid, callback ) {
 		$spinner.hide();
          return;
 	}
-alert((document.location.href.indexOf('cid=P') > 0));
+
 
 
 	if ((document.location.href.indexOf('cid=') > 0)) 
