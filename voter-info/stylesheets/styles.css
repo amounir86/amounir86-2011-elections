@@ -33,10 +33,9 @@ img{ vertical-align:middle;}
 }
 
 
-/*--Clearfix--*/
-.clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
-.clearfix, .container {display:block;}
-.clear {clear:both;}
+
+
+
 
 
 
@@ -114,12 +113,12 @@ img{ vertical-align:middle;}
 
 
 /*-- results --*/
-.results{ font-family:Arial, Helvetica, sans-serif; font-size:16px; padding: 10px 20px; }
+.results{direction:rtl; font-family:Arial, Helvetica, sans-serif; font-size:16px; padding: 10px 20px; }
 .results table{ margin-bottom:40px; }
 .results table th{ text-align:right; background:#eee;}
 .results table th, .results table td{ padding:10px 20px; border:1px solid #ddd;}
 .results table tr.even td { background:#f7f7f7;}
-.results h1{font-size:30px; color:#c00; margin:10px 0 20px;}
+.results h1{font-size:30px; color:#c00; margin:20px 0 10px;}
 .results h2{ text-align:center; font-size:36px; color:#c00; margin:20px 0; }
 .results h3{ font-size:30px; margin-bottom:10px;}
 .results h3 span{ font-size:12px; font-family:Tahoma, Geneva, sans-serif; }
@@ -144,7 +143,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 .stations-list{ margin:0 20px;}
 .stations-list li{ float:right; width:120px; margin:5px 10px;}
 
-.area-info{ margin:10px 0;  border:1px solid #ddd; padding-bottom:20px;}
+.area-info{ margin:20px 0;  border:1px solid #ddd; padding-bottom:20px;}
 .area-info h3{ background:#eee; padding:10px; font-size:18px;}
 .area-info p{ margin:10px;}
 
@@ -262,3 +261,8 @@ background: #f2f2f2; /* set desired hover color */
 .timeline ul li span{ color:#c00;}
 .submit-button{margin-top: 10px;}
 .map-demo{float:right; width:410px; padding-right:30px; background:none; text-align:center;}
+
+/*--Clearfix--*/
+.clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
+.clearfix, .container {display:block;}
+.clear {clear:both;}
