@@ -506,10 +506,10 @@ function setVoteHtml() {
 					infoHtml += '<div class="area-info"><h3>'+contests[i].constituency+' '+ contests[i].type+'</h3>';
 					infoHtml += ('<p>عدد المقاعد: '+contests[i].number_of_seats+'</p>');
 					infoHtml += ('<p>مكونة من الأقسام و المراكز التالية:</p>');
-					infoHtml += '<ul class="stations-list clearfix">';
+					infoHtml += '<ul class="stations-list">';
 					for(var p=0;p<contests[i].police_stations.length;p++){				
 						//if(p != 0) infoHtml += ", ";
-						infoHtml += ('<li>'+ contests[i].police_stations[p].pname+'</li>');
+						infoHtml += ('<li style="list-style:disc;">'+ contests[i].police_stations[p].pname+'</li>');
 					}
 					infoHtml += '</ul><div class="clear"></div></div>';
 				}
