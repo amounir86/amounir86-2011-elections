@@ -140,8 +140,8 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 .area-cover li a{ font-weight:bold; display:block; padding:10px 20px; background: #dedede url(../images/graphics/area-button-bg.png) repeat-x; border:1px solid #ccc; box-shadow:3px 3px 3px #ddd; color:#333; text-decoration:none; text-shadow: 1px 1px 1px #fff; font-size:18px;}
 .area-cover li a:hover, .area-cover li a.selected{ color:#fff; background:#c00  url(../images/graphics/menu-bg.png) repeat-x; border:1px solid #900; text-shadow: 1px 1px 1px #666666;}    
 
-/*.stations-list{ }*/
-.stations-list li{ float:right; width:120px; margin:5px 10px; list-style:inside;}
+.stations-list{ margin:0 20px;}
+.stations-list li{ float:right; width:120px; margin:5px 10px; list-style:disc !important;}
 
 .area-info{ margin:20px 0;  border:1px solid #ddd; padding-bottom:20px;}
 .area-info h3{ background:#eee; padding:10px; font-size:18px;}
