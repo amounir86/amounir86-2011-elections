@@ -494,7 +494,7 @@ function setVoteHtml() {
 				'<p>اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة</p>',
                                '<ul class="area-cover clearfix">',
                                 contestButtonsHtml,
-                               '</ul>',
+                               '</ul><div class="clear"></div>',
 				'<p class="note">هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها</p>'
                         );
 			//info
@@ -511,7 +511,7 @@ function setVoteHtml() {
 						//if(p != 0) infoHtml += ", ";
 						infoHtml += ('<li>'+ contests[i].police_stations[p].pname+'</li>');
 					}
-					infoHtml += '</ul></div>';
+					infoHtml += '</ul><div class="clear"></div></div>';
 				}
 			}
 			infoHtml += '<p class="soon">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</p>';
