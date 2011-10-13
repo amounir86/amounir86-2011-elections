@@ -141,7 +141,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 .area-cover li a:hover, .area-cover li a.selected{ color:#fff; background:#c00  url(../images/graphics/menu-bg.png) repeat-x; border:1px solid #900; text-shadow: 1px 1px 1px #666666;}    
 
 .stations-list{ margin:0 20px;}
-.stations-list li{ float:right; width:120px; margin:5px 10px;}
+.stations-list li{ float:right; width:120px; margin:5px 10px; list-style:disc;}
 
 .area-info{ margin:20px 0;  border:1px solid #ddd; padding-bottom:20px;}
 .area-info h3{ background:#eee; padding:10px; font-size:18px;}
