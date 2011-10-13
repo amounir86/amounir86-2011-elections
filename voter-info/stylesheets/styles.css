@@ -114,17 +114,21 @@ img{ vertical-align:middle;}
 
 
 /*-- results --*/
-.results{ font-family:Arial, Helvetica, sans-serif; font-size:18px; font-weight:bold;}
+.results{ font-family:Arial, Helvetica, sans-serif; font-size:16px; padding: 10px 20px; }
 .results table{ margin-bottom:40px; }
 .results table th{ text-align:right; background:#eee;}
 .results table th, .results table td{ padding:10px 20px; border:1px solid #ddd;}
 .results table tr.even td { background:#f7f7f7;}
-.results h1{font-size:36px; color:#c00; margin:10px 0 30px;}
+.results h1{font-size:30px; color:#c00; margin:10px 0 20px;}
 .results h2{ text-align:center; font-size:36px; color:#c00; margin:20px 0; }
 .results h3{ font-size:30px; margin-bottom:10px;}
 .results h3 span{ font-size:12px; font-family:Tahoma, Geneva, sans-serif; }
-.results p{ margin:10px 0;}
+.results p{ margin:10px 0; font-family:Tahoma, Geneva, sans-serif; font-size:12px;}
+.results p.note{ margin-bottom:40px;}
 .results .list-info{ background:#eee;}
+.results h4{ font-size:18px; font-weight:bold; margin-bottom:10px;}
+
+.soon{background: #f2f2f2; font-weight: bold;}
 
 ul.lists{ list-style:none; }
 ul.lists li { padding:5px 0; }
@@ -132,10 +136,17 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 
 
 .map{ margin:20px 0 40px;}
-.area-cover{ list-style:none; margin-bottom:20px;}
+.area-cover{ list-style:none; margin-bottom:10px;}
 .area-cover li{ float:right; margin-left:40px;}
-.area-cover li a{ display:block; padding:10px 20px; background: #dedede url(../images/graphics/area-button-bg.png) repeat-x; border:1px solid #ccc; box-shadow:3px 3px 3px #ddd; color:#666; text-decoration:none; text-shadow: 1px 1px 1px #fff;}
-.area-cover li a:hover, .area-cover li a.selected{ color:#fff; background:  url(../images/graphics/menu-bg.png) repeat-x; border:1px solid #900; text-shadow: 1px 1px 1px #666666;}	
+.area-cover li a{ font-weight:bold; display:block; padding:10px 20px; background: #dedede url(../images/graphics/area-button-bg.png) repeat-x; border:1px solid #ccc; box-shadow:3px 3px 3px #ddd; color:#333; text-decoration:none; text-shadow: 1px 1px 1px #fff; font-size:18px;}
+.area-cover li a:hover, .area-cover li a.selected{ color:#fff; background:#c00  url(../images/graphics/menu-bg.png) repeat-x; border:1px solid #900; text-shadow: 1px 1px 1px #666666;}    
+
+.stations-list{ margin:0 20px;}
+.stations-list li{ float:right; width:120px; margin:5px 10px;}
+
+.area-info{ margin:10px 0;  border:1px solid #ddd; padding-bottom:20px;}
+.area-info h3{ background:#eee; padding:10px; font-size:18px;}
+.area-info p{ margin:10px;}
 
 
 /*--- added and modified styles --*/
