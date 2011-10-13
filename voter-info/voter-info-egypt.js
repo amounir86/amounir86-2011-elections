@@ -490,31 +490,31 @@ function setVoteHtml() {
                         } 
 
                         boundriesHtml = S(
-                               '<div><h1>لمعرفة حدود الدائرة الإنتخابية</h1>',
-				'اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة',
-                               '<ul style="margin-top:10px;" class="area-cover clearfix">',
+                               '<h1>لمعرفة حدود الدائرة الإنتخابية</h1>',
+				'<p>اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة</p>',
+                               '<ul class="area-cover clearfix">',
                                 contestButtonsHtml,
-                               '</ul></div><br/>',
-				'هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها'
+                               '</ul>',
+				'<p class="note">هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها</p>'
                         );
 			//info
-			infoHtml = '<br/><br/><br/><div><h1 style="margin-top:20px;">بيانات هامة عن الدائرة الانتخابية</h1>';
+			infoHtml = '<h1>بيانات هامة عن الدائرة الانتخابية</h1>';
 			for( var i=0;i< contests.length; i++){
 				if( 	(document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || 
 					!(document.location.href.indexOf('cid=') > 0 )
 				){
-					infoHtml += '<span style="color:red;margin-top:20px;"><strong>'+contests[i].constituency+' '+ contests[i].type+'</strong></span>';
-					infoHtml += ('<p style="margin-top:20px;"><strong>عدد المقاعد</strong>: '+contests[i].number_of_seats+'</p>');
-					infoHtml += ('<p style="margin-bottom:20px;"><strong>مكونة من الأقسام و المراكز التالية</strong>:</p>');
-					//infoHtml += '<ul>';
+					infoHtml += '<div class="area-info"><h3>'+contests[i].constituency+' '+ contests[i].type+'</h3>';
+					infoHtml += ('<p>عدد المقاعد: '+contests[i].number_of_seats+'</p>');
+					infoHtml += ('<p>مكونة من الأقسام و المراكز التالية</p>');
+					infoHtml += '<ul class="stations-list clearfix">';
 					for(var p=0;p<contests[i].police_stations.length;p++){				
 						//if(p != 0) infoHtml += ", ";
-						infoHtml += ('<li style="margin-bottom:20px;">'+ contests[i].police_stations[p].pname+'</li>');
+						infoHtml += ('<li>'+ contests[i].police_stations[p].pname+'</li>');
 					}
-					//infoHtml += '</ul>';
+					infoHtml += '</ul></div>';
 				}
 			}
-			infoHtml += '<span style="color:red;margin-top:20px">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</span></div>';
+			infoHtml += '<p class="soon">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</p>';
                         //candidates
                         var listingsHtml = '';
                         for(var i = 0;i <contests.length; i++){
@@ -589,19 +589,14 @@ function setVoteHtml() {
 
 	
                 var html = S(
-                        '<div class="content">',
-                                '<div class="wrapper">',
-                                        '<div class="main">',
+                        
                                                 '<div class="results">',
 							existsHtml,
 							locationHtml,
                                                         boundriesHtml,
 							infoHtml,
                                                         listingsHtml,
-                                                '</div>',
-                                        '</div>',
-                                '</div>',
-                        '</div>'
+                                                '</div>'
                 );
                 return T('longInfo',{html: html});
 
