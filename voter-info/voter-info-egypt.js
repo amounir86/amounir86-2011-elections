@@ -237,37 +237,35 @@ $.validator.addMethod("validAge", function (value, element) {
 (function($) {
 
     $.fn.chained = function(parent_selector, options) {
-        console.log("entered chained");
+        
         return this.each(function() {
-            console.log("inside inner function");
-            /* Save this to self because this changes when scope changes. */
+           
+           
             var self = this;
             var backup = $(self).clone();
-                        console.log("after backup");
-            /* Handles maximum two parents now. */
+                       
+           
             $(parent_selector).each(function() {
-                               console.log("parent selector function");                 
+                                               
                 $(this).bind("change", function() {
-                	console.log("ibind function");
+                	
                     $(self).html(backup.html());
 					console.log("after backup function");
-                    /* If multiple parents build classname like foo\bar. */
+                   
                     var selected = "";
                     $(parent_selector).each(function() {
                         selected += "\\" + $(":selected", this).val();
-                        console.log("each parent selector");
+                       
                     });
                     selected = selected.substr(1);
 
-                    /* Also check for first parent without subclassing. */
-                    /* TODO: This should be dynamic and check for each parent */
-                    /* without subclassing. */
+                  
                     var first = $(parent_selector).first();
                     var selected_first = $(":selected", first).val();
-                console.log("befor options");
+               
                     $("option", self).each(function() {
                     	console.log("inside options");
-                        /* Remove unneeded items but save the default value. */
+                        
                         if (!$(this).hasClass(selected) &&
                             !$(this).hasClass(selected_first) && $(this).val() !== "") {
                             	console.log("befor remove");
@@ -275,7 +273,7 @@ $.validator.addMethod("validAge", function (value, element) {
                         }
                     });
                 
-                    /* If we have only the default value disable select. */
+                  
                     if (1 == $("option", self).size() && $(self).val() === "") {
                         $(self).attr("disabled", "disabled");
                     } else {
