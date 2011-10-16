@@ -46,6 +46,20 @@ function submitCID(){
     }
 }
 
+function functionOptions(){
+	if ((document.location.href.indexOf('mobile=') > 0)) 
+	{
+     //Mobile screens
+    
+    }
+    if ((document.location.href.indexOf('widget=') > 0)) 
+	{
+     	
+    	$(".tabnav").show();
+		$("#Poll411Form").show();   
+	}
+}
+
 function functionColoring() {
         $("input#nid").focus(function () {
          $('.id-demo > .id-num').fadeIn(500);
@@ -105,7 +119,7 @@ $(window).load(function() {
    setTimeout("submitCID(); ",1000);
    
    setTimeout("functionColoring(); ",1000);
-
+   setTimeout("functionOptions(); ",1000); 	
     
 });
         
