@@ -23,6 +23,7 @@ function functionTabs() {
 }
 var given_cid;
 
+
 function submitNID(){
 	if ((document.location.href.indexOf('nid=') > 0) 
 	&& (document.location.href.indexOf('gid=') > 0) 
@@ -125,6 +126,7 @@ $(window).load(function() {
         
 $(document).ready(function(){
         
+if (!window.console) console = {log: function() {}};
 
 
 /**
