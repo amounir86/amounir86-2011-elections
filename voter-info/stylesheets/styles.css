@@ -220,6 +220,7 @@ list-style-type: none;
 padding: 0 10px; /* THIRD number must change with respect to padding-top (X) below */
 margin:0 0 15px;
 direction: rtl;
+width: 100%;
 }
 
 ul.tabnav li { /* do not change */
