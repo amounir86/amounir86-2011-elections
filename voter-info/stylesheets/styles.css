@@ -2,7 +2,7 @@
 /*--Reset--*/
 *{ margin:0; padding:0; outline:none;}
 html{ direction:rtl;}
-body{ font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.5em; background:#fff; color:#222;}
+body{ font-family:Tahoma, Arial, Helvetica, sans-serif; font-size:14px; line-height:1.5em; background:#fff; color:#222;}
 h1,h2,h3,h4{ font-family:Arial, Helvetica, sans-serif;}
 a img{border:none;}
 a{color:#c00;}
@@ -104,6 +104,7 @@ img{ vertical-align:middle;}
 
 /*--messages--*/
 .not-found, .found, .not-associated{ margin:10px 10px 40px;}
+.not-found, .not-associated{ margin:10px 10px 40px 400px;}
 .not-found ul, .not-found ol{ margin-right:40px;}
 .not-found li{ margin-bottom:10px;}
 .not-found h2, .found h2, .not-associated h2{ font-size:36px; color:#c00; margin-bottom:30px;}
