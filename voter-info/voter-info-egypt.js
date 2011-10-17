@@ -118,7 +118,7 @@ $(window).load(function() {
    setTimeout("functionTabs(); ",1000);
    setTimeout("submitNID(); ",1000);
    setTimeout("submitCID(); ",1000);
-   
+   setTimeout("functionValidaing(); ",1000);
    setTimeout("functionColoring(); ",1000);
    setTimeout("functionOptions(); ",1000); 	
     
@@ -273,10 +273,7 @@ $.validator.addMethod("validAge", function (value, element) {
                     if (1 == $("option", self).size() && $(self).val() === "") {
                     	console.log("Disabled should be ADDED");
                         $(self).attr("disabled", "disabled");
-                    } else {
-                    	console.log("Disabled should be removed");
-                    	
-                        //$(self).removeAttr("disabled");
+                    } else {	
                         $(self).prop('disabled',false);
                     }
                     $(self).trigger("change");
