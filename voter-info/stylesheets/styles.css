@@ -166,7 +166,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	.intro .voter-id{ float:right;width:420px;}
 	.intro .voter-id h2{ font-size:28px !important; color:#c00; margin-bottom:10px; margin-right:10px;}
 	.intro .elec-info{ float:right; width:410px; padding-right:30px; background:none; text-align:center;}
-	.intro .elec-info p{ margin:-5px 0 10px; font-weight:bold;}
+	.intro .elec-info p{ margin:0 0 10px; font-weight:bold;}
 	.intro .id-demo{ background:url(../images/graphics/id-2.png) no-repeat; width:303px; height:190px; position:relative; margin-right:55px;}
 	.intro .id-demo .border{ border:2px solid #c00; position:absolute; -moz-border-radius:5px;  -webkit-border-radius:5px;}
 	.intro .id-demo .gov{bottom:58px; right:57px;width:60px; height:20px; }
@@ -187,7 +187,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	fieldset div ul li label {display: inline;float: none;font-size: 12px; font-weight: normal; margin: 0; padding: 0;}
 	fieldset div ul li input {background: none;border: none; display: inline; margin: 0 0 0 5px ; padding: 0;width: auto;}
 	fieldset div.controls a{ margin-right:5px;}
-	.submit-button input { background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; color:#fff; border:1px solid #900; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px 16px; font-family:Tahoma, Geneva, sans-serif; cursor:pointer; font-weight:bold; text-shadow:1px 1px 1px #666;}
+	.submit-button input { background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; color:#fff; border:1px solid #900; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px 16px; font-family:Tahoma, Geneva, sans-serif; cursor:pointer; font-weight:bold; text-shadow:1px 1px 1px #666;width: auto;}
 
 	
 	/*-- share --*/
@@ -218,7 +218,7 @@ font-weight:bold;  /* set font as desired */
 border-bottom: 1px solid #ccc; /* set border COLOR as desired */
 list-style-type: none;
 padding: 4px 10px 4px 10px; /* THIRD number must change with respect to padding-top (X) below */
-margin:0 0 25px;
+margin:0 0 15px;
 direction: rtl;
 }
 
