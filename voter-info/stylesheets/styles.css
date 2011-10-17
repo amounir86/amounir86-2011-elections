@@ -162,7 +162,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	.pre-intro .item.counselor img{ position:absolute; right:20px; top:20px;}
 	
 	/*--intro--*/
-	.intro{ background: url(../images/graphics/intro-bg.png) repeat-x top; padding:30px 0; height:280px; width: 100%; text-align: center;}
+	.intro{ background: url(../images/graphics/intro-bg.png) repeat-x top; padding:30px 0; height:280px; width: 100%;}
 	.intro .voter-id{ float:right;width:420px;}
 	.intro .voter-id h2{ font-size:28px !important; color:#c00; margin-bottom:10px; margin-right:10px;}
 	.intro .elec-info{ float:right; width:410px; padding-right:30px; background:none; text-align:center;}
@@ -179,7 +179,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	fieldset div{ padding: 5px 90px 5px 0;}
 	
 	fieldset div label{display: block;float: right; font-weight: bold; line-height: 1.2;  margin: 7px -90px 0 0; width: 80px; text-align:left;}
-	fieldset div input[type=text],fieldset div input[type=password], fieldset div input[type=file], textarea, select{font-size:16px; display:block; border:1px solid #ccc; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px; background: #fff url(../images/graphics/input-bg.png) repeat-x top; width:300px;}
+	fieldset div input[type=text],fieldset div input[type=password], fieldset div input[type=file], textarea, select{font-size:16px; display:block; border:1px solid #ccc; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:5px; background: #fff url(../images/graphics/input-bg.png) repeat-x top; width:300px;}
 	fieldset div input[type=text]:focus, textarea:focus, select:focus{ border:1px solid #999;}
 	fieldset div select{ width:318px;}
 	fieldset div input[type=submit],fieldset div input[type=button]{ background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; color:#fff; border:1px solid #900; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px 16px; font-family:Tahoma, Geneva, sans-serif; cursor:pointer; font-weight:bold; text-shadow:1px 1px 1px #666;}
