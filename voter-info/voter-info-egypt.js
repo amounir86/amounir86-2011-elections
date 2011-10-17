@@ -784,8 +784,14 @@ function(poll) {
                         sorry();
                         return;
                 }
-                //end phase1            
+                //end phase1  
+                console.log(gid);
+                console.log(nid);
+                console.log(pid);
+                console.log(poll.stateInfo.gid); 
+                 console.log(poll.stateInfo.pid);          
                 if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid   && get_new_pid(poll.stateInfo.pid) != pid) )) {
+			console.log("NOt the same");
 			notTheSame();
                         return;
                 }
