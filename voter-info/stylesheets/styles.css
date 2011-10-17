@@ -162,7 +162,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	.pre-intro .item.counselor img{ position:absolute; right:20px; top:20px;}
 	
 	/*--intro--*/
-	.intro{ background: url(../images/graphics/intro-bg.png) repeat-x top; padding:20px 0; height:295px; width: 100%;}
+	.intro{ background: url(../images/graphics/intro-bg.png) repeat-x top; padding:20px 0; height:295px; width: 100%; text-align: center;}
 	.intro .voter-id{ float:right;width:420px;}
 	.intro .voter-id h2{ font-size:28px !important; color:#c00; margin-bottom:10px; margin-right:10px;}
 	.intro .elec-info{ float:right; width:410px; padding-right:30px; background:none; text-align:center;}
@@ -187,7 +187,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	fieldset div ul li label {display: inline;float: none;font-size: 12px; font-weight: normal; margin: 0; padding: 0;}
 	fieldset div ul li input {background: none;border: none; display: inline; margin: 0 0 0 5px ; padding: 0;width: auto;}
 	fieldset div.controls a{ margin-right:5px;}
-	.submit-button input { background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; color:#fff; border:1px solid #900; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px 16px; font-family:Tahoma, Geneva, sans-serif; cursor:pointer; font-weight:bold; text-shadow:1px 1px 1px #666;width: auto;}
+	.submit-button input { background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; color:#fff; border:1px solid #900; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:5px 16px; font-family:Tahoma, Geneva, sans-serif; cursor:pointer; font-weight:bold; text-shadow:1px 1px 1px #666;width: auto;}
 
 	
 	/*-- share --*/
