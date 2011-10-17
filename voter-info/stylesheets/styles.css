@@ -191,7 +191,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 
 	
 	/*-- share --*/
-	.wrapper{ position:relative;}
+	.wrapper{ position:relative; text-align: right;}
 	.header .top-service .social, .header .top-service .search { float:right; margin:10px 0; clear:none;}
 	.header .top-service .social{ margin:15px 0 0 10px;}
 	.share{ position:absolute; left:0; top:68px; padding:10px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:5px; -webkit-border-top-left-radius:5px; -webkit-border-top-right-radius:5px; box-shadow:0 -3px 3px #ddd; background:#fff;}
