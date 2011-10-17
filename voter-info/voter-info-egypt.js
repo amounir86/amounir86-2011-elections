@@ -275,7 +275,9 @@ $.validator.addMethod("validAge", function (value, element) {
                         $(self).attr("disabled", "disabled");
                     } else {
                     	console.log("Disabled should be removed");
-                        $(self).removeAttr("disabled");
+                    	
+                        //$(self).removeAttr("disabled");
+                        $(this).attr("disabled", "")
                     }
                     $(self).trigger("change");
                 });
