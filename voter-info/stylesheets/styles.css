@@ -179,16 +179,16 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	fieldset div{ padding: 5px 90px 5px 0;}
 	
 	fieldset div label{display: block;float: right; font-weight: bold; line-height: 1.2;  margin: 7px -90px 0 0; width: 80px; text-align:left;}
-	fieldset div input[type=text],fieldset div input[type=password], fieldset div input[type=file], textarea, select{font-size:16px; display:block; border:1px solid #ccc; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:5px; background: #fff url(../images/graphics/input-bg.png) repeat-x top; width:318px;}
-	fieldset div input[type=text]:focus, textarea:focus, select:focus{ border:1px solid #999;}
+	fieldset div input,fieldset div input[type=password], fieldset div input[type=file], textarea, select{font-size:16px; display:block; border:1px solid #ccc; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:5px; background: #fff url(../images/graphics/input-bg.png) repeat-x top; width:318px;}
+	fieldset div input:focus, textarea:focus, select:focus{ border:1px solid #999;}
 	fieldset div select{ width:318px;}
-	fieldset div input[type=submit],fieldset div input[type=button]{ background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; color:#fff; border:1px solid #900; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px 16px; font-family:Tahoma, Geneva, sans-serif; cursor:pointer; font-weight:bold; text-shadow:1px 1px 1px #666;}
 	fieldset div ul { list-style:none;}
 	fieldset div ul li { margin: 0 0 5px;}
 	fieldset div ul li label {display: inline;float: none;font-size: 12px; font-weight: normal; margin: 0; padding: 0;}
 	fieldset div ul li input {background: none;border: none; display: inline; margin: 0 0 0 5px ; padding: 0;width: auto;}
 	fieldset div.controls a{ margin-right:5px;}
-	
+	.submit-button input { background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; color:#fff; border:1px solid #900; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:8px 16px; font-family:Tahoma, Geneva, sans-serif; cursor:pointer; font-weight:bold; text-shadow:1px 1px 1px #666;}
+
 	
 	/*-- share --*/
 	.wrapper{ position:relative;}
@@ -262,6 +262,7 @@ background: #f2f2f2; /* set desired hover color */
 .timeline ul li p{background:#fff; border: 1px solid #ddd; box-shadow: 3px 3px 3px #ddd; padding:5px; margin-bottom:20px; font-weight:bold; font-size:16px;}
 .timeline ul li span{ color:#c00;}
 .submit-button{margin-top: 10px;}
+
 .map-demo{float:right; width:410px; padding-right:30px; background:none; text-align:center;}
 
 /*--Clearfix--*/
