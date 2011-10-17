@@ -162,7 +162,7 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 	.pre-intro .item.counselor img{ position:absolute; right:20px; top:20px;}
 	
 	/*--intro--*/
-	.intro{ background: url(../images/graphics/intro-bg.png) repeat-x top; padding:30px 0; height:280px;}
+	.intro{ background: url(../images/graphics/intro-bg.png) repeat-x top; padding:30px 0; height:280px; width: 100%; text-align: center;}
 	.intro .voter-id{ float:right;width:420px;}
 	.intro .voter-id h2{ font-size:28px !important; color:#c00; margin-bottom:10px; margin-right:10px;}
 	.intro .elec-info{ float:right; width:410px; padding-right:30px; background:none; text-align:center;}
