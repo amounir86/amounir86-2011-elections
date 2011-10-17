@@ -35,7 +35,6 @@
   #Poll411Form { margin:0; padding:0; vertical-align:middle; } 
   #Poll411InputCell { width:99%; padding-right:8px; } 
   #Poll411ButtonCell { width:1%; } 
-  #nid { width:100%; } 
   #cid { width:100%; } 
   #Poll411Frame { display:none; margin-top:6px; } 
 </style> 
@@ -166,6 +165,229 @@ div#constit_name {
     		</ul>
 	<div class="voter-id">
 		<h2>خدمة الاستعلام عن الكشوف الانتخابية</h2>
+		
+		<!-- START OF CONSTITUENCIES LOOK UP -->
+		<!-- START OF CONSTITUENCIES LOOK UP -->
+		<!-- START OF CONSTITUENCIES LOOK UP -->
+		<!-- START OF CONSTITUENCIES LOOK UP -->
+		<!-- START OF CONSTITUENCIES LOOK UP -->
+		<!--<form style="display: none;"  id="cid_lookup"name="cid_lookup"action="/index.php/constituencies/"method="post">
+
+                       <fieldset  class="clearfix">
+                       <div>
+                       <label>المحافظة</label>
+                       <select  id="gid"name="gid">
+               <option  value="">اختر المحافظة</option>
+               <option  value="19">القاهرة</option>
+               <option  value="27">الأسكندرية</option>
+
+               <option  value="35">بورسعيد</option>
+               <option  value="43">السويس</option>
+               <option  value="51">دمياط</option>
+               <option  value="61">الدقهلية</option>
+               <option  value="78">الشرقية</option>
+               <option  value="86">القليوبية</option>
+
+               <option  value="94">كفر الشيخ</option>
+               <option  value="108">الغربية</option>
+               <option  value="116">المنوفية</option>
+               <option  value="124">البحيرة</option>
+               <option  value="132">الإسماعيلية</option>
+               <option  value="141">الجيزة</option>
+
+               <option  value="159">بني سويف</option>
+               <option  value="167">الفيوم</option>
+               <option  value="175">المنيا</option>
+               <option  value="183">أسيوط</option>
+               <option  value="191">سوهاج</option>
+               <option  value="205">قنا</option>
+
+               <option  value="213">أسوان</option>
+               <option  value="221">البحر الأحمر</option>
+               <option  value="231">الوادي الجديد</option>
+               <option  value="248">مطروح</option>
+               <option  value="256">شمال سيناء</option>
+               <option  value="264">جنوب سيناء</option>
+
+               <option  value="311">الأقصر</option>
+                       </select>
+                       </div>
+           <div>
+                       <label>نوع الدائرة</label>
+                       <select  name="cid_type"id="cid_type">
+                               <option  value="">اختر نوع الدائرة</option>
+                               <option  value="PI"class="19">   شعب فردي</option>
+
+                               <option  value="PL">   شعب قوائم</option>
+                       </select>
+           </div>
+                       <div>
+                       <label>الدائرة</label>
+                       <select  name="cid"id="cid">
+               <option  value="">اختر الدائرة</option>
+
+               <option  value="PI_19_01"class="19\PI">دائرة القاهرة الأولى</option>
+                               <option  value="PI_19_02"class="19\PI">دائرة القاهرة الثانية</option>
+                               <option  value="PI_19_03"class="19\PI">دائرة القاهرة الثالثة</option>
+                               <option  value="PI_19_04"class="19\PI">دائرة القاهرة الرابعة</option>
+                               <option  value="PI_19_05"class="19\PI">دائرة القاهرة الخامسة</option>
+                               <option  value="PI_19_06"class="19\PI">دائرة القاهرة السادسة</option>
+
+                               <option  value="PI_19_07"class="19\PI">دائرة القاهرة السابعة</option>
+                               <option  value="PI_19_08"class="19\PI">دائرة القاهرة الثامنة</option>
+                               <option  value="PI_19_09"class="19\PI">دائرة القاهرة التاسعة</option>
+                               <option  value="PI_27_01"class="27\PI">دائرة الأسكندرية الأولى</option>
+                               <option  value="PI_27_02"class="27\PI">دائرة الأسكندرية الثانية</option>
+                               <option  value="PI_27_03"class="27\PI">دائرة الأسكندرية الثالثة</option>
+
+                               <option  value="PI_27_04"class="27\PI">دائرة الأسكندرية الرابعة</option>
+                               <option  value="PI_35_01"class="35\PI">دائرة بورسعيد</option>
+                               <option  value="PI_43_01"class="43\PI">دائرة السويس</option>
+                               <option  value="PI_51_01"class="51\PI">دائرة دمياط الأولى</option>
+                               <option  value="PI_51_02"class="51\PI">دائرة دمياط الثانية</option>
+                               <option  value="PI_61_01"class="61\PI">دائرة الدقهلية الأولى</option>
+
+                               <option  value="PI_61_02"class="61\PI">دائرة الدقهلية الثانية</option>
+                               <option  value="PI_61_03"class="61\PI">دائرة الدقهلية الثالثة</option>
+                               <option  value="PI_61_04"class="61\PI">دائرة الدقهلية الرابعة</option>
+                               <option  value="PI_61_05"class="61\PI">دائرة الدقهلية الخامسة</option>
+                               <option  value="PI_61_06"class="61\PI">دائرة الدقهلية السادسة</option>
+                               <option  value="PI_78_01"class="78\PI">دائرة الشرقية الأولى</option>
+
+                               <option  value="PI_78_02"class="78\PI">دائرة الشرقية الثانية</option>
+                               <option  value="PI_78_03"class="78\PI">دائرة الشرقية الثالثة</option>
+                               <option  value="PI_78_04"class="78\PI">دائرة الشرقية الرابعة</option>
+                               <option  value="PI_78_05"class="78\PI">دائرة الشرقية الخامسة</option>
+                               <option  value="PI_86_01"class="86\PI">دائرة القليوبية الأولى</option>
+                               <option  value="PI_86_02"class="86\PI">دائرة القليوبية الثانية</option>
+
+                               <option  value="PI_86_03"class="86\PI">دائرة القليوبية الثالثة</option>
+                               <option  value="PI_94_01"class="94\PI">دائرة كفر الشيخ الأولى</option>
+                               <option  value="PI_94_02"class="94\PI">دائرة كفر الشيخ الثانية</option>
+                               <option  value="PI_94_03"class="94\PI">دائرة كفر الشيخ الثالثة</option>
+                               <option  value="PI_108_01"class="108\PI">دائرة الغربية الأولى</option>
+                               <option  value="PI_108_02"class="108\PI">دائرة الغربية الثانية</option>
+
+                               <option  value="PI_108_03"class="108\PI">دائرة الغربية الثالثة</option>
+                               <option  value="PI_108_04"class="108\PI">دائرة الغربية الرابعة</option>
+                               <option  value="PI_108_05"class="108\PI">دائرة الغربية الخامسة</option>
+                               <option  value="PI_116_01"class="116\PI">دائرة المنوفية الأولى</option>
+                               <option  value="PI_116_02"class="116\PI">دائرة المنوفية الثانية</option>
+                               <option  value="PI_116_03"class="116\PI">دائرة المنوفية الثالثة</option>
+
+                               <option  value="PI_116_04"class="116\PI">دائرة المنوفية الرابعة</option>
+                               <option  value="PI_124_01"class="124\PI">دائرة البحيرة الأولى</option>
+                               <option  value="PI_124_02"class="124\PI">دائرة البحيرة الثانية</option>
+                               <option  value="PI_124_03"class="124\PI">دائرة البحيرة الثالثة</option>
+                               <option  value="PI_124_04"class="124\PI">دائرة البحيرة الرابعة</option>
+                               <option  value="PI_124_05"class="124\PI">دائرة البحيرة الخامسة</option>
+
+                               <option  value="PI_132_01"class="132\PI">دائرة الإسماعيلية</option>
+                               <option  value="PI_141_01"class="141\PI">دائرة الجيزة الأولى</option>
+                               <option  value="PI_141_02"class="141\PI">دائرة الجيزة الثانية</option>
+                               <option  value="PI_141_03"class="141\PI">دائرة الجيزة الثالثة</option>
+                               <option  value="PI_141_04"class="141\PI">دائرة الجيزة الرابعة</option>
+                               <option  value="PI_141_05"class="141\PI">دائرة الجيزة الخامسة</option>
+
+                               <option  value="PI_159_01"class="159\PI">دائرة بني سويف الأولى</option>
+                               <option  value="PI_159_02"class="159\PI">دائرة بني سويف الثانية</option>
+                               <option  value="PI_159_03"class="159\PI">دائرة بني سويف الثالثة</option>
+                               <option  value="PI_167_01"class="167\PI">دائرة الفيوم الأولى</option>
+                               <option  value="PI_167_02"class="167\PI">دائرة الفيوم الثانية</option>
+                               <option  value="PI_167_03"class="167\PI">دائرة الفيوم الثالثة</option>
+
+                               <option  value="PI_175_01"class="175\PI">دائرة المنيا الأولى</option>
+                               <option  value="PI_175_02"class="175\PI">دائرة المنيا الثانية</option>
+                               <option  value="PI_175_03"class="175\PI">دائرة المنيا الثالثة</option>
+                               <option  value="PI_175_04"class="175\PI">دائرة المنيا الرابعة</option>
+                               <option  value="PI_183_01"class="183\PI">دائرة أسيوط الأولى</option>
+                               <option  value="PI_183_02"class="183\PI">دائرة أسيوط الثانية</option>
+
+                               <option  value="PI_183_03"class="183\PI">دائرة أسيوط الثالثة</option>
+                               <option  value="PI_183_04"class="183\PI">دائرة أسيوط الرابعة</option>
+                               <option  value="PI_191_01"class="191\PI">دائرة سوهاج الأولى</option>
+                               <option  value="PI_191_02"class="191\PI">دائرة سوهاج الثانية</option>
+                               <option  value="PI_191_03"class="191\PI">دائرة سوهاج الثالثة</option>
+                               <option  value="PI_191_04"class="191\PI">دائرة سوهاج الرابعة</option>
+
+                               <option  value="PI_191_05"class="191\PI">دائرة سوهاج الخامسة</option>
+                               <option  value="PI_205_01"class="205\PI">دائرة قنا الأولى</option>
+                               <option  value="PI_205_02"class="205\PI">دائرة قنا الثانية</option>
+                               <option  value="PI_205_03"class="205\PI">دائرة قنا الثالثة</option>
+                               <option  value="PI_213_01"class="213\PI">دائرة أسوان الأولى</option>
+                               <option  value="PI_311_01"class="311\PI">دائرة الأقصر</option>
+
+                               <option  value="PI_221_01"class="221\PI">دائرة البحر الأحمر</option>
+                               <option  value="PI_231_01"class="231\PI">دائرة الوادي الجديد</option>
+                               <option  value="PI_248_01"class="248\PI">دائرة مطروح</option>
+                               <option  value="PI_256_01"class="256\PI">دائرة شمال سيناء</option>
+                               <option  value="PI_264_01"class="264\PI">دائرة جنوب سيناء</option>
+                               <option  value="PL_19_01"class="19\PL">دائرة القاهرة الأولى</option>
+
+                               <option  value="PL_19_02"class="19\PL">دائرة القاهرة الثانية</option>
+                               <option  value="PL_19_03"class="19\PL">دائرة القاهرة الثالثة</option>
+                               <option  value="PL_19_04"class="19\PL">دائرة القاهرة الرابعة</option>
+                               <option  value="PL_27_01"class="27\PL">دائرة الأسكندرية الأولى</option>
+                               <option  value="PL_27_02"class="27\PL">دائرة الأسكندرية الثانية</option>
+                               <option  value="PL_35_01"class="35\PL">دائرة بورسعيد</option>
+
+                               <option  value="PL_43_01"class="43\PL">دائرة السويس</option>
+                               <option  value="PL_51_01"class="51\PL">دائرة دمياط</option>
+                               <option  value="PL_61_01"class="61\PL">دائرة الدقهلية الأولى</option>
+                               <option  value="PL_61_02"class="61\PL">دائرة الدقهلية الثانية</option>
+                               <option  value="PL_61_03"class="61\PL">دائرة الدقهلية الثالثة</option>
+                               <option  value="PL_78_01"class="78\PL">دائرة الشرقية الأولى</option>
+
+                               <option  value="PL_78_02"class="78\PL">دائرة الشرقية الثانية</option>
+                               <option  value="PL_86_01"class="86\PL">دائرة القليوبية الأولى</option>
+                               <option  value="PL_86_02"class="86\PL">دائرة القليوبية الثانية</option>
+                               <option  value="PL_94_01"class="94\PL">دائرة كفر الشيخ الأولى</option>
+                               <option  value="PL_94_02"class="94\PL">دائرة كفر الشيخ الثانية</option>
+                               <option  value="PL_108_01"class="108\PL">دائرة الغربية الأولى</option>
+
+                               <option  value="PL_108_02"class="108\PL">دائرة الغربية الثانية</option>
+                               <option  value="PL_116_01"class="116\PL">دائرة المنوفية الأولى</option>
+                               <option  value="PL_116_02"class="116\PL">دائرة المنوفية الثانية</option>
+                               <option  value="PL_124_01"class="124\PL">دائرة البحيرة الأولى</option>
+                               <option  value="PL_124_02"class="124\PL">دائرة البحيرة الثانية</option>
+                               <option  value="PL_132_01"class="132\PL">دائرة الإسماعيلية</option>
+
+                               <option  value="PL_141_01"class="141\PL">دائرة الجيزة الأولى</option>
+                               <option  value="PL_141_02"class="141\PL">دائرة الجيزة الثانية</option>
+                               <option  value="PL_159_01"class="159\PL">دائرة بني سويف الأولى</option>
+                               <option  value="PL_159_02"class="159\PL">دائرة بني سويف الثانية</option>
+                               <option  value="PL_167_01"class="167\PL">دائرة الفيوم الأولى</option>
+                               <option  value="PL_167_02"class="167\PL">دائرة الفيوم الثانية</option>
+
+                               <option  value="PL_175_01"class="175\PL">دائرة المنيا الأولى</option>
+                               <option  value="PL_175_02"class="175\PL">دائرة المنيا الثانية</option>
+                               <option  value="PL_183_01"class="183\PL">دائرة أسيوط الأولى</option>
+                               <option  value="PL_183_02"class="183\PL">دائرة أسيوط الثانية</option>
+                               <option  value="PL_191_01"class="191\PL">دائرة سوهاج الأولى</option>
+                               <option  value="PL_191_02"class="191\PL">دائرة سوهاج الثانية</option>
+
+                               <option  value="PL_205_01"class="205\PL">دائرة قنا الأولى</option>
+                               <option  value="PL_205_02"class="205\PL">دائرة قنا الثانية</option>
+                               <option  value="PL_213_01"class="213\PL">دائرة أسوان</option>
+                               <option  value="PL_311_01"class="311\PL">دائرة الأقصر</option>
+                               <option  value="PL_221_01"class="221\PL">دائرة البحر الأحمر</option>
+                               <option  value="PL_231_01"class="231\PL">دائرة الوادي الجديد</option>
+
+                               <option  value="PL_248_01"class="248\PL">دائرة مطروح</option>
+                               <option  value="PL_256_01"class="256\PL">دائرة شمال سيناء</option>
+                               <option  value="PL_264_01"class="264\PL">دائرة جنوب سيناء</option>
+                       </select>
+       </div>
+                       <div  style="padding: 0 10px 0 0;">
+                       <input  type="submit"value="تصفح"/>
+
+                       </div>
+                       </fieldset>
+           </form> -->
+		<!-- END OF CONSTITUENCIES LOOK UP -->
+		<!-- END OF CONSTITUENCIES LOOK UP -->
+		<!-- END OF CONSTITUENCIES LOOK UP -->
+		<!-- END OF CONSTITUENCIES LOOK UP -->
 		<form>
 			<fieldset class="clearfix">
 			<div>

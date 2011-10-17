@@ -4,19 +4,11 @@
 
 // Language and prefs
 
-
+var cid_tab_selected = 0; //widget version
 function functionTabs() {
         
         if (document.location.href.indexOf('cid=yes') > 0) {
-                $("#elec-info").remove();  
-        $('.wrapper').append('<div class="map-demo"><img src="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/graphics/map-demo.png" width="300" height="230" /> </div>');
-                $("#nid_tab").attr('class' , "" );
-                $("#cid_tab").attr('class' , "selected" );
-        $("#pid").hide(); 
-        cid_input = $("input[type='text']/").attr('id' , "cid" ).attr('class' , 'example').attr('onfocus' , 'Poll411.focus()').attr('onblur' , 'Poll411.blur()');
-        $("#nid").replaceWith(cid_input);
-        $("#pid_label").hide(); 
-        $("#nid_label").html("اسم الدائرة"); 
+            cid_tab_selected = 1;
         
     }
         
@@ -86,8 +78,8 @@ function functionColoring() {
 
 
 function functionValidaing(){
-	
-       $("#Poll411Form").validate({
+	 if(cid_tab_selected == 0){
+	 	       $("#Poll411Form").validate({
        	
                 rules: {
                         nid: { 
@@ -110,14 +102,36 @@ function functionValidaing(){
                         pid:"من فضلك اختر القسم"
                 }
                 });
+	 }
+       
+   else{
+	 	 $("#Poll411Form").validate({
+               rules: {
+                       gid: "required",
+                       cid_type: "required",
+           cid: "required"
+               },
+               messages: {
+                       gid:"من فضلك اختر المحافظة",
+                       cid_type:"من فضلك اختر نوع الدائرة",
+           cid:"من فضلك اختر الدائرة"
+               }
+       });
+   }
+
 }
 
 $(window).load(function() {
-     
-   setTimeout("$('#pid').chained('#gid'); ",1000);
    setTimeout("functionTabs(); ",1000);
    setTimeout("submitNID(); ",1000);
    setTimeout("submitCID(); ",1000);
+   if(cid_tab_selected == 0)
+        setTimeout("$('#pid').chained('#gid');",1000);
+   else{
+   		setTimeout("$('#pid').chained('#gid');",1000);
+   		setTimeout("$('#cid').chained('#gid, #cid_type);",1000);		 	
+   }
+
    setTimeout("functionValidaing(); ",1000);
    setTimeout("functionColoring(); ",1000);
    setTimeout("functionOptions(); ",1000); 	
