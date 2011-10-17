@@ -123,8 +123,7 @@ function functionValidaing(){
 
 $(window).load(function() {
    setTimeout("functionTabs(); ",1000);
-   setTimeout("submitNID(); ",1000);
-   setTimeout("submitCID(); ",1000);
+
    if(cid_tab_selected == 0)
         setTimeout("$('#pid').chained('#gid');",1000);
    else{
@@ -134,7 +133,9 @@ $(window).load(function() {
 
    setTimeout("functionValidaing(); ",1000);
    setTimeout("functionColoring(); ",1000);
-   setTimeout("functionOptions(); ",1000); 	
+   setTimeout("functionOptions(); ",1000); 
+   setTimeout("submitNID(); ",1000);
+   setTimeout("submitCID(); ",1000);	
     
 });
         
@@ -752,6 +753,9 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
         }
         pollingApi( nid,gid,pid, function( poll ) {
                 if( ok(poll) ){
+                	
+              
+
                         if( ( !(document.location.href.indexOf('cid=') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid && get_new_pid(poll.stateInfo.pid)!= pid ) )) {
 				notTheSame();
                                 return;
@@ -785,13 +789,9 @@ function(poll) {
                         return;
                 }
                 //end phase1  
-                console.log(gid);
-                console.log(nid);
-                console.log(pid);
-                console.log(poll.stateInfo.gid); 
-                 console.log(poll.stateInfo.pid);          
+                      
                 if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid   && get_new_pid(poll.stateInfo.pid) != pid) )) {
-			console.log("NOt the same");
+			
 			notTheSame();
                         return;
                 }
