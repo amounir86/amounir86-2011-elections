@@ -217,7 +217,7 @@ font-size:14px;
 font-weight:bold;  /* set font as desired */
 border-bottom: 1px solid #ccc; /* set border COLOR as desired */
 list-style-type: none;
-padding: 4px 10px 4px 10px; /* THIRD number must change with respect to padding-top (X) below */
+padding: 0 10px; /* THIRD number must change with respect to padding-top (X) below */
 margin:0 0 15px;
 direction: rtl;
 }
@@ -227,12 +227,12 @@ float:right;
 margin-right: 10px;
 
 }
-ul.tabnav li a.selected{background: #f2f2f2; /* set selected tab background color as desired */
+ul.tabnav li a.selected{background: #ddd; /* set selected tab background color as desired */
 color: #000; /* set selected tab link color as desired */
 position: relative;
 top: 0;
 padding-top: 5px; /* must change with respect to padding (X) above and below */
-text-shadow: 1px 1px 1px #ddd;
+text-shadow: 1px 1px 1px #fff;
 }
 
 
@@ -248,11 +248,12 @@ border-bottom: none;
 -webkit-border-top-left-radius:5px;
 -webkit-border-top-right-radius:5px;
 text-shadow: 1px 1px 1px #666;
+display: block;
 
 }
 
 ul.tabnav a:hover { /* settings for hover effect */
-background: #f2f2f2; /* set desired hover color */
+background: #ddd; /* set desired hover color */
 color: #000;
 text-shadow: 1px 1px 1px #fff;
 }
