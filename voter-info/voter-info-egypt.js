@@ -250,8 +250,6 @@ $.validator.addMethod("validAge", function (value, element) {
                 $(this).bind("change", function() {
                 	
                     $(self).html(backup.html());
-					console.log("after backup function");
-                   
                     var selected = "";
                     $(parent_selector).each(function() {
                         selected += "\\" + $(":selected", this).val();
@@ -264,19 +262,19 @@ $.validator.addMethod("validAge", function (value, element) {
                     var selected_first = $(":selected", first).val();
                
                     $("option", self).each(function() {
-                    	console.log("inside options");
                         
                         if (!$(this).hasClass(selected) &&
                             !$(this).hasClass(selected_first) && $(this).val() !== "") {
-                            	console.log("befor remove");
                                 $(this).remove();
                         }
                     });
                 
                   
                     if (1 == $("option", self).size() && $(self).val() === "") {
+                    	console.log("Disabled should be ADDED");
                         $(self).attr("disabled", "disabled");
                     } else {
+                    	console.log("Disabled should be removed");
                         $(self).removeAttr("disabled");
                     }
                     $(self).trigger("change");
