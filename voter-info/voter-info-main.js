@@ -345,7 +345,7 @@ function analytics( path ) {
 		path = ( maker ? '/creator/' : pref.onebox ? '/onebox/' : inline ? '/inline/' : '/gadget/' ) + fixHttp(path);
 		path = '/' + fixHttp(document.referrer) + '/' + path;
 		//console.log( 'analytics', path );
-		_IG_Analytics( 'UA-5730550-1', path );
+		_IG_Analytics( 'UA-26399777-1', path );
 	}
 }
 
