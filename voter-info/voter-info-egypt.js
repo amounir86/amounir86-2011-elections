@@ -48,13 +48,15 @@ function functionOptions(){
 	if ((document.location.href.indexOf('mobile=') > 0)) 
 	{
      document.getElementById('stylesheet').href = 'http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/stylesheets/mobile.css';
-     $('meta[name=viewport]').attr('content', 'width=320, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes');
+     $('meta[name=viewport]').attr('content', 'width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes');
 	 $("#Poll411Form").show();
 	 $("#container").show();
      $("#intro").hide();
      $("#logo").show();
+     d = document.getElementById('popup');
+	 d.style.width="90px";
     }
-    if ((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('conswid=') > 0))) 
+    if ((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('conswid=') > 0)) && (!(document.location.href.indexOf('mobile=') > 0))) 
 	{
         document.getElementById('stylesheet').href = 'http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/stylesheets/styles.css';
      	$('meta[name=viewport]').attr('content', '');
@@ -522,7 +524,7 @@ function setVoteHtml() {
         }
         
         function voteLocation( infowindow ) {
-                var loc =  "لجنتك الانتخابية";//T('yourVotingLocation');
+                var loc = T('yourVotingLocation');
                 if( !( vote.locations && vote.locations.length ) )
                         return '';
                 if( vote.info ){
