@@ -524,7 +524,7 @@ function setVoteHtml() {
         }
         
         function voteLocation( infowindow ) {
-                var loc = T('yourVotingLocation');
+                var loc = "لجنتك النتخابية";//T('yourVotingLocation');
                 if( !( vote.locations && vote.locations.length ) )
                         return '';
                 if( vote.info ){
