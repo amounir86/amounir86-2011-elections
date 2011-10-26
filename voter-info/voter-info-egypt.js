@@ -4,15 +4,7 @@
 
 // Language and prefs
 
-var cid_tab_selected = 0; //widget version
-function functionTabs() {
-        
-        if (document.location.href.indexOf('cid=yes') > 0) {
-            cid_tab_selected = 1;
-        
-    }
-        
-}
+
 var given_cid;
 
 
@@ -40,17 +32,62 @@ function submitCID(){
 }
 
 function functionOptions(){
+	if (document.location.href.indexOf('cms=') > 0) 
+	{
+        document.getElementById('stylesheet').href = 'http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/stylesheets/styles.css';
+     	$('meta[name=viewport]').attr('content', '');
+    	$(".tabnav").hide();
+		$("#Poll411Form").hide();
+		$("#nid_container").hide();
+        $("#cid_container").hide();
+        $("#elec-info").hide();
+        $("#container").hide();
+     	$("#intro").hide();
+     	$("#logo").hide();
+	}
 	if ((document.location.href.indexOf('mobile=') > 0)) 
 	{
-     //Mobile screens
-    
+     document.getElementById('stylesheet').href = 'http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/stylesheets/mobile.css';
+     $('meta[name=viewport]').attr('content', 'width=320, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes');
+	 $("#Poll411Form").show();
+	 $("#container").show();
+     $("#intro").hide();
+     $("#logo").show();
     }
-    if ((document.location.href.indexOf('widget=') > 0)) 
+    if ((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('conswid=') > 0))) 
 	{
-     	
+        document.getElementById('stylesheet').href = 'http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/stylesheets/styles.css';
+     	$('meta[name=viewport]').attr('content', '');
     	$(".tabnav").show();
-		$("#Poll411Form").show();   
+		$("#Poll411Form").show();
+		$("#nid_container").show();
+        $("#cid_container").hide();
+		$("#nid_tab").attr("class", "selected");
+        $("#cid_tab").prop('class',false);
+        $("#elec-info").show();
+        $("#container").hide();
+     	$("#intro").show();
+     	$("#logo").hide();
 	}
+	if (document.location.href.indexOf('conswid=yes') > 0) {
+		    document.getElementById('stylesheet').href = 'http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/stylesheets/styles.css';
+     	    $('meta[name=viewport]').attr('content', '');
+     		$(".tabnav").show();
+			$("#Poll411Form").show(); 
+            $("#cid_container").show();
+            $("#nid_container").hide();
+         	$("#cid_tab").attr("class", "selected");
+            $("#nid_tab").prop('class',false);
+            $("#elec-info").hide();
+            $("#container").hide();
+     	    $("#intro").show();
+     	    $("#logo").hide();
+           
+
+            
+    }
+   
+	
 }
 
 function functionColoring() {
@@ -75,10 +112,19 @@ function functionColoring() {
          $('.id-demo > .station').fadeOut(500);
     });
 }
-
+function whichGadget(){
+	ugent = navigator.userAgent.toLowerCase();
+	if ((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('conswid=yes') > 0)) && (!(document.location.href.indexOf('mobile') > 0))) 
+    	setTimeout("$('#pid').chained('#gid');",1000);
+  	if (document.location.href.indexOf('conswid=yes') > 0) 
+   		setTimeout("$('#cid').chained('#gid_c, #cid_type');",1000);	
+    if((document.location.href.indexOf('mobile=') > 0) || ugent.search("iphone") > -1 || ugent.search("ipad") > -1 || ugent.search("android") > -1 || ugent.search("bada") > -1 || ugent.search("nokia") > -1)
+   	 	setTimeout("$('#pid_m').chained('#gid_m');",1000);
+}
 
 function functionValidaing(){
-	 if(cid_tab_selected == 0){
+		if ((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('conswid=yes') > 0)) && (!(document.location.href.indexOf('mobile') > 0))) 
+		 {
 	 	       $("#Poll411Form").validate({
        	
                 rules: {
@@ -104,7 +150,7 @@ function functionValidaing(){
                 });
 	 }
        
-   else{
+  if (document.location.href.indexOf('conswid=yes') > 0){
 	 	 $("#Poll411Form").validate({
                rules: {
                        gid: "required",
@@ -118,23 +164,42 @@ function functionValidaing(){
                }
        });
    }
+  if (document.location.href.indexOf('mobile=') > 0){
+  	  $("#Poll411Form").validate({
+       	
+                rules: {
+                        nid_m: { 
+                                required: true,
+                                digits: true,
+                                rangelength: [14, 14],
+                validAge: true
+                        },
+                        gid_m: "required",
+                        pid_m: "required"
+                },
+                messages: {
+                        nid_m: {
+                                required: "من فضلك ادخل الرقم القومى",
+                                digits: "من فضلك ادخل ارقام فقط",
+                                rangelength: "من فضلك أدخل الأربعة عشر رقم",
+                validAge: "عفوا, غير مسموح لإقل من 18 سنة بالإنتخاب"
+                        },
+                        gid_m:"من فضلك اختر المحافظة",
+                        pid_m:"من فضلك اختر القسم"
+                }
+                });
+  }
 
 }
 
+
+
 $(window).load(function() {
-   setTimeout("functionTabs(); ",1000);
-
-   if(cid_tab_selected == 0)
-        setTimeout("$('#pid').chained('#gid');",1000);
-   else{
-   		setTimeout("$('#pid').chained('#gid');",1000);
-   		setTimeout("$('#cid').chained('#gid, #cid_type);",1000);		 	
-   }
-
+   setTimeout("whichGadget(); ",1000);
    setTimeout("functionValidaing(); ",1000);
    setTimeout("functionColoring(); ",1000);
    setTimeout("functionOptions(); ",1000); 
-   setTimeout("submitNID(); ",1000);
+   setTimeout("submitNID(); ",1500);
    setTimeout("submitCID(); ",1000);	
     
 });
@@ -286,9 +351,10 @@ $.validator.addMethod("validAge", function (value, element) {
                 
                   
                     if (1 == $("option", self).size() && $(self).val() === "") {
-                    	console.log("Disabled should be ADDED");
+                    	
                         $(self).attr("disabled", "disabled");
                     } else {	
+                    	
                         $(self).prop('disabled',false);
                     }
                     $(self).trigger("change");
@@ -515,24 +581,56 @@ function setVoteHtml() {
                         var contestButtonsHtml = '';
 			                        
 			for(var i = 0;i <contests.length; i++){
-				if( (document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || !(document.location.href.indexOf('cid=') > 0 ))
-                                contestButtonsHtml += ('<li><a href="#mapbox" onclick="gotoConstit('+i+')">'+contests[i].constituency+' '+contests[i].type+'</a></li>');
-                        } 
-
-                        boundriesHtml = S(
+				 if(document.location.href.indexOf('conswid=') > 0)
+					given_cid = $("#cid").val();
+			
+				if( (document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || (document.location.href.indexOf('conswid=') > 0 && contests[i].constituency_code == given_cid) || ((!(document.location.href.indexOf('cid=') > 0 )) && (!(document.location.href.indexOf('conswid=') > 0 ))) )
+				{
+					
+					 contestButtonsHtml += ('<li><a href="#mapbox" onclick="gotoConstit('+i+')">'+contests[i].constituency+' '+contests[i].type+'</a></li>');
+				}
+                               
+              
+               } 
+                 if(document.location.href.indexOf('mobile=') > 0 )
+                 {
+                 	
+                 	  //boundries
+                        var contestButtonsHtml = '';
+			                        
+						for(var i = 0;i <contests.length; i++)
+						{
+							if( (document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || (document.location.href.indexOf('conswid=') > 0 && contests[i].constituency_code == given_cid) || ((!(document.location.href.indexOf('cid=') > 0 )) && (!(document.location.href.indexOf('conswid=') > 0 ))) )
+	                                contestButtonsHtml += ('<a href="#mapbox" onclick="gotoConstit('+i+')">'+contests[i].constituency+' '+contests[i].type+'</a>');
+              
+               			} 
+           			    boundriesHtml = S(
+		                               '<div class="container"></div><div class="content"><h1>لمعرفة حدود الدائرة الإنتخابية</h1>',
+						'<p>اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة</p>',
+		                               '<div class="area-button">',
+		                                contestButtonsHtml,
+		                               '</div>',
+						'<p class="note">هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها</p>'
+		                        );
+                 }
+               
+						
+						if (!(document.location.href.indexOf('mobile=') > 0)  ){
+							 boundriesHtml = S(
                                '<h1>لمعرفة حدود الدائرة الإنتخابية</h1>',
-				'<p>اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة</p>',
+								'<p>اضغط على اسم الدائرة لرؤية حدودها باللون الأحمر على الخريطة</p>',
                                '<ul class="area-cover clearfix">',
                                 contestButtonsHtml,
-                               '</ul><div class="clear"></div>',
-				'<p class="note">هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها</p>'
-                        );
+                	               '</ul><div class="clear"></div>',
+								'<p class="note">هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها</p>'
+                        	);
+						} 
+
 			//info
 			infoHtml = '<h1>بيانات هامة عن الدائرة الانتخابية</h1>';
 			for( var i=0;i< contests.length; i++){
-				if( 	(document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || 
-					!(document.location.href.indexOf('cid=') > 0 )
-				){
+				if( (document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || (document.location.href.indexOf('conswid=') > 0 && contests[i].constituency_code == given_cid) || ((!(document.location.href.indexOf('cid=') > 0 )) && (!(document.location.href.indexOf('conswid=') > 0 ))) )
+				{
 					infoHtml += '<div class="area-info"><h3>'+contests[i].constituency+' '+ contests[i].type+'</h3>';
 					infoHtml += ('<p>عدد المقاعد: '+contests[i].number_of_seats+'</p>');
 					infoHtml += ('<p>مكونة من الأقسام و المراكز التالية:</p>');
@@ -544,7 +642,12 @@ function setVoteHtml() {
 					infoHtml += '</ul><div class="clear"></div></div>';
 				}
 			}
-			infoHtml += '<p class="soon">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</p>';
+			 if(document.location.href.indexOf('mobile=') > 0 )
+				infoHtml += '<p class="soon">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</p></div></div>';
+			 if ((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('mobile=yes') > 0)) || ((document.location.href.indexOf('conswid=yes') > 0))) 
+				infoHtml += '<p class="soon">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</p>';
+			//if((document.location.href.indexOf('widget=') > 0) ||(document.location.href.indexOf('conswid=') > 0)  )
+				
                         //candidates
                         var listingsHtml = '';
                         for(var i = 0;i <contests.length; i++){
@@ -756,7 +859,7 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
                 	
               
 
-                        if( ( !(document.location.href.indexOf('cid=') > 0) ) && (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid && get_new_pid(poll.stateInfo.pid)!= pid ) )) {
+                        if( ( !(document.location.href.indexOf('cid=') > 0) ) && ( !(document.location.href.indexOf('conswid=') > 0) )&& (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid && get_new_pid(poll.stateInfo.pid)!= pid ) )) {
 				notTheSame();
                                 return;
                         }
@@ -769,12 +872,13 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
 }
 
 function findPrecinct( nid,gid,pid ) {
+		
         //alert("findPrecinct");
         lookupPollingPlace( nid,gid,pid, 
 
 
 function(poll) {
-                //alert("callback called");
+               // alert("callback called");
                 log( 'API status code: ' + poll.status || '(OK)' );
                 vote.poll = poll;
                 var locations = vote.locations = poll.locations;

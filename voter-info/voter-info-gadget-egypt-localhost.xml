@@ -2,14 +2,14 @@
 <Module>
 
 <ModulePrefs
-    title="Google Election Center app for Egypt on localhost"
+    title="Egyptian Elections 2011"
     description="Enter your home address to find your voter registration information, voting location and more. Embed this app on your website or blog to help others find this important information."
     author="Google, Inc."
     author_affiliation="Google, Inc."
     author_email="elections@google.com"
     thumbnail="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/voter-info-gadget-thumbnail.png"
     screenshot="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/voter-info-gadget-screenshot.png"
-    title_url="http://maps.google.com/vote"
+    title_url="http://elections2011.eg"
     width="620"
     height="480">
   <Require feature="analytics"/>
@@ -54,13 +54,11 @@
 	<EnumValue value="px" display_value="Pixels (px)"/>
 </UserPref>
 
-<UserPref name="homePrompt" datatype="string" display_name="Addr Prompt" default_value=" "/>
 
-<UserPref name="example" datatype="string" display_name="Example&#160;Addr" default_value=""/>
 
 <UserPref name="submit" datatype="bool" display_name="Preload&#160;Addr" default_value=""/>
 
-<UserPref name="electionId" datatype="string" display_name="Election&#160;ID" default_value=""/>
+
 
 <!--<UserPref name="logo" datatype="string" display_name="Logo&#160;URL" default_value=""/>-->
 

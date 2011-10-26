@@ -66,8 +66,10 @@ img{ vertical-align:middle;}
 	.header .top-service .search form input[type="submit"]{ padding:5px; background:#ddd url(../images/icons/search.png) no-repeat 8px 3px; border-color:#ccc; text-indent:-99999px; width:40px; display:inline; }
 
 /*--footer--*/
-.footer{ background:#444; padding:20px 0; text-align:center; color:#fff; font-size:12px;}
-.footer a{ color:#fff;}
+.footer{ text-align:center; font-size:12px;}
+.footer a {
+    color: #0000CC !important;
+}
 
 /*--menu--*/
 .menu{ background:#c00 url(../images/graphics/menu-bg.png) repeat-x bottom; }
