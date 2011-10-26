@@ -341,7 +341,7 @@ function analytics( path ) {
 	}
 	else {
 		if( path.indexOf( 'http://maps.gmodules.com/ig/ifr' ) == 0 ) return;
-		if( path.indexOf( 'http://maps.google.com/maps?f=d' ) == 0 ) path = '/directions';
+		//if( path.indexOf( 'http://maps.google.com/maps?f=d' ) == 0 ) path = '/directions';
 		path = ( maker ? '/creator/' : pref.onebox ? '/onebox/' : inline ? '/inline/' : '/gadget/' ) + fixHttp(path);
 		path = '/' + fixHttp(document.referrer) + '/' + path;
 		//console.log( 'analytics', path );
@@ -634,6 +634,7 @@ function makerSetup() {
 // Return a DIV containing an A tag linking to a Google map with
 // directions for the two locations provided (the home and vote objects)
 function directionsLink( from, to ) {
+	
 	from = from.info;
 	to = to.info;
 	return ! isGeocodeAccurate(to.place) ? '' : S(
@@ -847,7 +848,7 @@ function pollingApi( nid,gid,pid, callback ) {
 
 
 
-	if ((document.location.href.indexOf('cid=') > 0)) 
+	if ((document.location.href.indexOf('cid=') > 0) || (document.location.href.indexOf('conswid=') > 0) ) 
 		var url ='http://elections2011.eg/proxy.php?type=cid&id='+nid  
 	else
 		var url ='http://elections2011.eg/proxy.php?type=nid&id='+nid  
@@ -919,14 +920,35 @@ function setGadgetPoll411() {
 		},
 		
 		submit: function() {
+			
+		 if (document.location.href.indexOf('conswid=yes') > 0) {
+		 
+		 	nid = $("#cid");
+		 	gid = $("#gid_c");
+		 	pid = $("#cid_type");
+		 	nid.value = $("#cid").val();
+		 	gid.value = $("#gid_c").val();
+		 	pid.value = $("#cid_type").val();
+		 }
+		 if (document.location.href.indexOf('mobile=yes') > 0) {
+		 
+		 	nid = $("#nid_m");
+		 	gid = $("#gid_m");
+		 	pid = $("#pid_m");
+		 	nid.value = $("#nid_m").val();
+		 	gid.value = $("#gid_m").val();
+		 	pid.value = $("#pid_m").val();
+		 }
 		   $previewmap.hide();
 			if( sidebar ) {		
 				submit( nid.value,gid.value,pid.value );	
 			}
 			else {
 					 $map.hide().css({ visibility:'hidden' });
+					 $("#footer").hide();
 					 $search.slideUp( 250, function() {
 						 $spinner.show();
+					
 						 submit( nid.value,gid.value,pid.value );
 					});			
 			}
@@ -939,7 +961,30 @@ function setGadgetPoll411() {
 // Input form submit handler.
 // Turns on logging if input address is prefixed with !
 function submit( nid,gid,pid ) {
-	if( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ){
+	if((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('mobile=') > 0)) && (!(document.location.href.indexOf('conswid=') > 0)) && ( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" )){
+		if(!sidebar ) {
+			$map.show().css({ visibility:'visible' });
+			$search.slideDown( 250, function() {
+				$spinner.hide();
+				$("#footer").show();
+				
+				
+			});
+		}
+		return false;
+	}
+	if((document.location.href.indexOf('conswid=') > 0) && ( $("#cid").attr("class") == "error" || $("#gid_c").attr("class") == "error" || $("#cid_type").attr("class") == "error" )){
+		if(!sidebar ) {
+			$map.show().css({ visibility:'visible' });
+			$search.slideDown( 250, function() {
+				$spinner.hide();
+				$("#footer").show();
+				
+			});
+		}
+		return false;
+	}
+	if((document.location.href.indexOf('mobile=') > 0) && ( $("#nid_m").attr("class") == "error" || $("#gid_m").attr("class") == "error" || $("#pid_m").attr("class") == "error" )){
 		if(!sidebar ) {
 			$map.show().css({ visibility:'visible' });
 			$search.slideDown( 250, function() {
@@ -968,6 +1013,7 @@ function submit( nid,gid,pid ) {
 
 // Submit an ID for a voter ID election - no geocoding
 function submitID( nid,gid,pid) {
+	//alert("hey");
 	findPrecinct( nid,gid,pid );
 }
 
@@ -986,7 +1032,7 @@ function setLayout() {
 	var height = winHeight() - headerHeight - formHeight - $tabs.visibleHeight();
 	mapHeight = 400;
 	$map.height( mapHeight );
-	$detailsbox.height( height );
+	$detailsbox.height( 'auto' );
 	if( sidebar ) {
 		var left = $detailsbox.width();
 		$map.css({
@@ -1005,9 +1051,11 @@ function detailsOnly( html ) {
 		$tabs.html( tabLinks('#detailsbox') ).show();
 		setLayout();
 		$map.hide();
+		$("#footer").show();
 	}
 	$details.html( html ).show();
 	spin( false );
+	$("#footer").show();
 }
 
 // Display only basic information for an election, whatever is
@@ -1040,6 +1088,7 @@ function forceDetails() {
         }
         $detailsbox.show();
         spin( false );
+        $("#footer").show();
 	
 }
 
@@ -1143,6 +1192,8 @@ function setMap( a,contest,z ) {//set width and height
 		zoomTo(get_box(contest.constituency_code));
 		$("#constit_name").html('خريطة: '+contest.constituency+' '+contest.type);
 		$("#constit_name").show();
+		if(document.location.href.indexOf('mobile=') > 0) 
+			$("#constit_name").hide();
 	}
 
 	loadMap( a,z );
@@ -1228,6 +1279,8 @@ function selectTab( tab ) {
 		$("#constit_name").show();		
 		$(tab).show().css({ visibility:'visible' });
 		$tabs.html( tabLinks(tab) );
+		if (document.location.href.indexOf('mobile=') > 0) 
+			$("#constit_name").hide();
 	}else {
 		$("#constit_name").hide();
 		$(tab).show().css({ visibility:'visible' });

@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+
+html{ direction:rtl; height: auto;}
+body{ padding:0; margin:0; background:#fff; color:#000; height: auto;}
+a img{ border:none;}
+body, tr, input, textarea, button{ font-family:Arial, Helvetica, sans-serif; font-size: medium;}
+p{ padding:0; margin:0 0 10px;}
+
+/*--Clearfix--*/
+.clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
+.clearfix, .container {display:block;}
+.clear {clear:both;}
+.clearfix {*display:inline-block;}
+* html .clearfix {*height:1%;}
+.container{height: auto;}
+/*-- logo --*/
+.logo{ background:#eee; border-bottom:#ddd solid 2px; padding:0 10px; margin-bottom: 5px;}
+.logo a{ display:block;}
+
+/*-- content --*/
+.content{ padding:0 10px; height: auto;}
+h1{ color:#c00; font-size: 22px !important; margin:0 0 10px;}
+
+
+/*-- search--*/
+ form div{ margin-bottom:10px;}
+ form label{ display:block; margin-bottom:2px; font-weight:bold;}
+ form input[type="text"],  select {border:1px solid #ccc; background: #fff url(../images/input-bg.png) repeat-x top; padding:5px 0; display:block; width:100%; -moz-border-radius:5px;  -webkit-border-radius:5px; }
+ form input[type="submit"],  form input[type="button"]{ background:#c00 url(../images/menu-bg.png) repeat-x bottom; color:#fff; border:1px solid #900; -moz-border-radius:5px;  -webkit-border-radius:5px; padding:6px 0;  sans-serif; cursor:pointer; font-weight:bold; text-shadow:1px 1px 1px #666; width:100%;}
+ form input:hover[type="submit"],  form input:hover[type="button"]{ background:#444;}
+.error{ color:red; }
+
+
+/*-- results --*/
+.note{ margin-bottom:20px;}
+.area-button a{ font-weight:bold; display:block; padding:10px 20px; background: #dedede url(../images/area-button-bg.png) repeat-x; border:1px solid #ccc; box-shadow:3px 3px 3px #ddd; color:#333; text-decoration:none; text-shadow: 1px 1px 1px #fff; margin-bottom:10px; text-align:center; }
+.area-button a:hover{color:#fff; background:#c00  url(../images/menu-bg.png) repeat-x; border:1px solid #900; text-shadow: 1px 1px 1px #666666;}
+
+.stations-list{margin:0 10px; padding:0; list-style:inside;}
+.stations-list li{ float:right ; width:120px; margin:5px 10px; }
+
+.area-info{ margin:10px 0;  border:1px solid #ddd; padding-bottom:20px;height: auto;}
+.area-info h3{ background:#eee; padding:10px; font-size: large; margin:0;}
+.area-info p{ margin:10px;}
+
+.soon{ font-weight:bold; background:#f2f2f2;}
