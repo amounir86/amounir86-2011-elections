@@ -268,7 +268,33 @@ text-shadow: 1px 1px 1px #fff;
 }
 
 /* end tabs */
+div#popup {
+	display: none;
+	position: absolute;
+	width: 180px;
+	padding: 10px;
+	background: #7B98D9;
+	color:white;
+	border: 1px solid #1a1a1a;
+	font-size: 16px;
+	font-weight:bold;
+	z-index:1000;
+	}
 
+div#constit_name {
+	display: none;
+	position: absolute;
+	width: 180px;
+	padding: 10px;
+	background: #7B98D9;
+	color:white;
+	border: 1px solid #1a1a1a;
+	font-size: 16px;
+	font-weight:bold;
+	z-index:1000;
+	top:70px;
+	right:10px;
+}
 /*------ timeline -----*/
 .timeline{ background:#E9EDF2;}
 .timeline ul{ list-style:none;  }
