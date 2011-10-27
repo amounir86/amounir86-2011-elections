@@ -31,7 +31,7 @@ img{ vertical-align:middle;}
     right: 10px;
     width: 79px;
 }
-
+label.error {color: red;display: block;float: none;margin-top: 0; margin-right: 5px; width: 100%; text-align: right;}
 
 
 
@@ -239,7 +239,12 @@ padding-top: 5px; /* must change with respect to padding (X) above and below */
 text-shadow: 1px 1px 1px #fff;
 }
 
-
+#tabs { width:100%; background-color:#E8ECF9; }
+#tablinks { padding:3px; background: #FFF; font-size: 16px; border-bottom: 1px solid #ddd;}
+#tablinks span, #tablinks a { margin-right:1em; padding: 6px 20px;}
+#tablinks span { font-weight:bold; background: #eee; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px;}
+#tablinks a { color:#FFF; text-decoration: none; background: #C00; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; }
+   
 ul.tabnav li a { /* settings for all tab links */
 padding: 5px 10px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
 background: #c00 ; /* set unselected tab background color as desired */
