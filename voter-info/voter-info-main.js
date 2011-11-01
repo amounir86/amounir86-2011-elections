@@ -981,7 +981,9 @@ function submit( nid,gid,pid ) {
 	}
 	//
 	
-	if((document.location.href.indexOf('conswid=') > 0) && ( $("#cid").attr("class") == "error" || $("#gid_c").attr("class") == "error" || $("#cid_type").attr("class") == "error" ) ){
+	if((document.location.href.indexOf('conswid=') > 0) && 
+	( $("#cid").attr("class") == "error" 
+	|| $("#gid_c").attr("class") == "error" || $("#cid_type").attr("class") == "error" ) ){
 		if(!sidebar ) {
 			$map.show().css({ visibility:'visible' });
 			$search.slideDown( 250, function() {
@@ -992,7 +994,12 @@ function submit( nid,gid,pid ) {
 		}
 		return false;
 	}
-	if((document.location.href.indexOf('mobile=') > 0) && ( $("#nid_m").attr("class") == "error" || $("#gid_m").attr("class") == "error" || $("#pid_m").attr("class") == "error" )){
+	nid_m_value = $("#nid_m").val() 
+	if((document.location.href.indexOf('mobile=') > 0) && 
+	( $("#nid_m").attr("class") == "error" || 
+	$("#gid_m").attr("class") == "error" 
+	|| $("#pid_m").attr("class") == "error" ) ||
+	(typeof nid_m_value  == 'undefined') || (nid_m_value == "")){
 		if(!sidebar ) {
 			$map.show().css({ visibility:'visible' });
 			$search.slideDown( 250, function() {
