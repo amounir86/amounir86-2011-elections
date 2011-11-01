@@ -998,8 +998,8 @@ function submit( nid,gid,pid ) {
 	if((document.location.href.indexOf('mobile=') > 0) && 
 	( $("#nid_m").attr("class") == "error" || 
 	$("#gid_m").attr("class") == "error" 
-	|| $("#pid_m").attr("class") == "error" ) ||
-	(typeof nid_m_value  == 'undefined') || (nid_m_value == "")){
+	|| $("#pid_m").attr("class") == "error"  ||
+	(typeof nid_m_value  == 'undefined') || (nid_m_value == ""))){
 		if(!sidebar ) {
 			$map.show().css({ visibility:'visible' });
 			$search.slideDown( 250, function() {
