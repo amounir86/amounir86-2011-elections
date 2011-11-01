@@ -962,7 +962,11 @@ function setGadgetPoll411() {
 // Turns on logging if input address is prefixed with !
 function submit( nid,gid,pid ) {
 	nid_val = $("#nid").val();
-	if((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('mobile=') > 0)) && (!(document.location.href.indexOf('conswid=') > 0)) && ( $("#nid").attr("class") == "error" || $("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ) || (typeof nid_val == 'undefined')){
+	if((!(document.location.href.indexOf('cms=') > 0)) && 
+	(!(document.location.href.indexOf('mobile=') > 0)) 
+	&& (!(document.location.href.indexOf('conswid=') > 0)) 
+	&& ( $("#nid").attr("class") == "error" || 
+	$("#pid").attr("class") == "error" || $("#gid").attr("class") == "error" ) || (typeof nid_val == 'undefined') || (nid_val == "")){
 		if(!sidebar ) {
 			$map.show().css({ visibility:'visible' });
 			$search.slideDown( 250, function() {
@@ -976,7 +980,7 @@ function submit( nid,gid,pid ) {
 	}
 	
 	
-	if((document.location.href.indexOf('conswid=') > 0) && ( $("#cid").attr("class") == "error" || $("#gid_c").attr("class") == "error" || $("#cid_type").attr("class") == "error" ) || (typeof nid_val == 'undefined')){
+	if((document.location.href.indexOf('conswid=') > 0) && ( $("#cid").attr("class") == "error" || $("#gid_c").attr("class") == "error" || $("#cid_type").attr("class") == "error" ) || (typeof nid_val == 'undefined')|| (nid_val == "")){
 		if(!sidebar ) {
 			$map.show().css({ visibility:'visible' });
 			$search.slideDown( 250, function() {
