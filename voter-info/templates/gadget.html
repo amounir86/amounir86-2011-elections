@@ -107,6 +107,8 @@ div#constit_name {
 <!--:: ignore ::-->
 
 
+
+
 </head>
 <body>
 
@@ -129,7 +131,9 @@ div#constit_name {
 <!--:: html ::-->
 <div id="popup" style="display:none">xxxx</div>
 <div id="constit_name" style="display:none"></div>
-<div style="display:none;" id="logo" class="logo"><a><img src="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/logo-egypt.png" border="0"  /></a></div>
+<div style="display:none;" id="logo" class="logo"><a><img src="http://alimaher-egyptian-elections.googlecode.com/hg/voter-info/images/logo-egypt.png" border="0"  /></a>
+	<a href="http://www.elections2011.eg" target="_blank" style="margin:5px 0;">للعودة للنسخة الكاملة من انتخابات مصر</a>
+</div>
 <div id="Poll411Gadget">
 	<script>
 	function fireElectionsCycle(){
@@ -164,8 +168,8 @@ div#constit_name {
 				<input name="nid" type="text" id="nid" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
 			</div>
 			<div>
-			<label>المحافظة</label>
-			<select id="gid" name="gid">
+			<label style="display: none;" >المحافظة</label>
+			<select style="display: none;"  id="gid" name="gid">
 
 			<option value="">اختر المحافظة</option>
 
@@ -227,8 +231,8 @@ div#constit_name {
 			</div>
 			<div>
 						
-			<label id="pid_label">القسم</label>
-			<select name="pid" id="pid">
+			<label style="display: none;" id="pid_label">القسم</label>
+			<select style="display: none;"  name="pid" id="pid">
 
 			<option value="">اختر القسم</option>
 
@@ -1286,8 +1290,8 @@ div#constit_name {
 				<input name="nid_m" type="text" id="nid_m" class="example" onfocus="Poll411.focus()" onblur="Poll411.blur()">
 			</div>
 			<div>
-			<label>المحافظة</label>
-			<select id="gid_m" name="gid_m">
+			<label style="display:none;">المحافظة</label>
+			<select style="display:none;" id="gid_m" name="gid_m">
 
 			<option value="">اختر المحافظة</option>
 
@@ -1349,8 +1353,8 @@ div#constit_name {
 			</div>
 			<div>
 						
-			<label id="pid_label">القسم</label>
-			<select name="pid_m" id="pid_m">
+			<label style="display:none;" id="pid_label">القسم</label>
+			<select style="display:none;" name="pid_m" id="pid_m">
 
 			<option value="">اختر القسم</option>
 
@@ -2217,69 +2221,7 @@ div#constit_name {
     
     </div>
 
-    <div style="font-size:85%; margin-top:0.75em;">
-        <!---------- LISTING  ------------------------>
-
-
-	<div class="wrapper"  >
- 		
-    <div class="main">
-     
-      <div class="results">
-       <div style="display:none">
-        <h1>الدوائر</h1>
-        <table width="100%" cellspacing="0">
-        <tr>
-          <th scope="col">الاسم</th>
-          <th scope="col">الحزب</th>
-          <th scope="col">الفئة</th>
-          <th scope="col">الرمز</th>
-        </tr>
-        <tr>
-          <td><a href="#">محمد عبد السلام السيد</a></td>
-          <td>مستقل</td>
-          <td>فئات</td>
-          <td><img src="/images/dummy/cup.png" alt="رمز الكاس" /></td>
-        </tr>
-        <tr class="even">
-          <td>حسنين سيد جمعة</td>
-          <td>حزب المصرى الاصيل</td>
-          <td>عمال</td>
-          <td><img src="/images/dummy/bag1.png" alt="رمز الشنطة" /></td>
-        </tr>
-        <tr>
-          <td><a href="#">محمد عبد السلام السيد</a></td>
-          <td>مستقل</td>
-          <td>فئات</td>
-          <td><img src="/images/dummy/cup.png" alt="رمز الكاس" /></td>
-        </tr>
-        <tr class="even">
-          <td>حسنين سيد جمعة</td>
-          <td>حزب المصرى الاصيل</td>
-          <td>عمال</td>
-          <td><img src="/images/dummy/bag1.png" alt="رمز الشنطة" /></td>
-        </tr>
-        <tr>
-          <td><a href="#">محمد عبد السلام السيد</a></td>
-          <td>مستقل</td>
-          <td>فئات</td>
-          <td><img src="/images/dummy/cup.png" alt="رمز الكاس" /></td>
-        </tr>
-        <tr class="even">
-          <td>حسنين سيد جمعة</td>
-          <td>حزب المصرى الاصيل</td>
-          <td>عمال</td>
-          <td><img src="/images/dummy/bag1.png" alt="رمز الشنطة" /></td>
-        </tr>
-      </table>
-       </div>
-      </div><!--end results-->
-      
-    </div><!--end main-->
-      
-  </div>
-<!------------ END LIST -------------------->
-    </div>
+  
     
 
 

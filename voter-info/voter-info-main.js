@@ -642,7 +642,7 @@ function directionsLink( from, to ) {
 			'<a target="_blank" href="http://maps.google.com/maps?f=d&saddr=',
 				! isGeocodeAccurate(from.place) ? '' : encodeURIComponent(from.address),
 				'&daddr=', encodeURIComponent(to.address),
-				'&hl=en&mra=ls&ie=UTF8&iwloc=A&iwstate1=dir"',
+				'&hl=ar&mra=ls&ie=UTF8&iwloc=A&iwstate1=dir"',
 			'>',
 				T('getDirections'),
 			'</a>',
@@ -853,7 +853,7 @@ function pollingApi( nid,gid,pid, callback ) {
 	else
 		var url ='http://elections2011.eg/proxy.php?type=nid&id='+nid  
 		//var url ='http://elections.espace-technologies.com/proxy.php?staging=true&type=nid&id='+nid; 
-		//var url ='http://178.79.173.29:9000/election?nid='+nid ;
+		//var url ='http://178.79.173.29:9595/election?nid='+nid ;
 		
 	log( 'Polling API:' );  log( url );
 	//alert("Just before calling the api");
@@ -1082,10 +1082,10 @@ function sorry() {
 
 // Display only basic information for an election, whatever is
 // available without a specific address
-function notTheSame() {
-	$details.html( log.print() + notTheSameHtml() );
-	forceDetails();
-}
+//function notTheSame() {
+//	$details.html( log.print() + notTheSameHtml() );
+//	forceDetails();
+//}
 
 
 function blankPage() {
@@ -1291,7 +1291,7 @@ function selectTab( tab ) {
 		});
 	}
 	else if(tab == "#mapbox"){
-		$("#constit_name").show();		
+		//$("#constit_name").show();		
 		$(tab).show().css({ visibility:'visible' });
 		$tabs.html( tabLinks(tab) );
 		if (document.location.href.indexOf('mobile=') > 0) 
