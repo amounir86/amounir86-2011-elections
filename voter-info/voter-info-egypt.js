@@ -10,12 +10,12 @@ var given_cid;
 
 function submitNID(){
 	if ((document.location.href.indexOf('nid=') > 0) 
-	&& (document.location.href.indexOf('gid=') > 0) 
-	&& (document.location.href.indexOf('pid=') > 0)) 
+	/*&& (document.location.href.indexOf('gid=') > 0) 
+	&& (document.location.href.indexOf('pid=') > 0)*/) 
 	{
        $("#nid").val(decodeURI((RegExp('nid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
-       $("#gid").val(decodeURI((RegExp('gid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
-       $('#pid option:selected').val(decodeURI((RegExp('pid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
+      // $("#gid").val(decodeURI((RegExp('gid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
+       //$('#pid option:selected').val(decodeURI((RegExp('pid=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
       
        return Poll411.submit();    
     }
