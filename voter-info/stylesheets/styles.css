@@ -117,7 +117,7 @@ label.error {color: red;display: block;float: none;margin-top: 0; margin-right: 
 
 /*-- results --*/
 .results{direction:rtl; font-family:Arial, Helvetica, sans-serif; font-size:16px; padding: 10px 20px; }
-.results table{ margin-bottom:40px; }
+.results table{ margin-right: 10px; width: 825px;}
 .results table th{ text-align:right; background:#eee;}
 .results table th, .results table td{ padding:10px 20px; border:1px solid #ddd;}
 .results table tr.even td { background:#f7f7f7;}
@@ -132,9 +132,12 @@ label.error {color: red;display: block;float: none;margin-top: 0; margin-right: 
 
 .soon{background: #f2f2f2; font-weight: bold;}
 
-ul.lists{ list-style:none; }
-ul.lists li { padding:5px 0; }
-img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px 2px 2px #ddd;}
+ul.lists{ list-style:none; margin-right:5px;}
+ul.lists li a{ padding:0; cursor:pointer; font-size:18px; font-weight:bold;}
+ul.lists li a.collapse{padding-right:20px;  background:url(../images/icons/toggle_collapse.png) no-repeat right; text-decoration:none; color:#000;}
+ul.lists li a.expand{ padding-right:20px; background:url(../images/icons/toggle-expand.png) no-repeat right;}
+img.img-border { padding:5px; margin:5px; border:1px solid #ddd; box-shadow:2px 2px 2px #ddd;}
+ul.lists table{ margin-right:60px;}
 
 
 .map{ margin:20px 0 40px;}
@@ -146,10 +149,19 @@ img.img-border { padding:10px; margin:5px; border:1px solid #ddd; box-shadow:2px
 .stations-list{ margin:0 20px;}
 .stations-list li{ float:right; width:120px; margin:5px 10px; list-style:disc !important;}
 
-.area-info{ margin:20px 0;  border:1px solid #ddd; padding-bottom:20px;}
+.area-info{ margin:10px 0;  border:1px solid #ddd; padding-bottom:20px;}
 .area-info h3{ background:#eee; padding:10px; font-size:18px;}
+.area-info h4{ margin:15px 10px 5px; color: #c00; font-size: 18px;}
 .area-info p{ margin:10px;}
 
+.soon{ font-weight:bold; background:#f2f2f2;}
+
+.your-info{}
+.your-info dt, .your-info dd{ float:right; margin-bottom:10px;}
+.your-info dd{ font-weight:bold;}
+.your-info dt{ clear:right; width:120px; text-align:left; margin-left:5px;}
+
+.date{ margin:10px 0; background:#f2f2f2; padding:2px;}
 
 /*--- added and modified styles --*/
 	
@@ -231,24 +243,24 @@ float:right;
 margin-right: 10px;
 
 }
-ul.tabnav li a.selected{background: #ddd; /* set selected tab background color as desired */
-color: #000; /* set selected tab link color as desired */
+ul.tabnav li .selected{background: #c00; /* set selected tab background color as desired */
+color: #fff; /* set selected tab link color as desired */
 position: relative;
 top: 0;
 padding-top: 5px; /* must change with respect to padding (X) above and below */
-text-shadow: 1px 1px 1px #fff;
+text-shadow: 1px 1px 1px #666;
 }
 
 #tabs { width:100%; background-color:#E8ECF9; }
 #tablinks { padding:3px; background: #FFF; font-size: 16px; border-bottom: 1px solid #ddd;}
 #tablinks span, #tablinks a { margin-right:1em; padding: 6px 20px;}
-#tablinks span { font-weight:bold; background: #eee; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px;}
-#tablinks a { color:#FFF; text-decoration: none; background: #C00; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; }
-   
+#tablinks span { color:#fff; font-weight:bold; background: #c00; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px;}
+#tablinks a {color:#333; text-decoration: none; background: #eee; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; }
+#tablinks a:hover { background-color: #c00; color: #fff;}
 ul.tabnav li a { /* settings for all tab links */
 padding: 5px 10px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
-background: #c00 ; /* set unselected tab background color as desired */
-color: #fff; /* set unselected tab link color as desired */
+background: #eee ; /* set unselected tab background color as desired */
+color: #333; /* set unselected tab link color as desired */
 margin-right: 0px; /* set additional spacing between tabs as desired */
 text-decoration: none;
 border-bottom: none;
@@ -256,15 +268,15 @@ border-bottom: none;
 -moz-border-radius-topright:5px;
 -webkit-border-top-left-radius:5px;
 -webkit-border-top-right-radius:5px;
-text-shadow: 1px 1px 1px #666;
+text-shadow: 1px 1px 1px #fff;
 display: block;
 
 }
 
 ul.tabnav a:hover { /* settings for hover effect */
-background: #ddd; /* set desired hover color */
-color: #000;
-text-shadow: 1px 1px 1px #fff;
+background: #c00; /* set desired hover color */
+color: #fff;
+text-shadow: 1px 1px 1px #666;
 }
 
 /* end tabs */

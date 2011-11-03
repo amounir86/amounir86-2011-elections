@@ -114,6 +114,18 @@ function functionColoring() {
          $('.id-demo > .station').fadeOut(500);
     });
 }
+
+
+function expand(list_id){
+	
+	stringListName = "#" + list_id;
+	if ( $(stringListName).is(':visible') )
+		$(stringListName).hide();
+	else
+		$(stringListName).show();
+}
+
+
 function whichGadget(){
 	ugent = navigator.userAgent.toLowerCase();
 	if ((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('conswid=yes') > 0)) && (!(document.location.href.indexOf('mobile') > 0))) 
@@ -135,9 +147,7 @@ function functionValidaing(){
                                 digits: true,
                                 rangelength: [14, 14],
                 validAge: true
-                        },
-                        gid: "required",
-                        pid: "required"
+                        }
                 },
                 messages: {
                         nid: {
@@ -145,9 +155,7 @@ function functionValidaing(){
                                 digits: "من فضلك ادخل ارقام فقط",
                                 rangelength: "من فضلك أدخل الأربعة عشر رقم",
                 validAge: "عفوا, غير مسموح لإقل من 18 سنة بالإنتخاب"
-                        },
-                        gid:"من فضلك اختر المحافظة",
-                        pid:"من فضلك اختر القسم"
+                        }
                 }
                 });
 	 }
@@ -175,9 +183,7 @@ function functionValidaing(){
                                 digits: true,
                                 rangelength: [14, 14],
                 validAge: true
-                        },
-                        gid_m: "required",
-                        pid_m: "required"
+                        }
                 },
                 messages: {
                         nid_m: {
@@ -185,9 +191,7 @@ function functionValidaing(){
                                 digits: "من فضلك ادخل ارقام فقط",
                                 rangelength: "من فضلك أدخل الأربعة عشر رقم",
                 validAge: "عفوا, غير مسموح لإقل من 18 سنة بالإنتخاب"
-                        },
-                        gid_m:"من فضلك اختر المحافظة",
-                        pid_m:"من فضلك اختر القسم"
+                        }
                 }
                 });
   }
@@ -197,6 +201,7 @@ function functionValidaing(){
 
 
 $(window).load(function() {
+   setTimeout("$('#remote_0').attr('style', 'overflow:auto; height:auto;');",1000);
    setTimeout("whichGadget(); ",1000);
    setTimeout("functionValidaing(); ",1000);
    setTimeout("functionColoring(); ",1000);
@@ -209,6 +214,7 @@ $(window).load(function() {
 $(document).ready(function(){
         
 if (!window.console) console = {log: function() {}};
+
 
 
 /**
@@ -515,6 +521,15 @@ function gotoConstit(index,donot_go){
         if (!donot_go) return selectTab('#mapbox');
 }
 
+function gotoLocation(location,donot_go){
+	
+        setMap(vote.info,l,null);
+        if(vote.info && vote.info.latlng ){
+                map.setCenter( vote.info.latlng );
+        }
+        if (!donot_go) return selectTab('#mapbox');
+}
+
 
 
 function setVoteHtml() {
@@ -524,7 +539,7 @@ function setVoteHtml() {
         }
         
         function voteLocation( infowindow ) {
-                var loc = "لجنتك النتخابية";//T('yourVotingLocation');
+                var loc = "لجنتك النتخابية";
                 if( !( vote.locations && vote.locations.length ) )
                         return '';
                 if( vote.info ){
@@ -560,29 +575,47 @@ function setVoteHtml() {
                 return vote.info && vote.info.latlng ? S(voteLocation( true ),viewLink) : S(voteLocation( infowindow ));
                 
         }
+        /////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+        function existsHtmlFiller(){
+        	var existsHtml = '';
+        	if ($("#nid").val().length == 14){
+					existsHtml = '<div class="found">'; 			
+					existsHtml += '<h1 style="color:green;">الرقم القومي ('+$("#nid").val()+') موجود!</h1>';
+					existsHtml += '<p>اسمك مسجل بكشوف الناخبين، ومن حقك التصويت في الانتخابات البرلمانية المقبلة.</p>';
+					existsHtml += '</div>';
+				}
+				return existsHtml;
+        }
         
-        function longInfo() {
-		var existsHtml = '';
-		if ($("#nid").val().length == 14){
-			existsHtml = '<div class="found">'; 			
-			existsHtml += '<h1 style="color:green;">الرقم القومي ('+$("#nid").val()+') موجود!</h1>';
-			existsHtml += '<p>اسمك مسجل بكشوف الناخبين، ومن حقك التصويت في الانتخابات البرلمانية المقبلة.</p>';
-			existsHtml += '</div>';
-		}
-                var location = vote.locations[0];
-                var locationHtml = (location && location.lng)?S(
+        function locationHtmlFiller(location, box_number, citi_num){
+        	 if(typeof location.name == 'undefined')
+        	 {
+        	 	return '';
+        	 }
+        	  var locationHtml = (location && location.lng)?S(
                 '<h1>بيانات اللجنة الانتخابية</h1>',
-                '<div class="place">',
-                  '<p>لجنتك الانتخابية :'+location.name+'</p>',
-                  '<p>العنوان : '+location.address+'</p>',
-                '</div>'):'';
-                var contests = vote.poll.contests;
-                var boundriesHtml = '';         
-                if(contests){   
-                        //boundries
-                        var contestButtonsHtml = '';
-			                        
-			for(var i = 0;i <contests.length; i++){
+                '<table width="100%" cellspacing="0" class="candidate info">'):'';
+                
+                if(location.lng == 0 && location.lat == 0)
+                  	locationHtml += '<tr><th scope="row">  لجنتك الانتخابية:</th><td>'+location.name +'<small> [جاري تحديد مواقع لجان الاقتراع على الخريطة. برجاء متابعة الموقع حيث سيتم عرض مواقع اللجان على الخريطة قريباً]</small> </td></tr>';
+                else
+                	locationHtml +='<tr><th scope="row">  لجنتك الانتخابية:</th><td><a href="javascript:void(0);" onclick="selectTab(\'#mapbox\')">'+location.name+'</a></td></tr>';
+               
+                locationHtml += (location && location.lng)?S( '<tr><th scope="row">  العنوان : </th><td>'+location.unparsed_address+'</td></tr>',
+                '<tr><th scope="row">  رقم اللجنة الفرعية: </th><td>'+citi_num+'</td></tr>',
+                '<tr><th scope="row">  رقمك في الكشوف الانتخابية: </th><td>'+box_number+'</td></tr>',
+                
+
+                '</table>'):'';
+                return locationHtml;
+        }
+        
+        function boundariesHtmlFiller(contests){
+        	 var boundriesHtml = '';   
+        	   //boundries
+               var contestButtonsHtml = '';                     
+			   for(var i = 0;i <contests.length; i++){
 				 if(document.location.href.indexOf('conswid=') > 0)
 					given_cid = $("#cid").val();
 			
@@ -627,8 +660,199 @@ function setVoteHtml() {
 								'<p class="note">هذه الخرائط وحدود الأقسام/المراكز والدوائر الانتخابية المبينة عليها تقريبية ولا يعتد بها كحدود دقيقة للدوائر الانتخابية ولا تتحمل اللجنة القضائية العليا للانتخابات أية مسؤولية عنها</p>'
                         	);
 						} 
+						
+						return boundriesHtml;
+        }
+        
+        function infoHtmlFiller(contests){
+        	infoHtml = '<h1>بيانات هامة عن الدائرة الانتخابية</h1>';
+			for( var i=0;i< contests.length; i++){
+				if( (document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || (document.location.href.indexOf('conswid=') > 0 && contests[i].constituency_code == given_cid) || ((!(document.location.href.indexOf('cid=') > 0 )) && (!(document.location.href.indexOf('conswid=') > 0 ))) )
+				{
+					infoHtml += '<div class="area-info"><h3>'+contests[i].constituency+' '+ contests[i].type+'</h3>';
+					infoHtml += ('<p>عدد المقاعد: '+contests[i].number_of_seats+'</p>');
+					infoHtml += ('<p>مكونة من الأقسام و المراكز التالية:</p>');
+					infoHtml += '<ul class="stations-list">';
+					for(var p=0;p<contests[i].police_stations.length;p++){				
+						//if(p != 0) infoHtml += ", ";
+						infoHtml += ('<li style="list-style:disc;">'+ contests[i].police_stations[p].pname+'</li>');
+					}
+					infoHtml += '</ul><div class="clear"></div>';
+				}
+			
+				
+                        //candidates
+                        var listingsHtml = '';
+                     //   for(var i = 0;i <contests.length; i++){
+                                if(contests[i].ballot_choices.candidates.length){
+                                	    infoHtml+= '<p class="date">تاريخ الانتخاب: <strong>'+contests[i].date + '</strong>&nbsp;&nbsp; تاريخ الاعادة: <strong>'+ contests[i].date_round_2+'</strong></p>';
+                                        infoHtml += ('<h4>المرشحين عن هذه الدائرة ' + contests[i].ballot_choices.candidates.length + ' مرشحين</h4>');
+                                        infoHtml += S('<table cellspacing="0">',
+                                                                '<tr>',
+                                                                 '<th scope="col">مسلسل</th>',
+                                                                  '<th scope="col">الاسم</th>',
+                                                                  '<th scope="col">اسم الشهرة</th>',
+                                                                  '<th scope="col">تاريخ الميلاد</th>',
+                                                                  '<th scope="col">الجنس</th>',
+                                                                  '<th scope="col">الحزب</th>',
+                                                                  '<th scope="col">الصفة</th>',
+                                                                  '<th scope="col">الرمز</th>',
+                                                                '</tr>'
+                                        );
+                                        var candidates = contests[i].ballot_choices.candidates;
+                                        for(var j = 0;j<candidates.length;j++){
+                                                c = (j%2 == 0)?'':'even';
+                                                infoHtml += S('<tr class = "'+c+'">',
+                                                 				  '<td>'+j+'</td>',
+                                                                  '<td>'+candidates[j].name+'</td>',
+                                                                  '<td>'+candidates[j].nick_name+'</td>',
+                                                                  '<td>'+candidates[j].date_of_birth+'</td>',
+                                                                  '<td>'+candidates[j].gender+'</td>',
+                                                                  '<td>'+candidates[j].party_name+'</td>',
+                                                                  '<td>'+candidates[j].type+'</td>',
+                                                                  '<td><img src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
+                                                                '</tr>'
+                                                );
+                                        }
+                                        infoHtml += '</table></div>';
+                                }else if(contests[i].ballot_choices.choices.length){
+                                	    infoHtml+= '<p class="date">تاريخ الانتخاب: <strong>'+contests[i].date + '</strong></p>';
+                                        infoHtml += ('<h4>القوائم فى هذه الدائرة '+ contests[i].ballot_choices.choices.length +' قوائم</h4>');
+                                        infoHtml += '<p>اضغط على اسم القائمة لمزيد من التفاصيل</p>';
+                                       
+     
+                                        infoHtml += '<ul class="lists">';
 
-			//info
+                                        var lists = contests[i].ballot_choices.choices;
+                                        for(var l= 0;l<lists.length;l++){
+                                                infoHtml += '<li>';
+                                                infoHtml += '<img src="'+lists[l].symbol_url+'" class="img-border" /> <a href="javascript:void(0);" onclick="expand(\'list_'+l+'\')" class="toggle expand">قائمة '+lists[l].name+'</a>';
+                                                infoHtml += S('<table id ="list_'+l+'" style="display:none;" cellspacing="0">',
+                                                                        '<tr>',
+                                                                          '<th scope="col">مسلسل</th>',
+                                                                          '<th scope="col">الاسم</th>',
+                                                                          '<th scope="col">اسم الشهرة</th>',
+                                                                          '<th scope="col">تاريخ الميلاد</th>',
+                                                                  		  '<th scope="col">الجنس</th>',
+                                                                          '<th scope="col">الحزب</th>',
+                                                                          '<th scope="col">الصفة</th>',
+                                                                        
+                                                                        '</tr>'
+                                                );
+                                
+                                                var candidates = lists[l].candidates;
+                                                for(var j = 0;j<candidates.length;j++){
+                                                        c = (j%2 == 0)?'':'even';
+                                                        infoHtml += S('<tr class = "'+c+'">',
+                                                         				 '<td>'+j+'</td>',
+                                                                          '<td>'+candidates[j].name+'</td>',
+                                                                          '<td>'+candidates[j].nick_name+'</td>',
+                                                                          '<td>'+candidates[j].date_of_birth+'</td>',
+                                                                          '<td>'+candidates[j].gender+'</td>',
+                                                                          '<td>'+candidates[j].party_name+'</td>',
+                                                                          '<td>'+candidates[j].type+'</td>',
+                                                                        '</tr>'
+                                                        );
+                                                }
+
+                                               
+                                                infoHtml += '</table>';
+                                                infoHtml += '</li>';
+                                        }       
+                                        infoHtml +='</ul></div>';
+                                }
+                        }
+        
+        }
+        
+          function infoMobileHtmlFiller(contests){
+        	infoHtml = '<h1>بيانات هامة عن الدائرة الانتخابية</h1>';
+			for( var i=0;i< contests.length; i++){
+				
+					infoHtml += '<div class="area-info"><h3>'+contests[i].constituency+' '+ contests[i].type+'</h3>';
+					infoHtml += ('<p>عدد المقاعد: '+contests[i].number_of_seats+'</p>');
+					infoHtml += ('<p>مكونة من الأقسام و المراكز التالية:</p>');
+					infoHtml += '<ul class="stations-list clearfix">';
+					for(var p=0;p<contests[i].police_stations.length;p++){				
+						//if(p != 0) infoHtml += ", ";
+						infoHtml += ('<li style="list-style:disc;">'+ contests[i].police_stations[p].pname+'</li>');
+					}
+					infoHtml += '</ul><div class="clear"></div>';
+			
+			
+				
+                //candidates
+            
+                        if(contests[i].ballot_choices.candidates.length){
+                        	    infoHtml+= '<p class="date">تاريخ الانتخاب: <strong>'+contests[i].date + '</strong></p>';
+                        	    infoHtml+= '<p class="date">تاريخ الاعادة: <strong>'+contests[i].date_round_2 + '</strong></p>';
+                        	    var candidates = contests[i].ballot_choices.candidates;
+                        	    infoHtml += ('<h4>المرشحين عن هذه الدائرة ' + contests[i].ballot_choices.candidates.length + ' مرشحين</h4>');
+                                for(var j = 0;j<candidates.length;j++){
+    
+	                                infoHtml += S('<table cellspacing="0" class="candidate">',
+	                                          '<tr><th scope="row">مسلسل</th><td>'+j+'</td></tr>',
+	                                          '<tr><th scope="row">الاسم</th><td>'+candidates[j].name+'</td></tr>',                 
+                                              '<tr><th scope="row">اسم الشهرة</th><td>'+candidates[j].nick_name+'</td></tr>',
+                                              '<tr><th scope="row">تاريخ الميلاد</th><td>'+ candidates[j].date_of_birth +'</td></tr>',
+                                              '<tr><th scope="row">الجنس</th><td>'+candidates[j].gender+'</td></tr>',
+                                              '<tr><th scope="row">الحزب</th><td>'+candidates[j].party_name+'</td></tr>',
+                                              '<tr><th scope="row">الصفة</th><td>'+candidates[j].type+'</td></tr>',
+                                              '<tr><th scope="row">الرمز</th><td><img src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td></tr>'
+	                                                        
+	                                );
+	                              
+	                               
+	                               
+	                                infoHtml += '</table>';
+                                }
+                                 infoHtml += '</div>';
+                        }else if(contests[i].ballot_choices.choices.length){
+                        	   
+                        	    
+                        	    infoHtml+= '<p class="date">تاريخ الانتخاب: <strong>'+contests[i].date + '</strong></p>';
+                        	    infoHtml+= '<p class="date">تاريخ الاعادة: <strong>'+contests[i].date_round_2 + '</strong></p>';
+                                infoHtml += ('<h4>القوائم فى هذه الدائرة '+ contests[i].ballot_choices.choices.length +' قوائم</h4>');
+                                infoHtml += '<p>اضغط على اسم القائمة لمزيد من التفاصيل</p>';
+                                   
+ 
+                                    infoHtml += '<ul class="lists">';
+
+                                var lists = contests[i].ballot_choices.choices;
+                                for(var l= 0;l<lists.length;l++){
+                                        infoHtml += '<li>';
+                                        infoHtml += '<img src="'+lists[l].symbol_url+'" class="img-border" /> <a href="javascript:void(0);" onclick="expand(\'list_'+l+'\')" class="toggle expand">قائمة '+lists[l].name+'</a>';
+                                        var candidates = lists[l].candidates;
+                                        infoHtml += '<div id ="list_'+l+'" style="display:none;">';
+                                        for(var j = 0;j<candidates.length;j++){
+                                        infoHtml += S('<table cellspacing="0" class="candidate">' ,
+                                   
+	                                          '<tr><th scope="row">مسلسل</th><td>'+j+'</td></tr>',
+	                                          '<tr><th scope="row">الاسم</th><td>'+candidates[j].name+'</td></tr>',                 
+                                              '<tr><th scope="row">اسم الشهرة</th><td>'+candidates[j].nick_name+'</td></tr>',
+                                              '<tr><th scope="row">تاريخ الميلاد</th><td>'+ candidates[j].date_of_birth +'</td></tr>',
+                                              '<tr><th scope="row">الجنس</th><td>'+candidates[j].gender+'</td></tr>',
+                                              '<tr><th scope="row">الحزب</th><td>'+candidates[j].party_name+'</td></tr>',
+                                              '<tr><th scope="row">الصفة</th><td>'+candidates[j].type+'</td></tr>'
+                                                           
+	                                );
+	                              
+                                        }
+
+                                       
+                                        infoHtml += '</table></div>';
+                                        
+                                        infoHtml += '</li>';
+                                        
+                                }       
+                                infoHtml +='</ul></div>';
+                        }
+                }
+				return infoHtml;
+        }
+        
+        function infoHtmlFiller(contests){
+        	//info
 			infoHtml = '<h1>بيانات هامة عن الدائرة الانتخابية</h1>';
 			for( var i=0;i< contests.length; i++){
 				if( (document.location.href.indexOf('cid=') > 0 && contests[i].constituency_code == given_cid) || (document.location.href.indexOf('conswid=') > 0 && contests[i].constituency_code == given_cid) || ((!(document.location.href.indexOf('cid=') > 0 )) && (!(document.location.href.indexOf('conswid=') > 0 ))) )
@@ -641,24 +865,19 @@ function setVoteHtml() {
 						//if(p != 0) infoHtml += ", ";
 						infoHtml += ('<li style="list-style:disc;">'+ contests[i].police_stations[p].pname+'</li>');
 					}
-					infoHtml += '</ul><div class="clear"></div></div>';
+					infoHtml += '</ul><div class="clear"></div>';
 				}
-			}
-			 if(document.location.href.indexOf('mobile=') > 0 )
-				infoHtml += '<p class="soon">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</p></div></div>';
-			 if ((!(document.location.href.indexOf('cms=') > 0)) && (!(document.location.href.indexOf('mobile=yes') > 0)) || ((document.location.href.indexOf('conswid=yes') > 0))) 
-				infoHtml += '<p class="soon">قريبا إن شاء الله معلومات عن المرشحين في هذه الدوائر</p>';
-			//if((document.location.href.indexOf('widget=') > 0) ||(document.location.href.indexOf('conswid=') > 0)  )
-				
-                        //candidates
-                        var listingsHtml = '';
-                        for(var i = 0;i <contests.length; i++){
+			
                                 if(contests[i].ballot_choices.candidates.length){
-                                        listingsHtml += ('<h1>المرشحين عن دائرة'+' '+contests[i].type+' '+contests[i].constituency+'</h1>');
-                                        listingsHtml += S('<table width="100%" cellspacing="0">',
+                                	    infoHtml+= '<p class="date">تاريخ الانتخاب: <strong>'+contests[i].date + '</strong>&nbsp;&nbsp; تاريخ الاعادة: <strong>'+ contests[i].date_round_2+'</strong></p>';
+                                        infoHtml += ('<h4>المرشحين عن هذه الدائرة ' + contests[i].ballot_choices.candidates.length + ' مرشحين</h4>');
+                                        infoHtml += S('<table cellspacing="0">',
                                                                 '<tr>',
+                                                                 '<th scope="col"></th>',
                                                                   '<th scope="col">الاسم</th>',
                                                                   '<th scope="col">اسم الشهرة</th>',
+                                                                  '<th scope="col">تاريخ الميلاد</th>',
+                                                                  '<th scope="col">الجنس</th>',
                                                                   '<th scope="col">الحزب</th>',
                                                                   '<th scope="col">الصفة</th>',
                                                                   '<th scope="col">الرمز</th>',
@@ -666,60 +885,87 @@ function setVoteHtml() {
                                         );
                                         var candidates = contests[i].ballot_choices.candidates;
                                         for(var j = 0;j<candidates.length;j++){
-                                                c = (j%2 == 0)?'even':'';
-                                                listingsHtml += S('<tr class = "'+c+'">',
-                                                                  '<td><a href="'+candidates[j].url+'">'+candidates[j].name+'</a></td>',
+                                                c = (j%2 == 0)?'':'even';
+                                                infoHtml += S('<tr class = "'+c+'">',
+                                                 				  '<td>'+j+'</td>',
+                                                                  '<td>'+candidates[j].name+'</td>',
                                                                   '<td>'+candidates[j].nick_name+'</td>',
+                                                                  '<td>'+candidates[j].date_of_birth+'</td>',
+                                                                  '<td>'+candidates[j].gender+'</td>',
                                                                   '<td>'+candidates[j].party_name+'</td>',
                                                                   '<td>'+candidates[j].type+'</td>',
-                                                                  '<td><img width="50" height="50" src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
+                                                                  '<td><img src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
                                                                 '</tr>'
                                                 );
                                         }
-                                        listingsHtml += '</table>';
+                                        infoHtml += '</table></div>';
                                 }else if(contests[i].ballot_choices.choices.length){
-                                        listingsHtml += ('<h1>المرشحين عن دائرة'+' '+contests[i].type+' '+contests[i].constituency+'</h1>');
-                                        listingsHtml += '<p>اضغط على اسم القائمة لمزيد من التفاصيل</p>';
-                                        listingsHtml += '<ul class="lists">';
+                                	    infoHtml+= '<p class="date">تاريخ الانتخاب: <strong>'+contests[i].date + '</strong></p>';
+                                        infoHtml += ('<h4>القوائم فى هذه الدائرة '+ contests[i].ballot_choices.choices.length +' قوائم</h4>');
+                                        infoHtml += '<p>اضغط على اسم القائمة لمزيد من التفاصيل</p>';
+                                       
+     
+                                        infoHtml += '<ul class="lists">';
 
                                         var lists = contests[i].ballot_choices.choices;
                                         for(var l= 0;l<lists.length;l++){
-                                                listingsHtml += '<li>';
-                                                listingsHtml += '<img width="50" height="50"src="'+lists[l].symbol_url+'" class="img-border" /> <a href="'+lists[l].url+'">قائمة '+lists[l].name+'</a>';
-                                                listingsHtml += S('<table width="100%" cellspacing="0">',
+                                                infoHtml += '<li>';
+                                                infoHtml += '<img src="'+lists[l].symbol_url+'" class="img-border" /> <a href="javascript:void(0);" onclick="expand(\'list_'+l+'\')" class="toggle expand">قائمة '+lists[l].name+'</a>';
+                                                infoHtml += S('<table id ="list_'+l+'" style="display:none;" cellspacing="0">',
                                                                         '<tr>',
+                                                                        	'<th scope="col"></th>',
                                                                           '<th scope="col">الاسم</th>',
                                                                           '<th scope="col">اسم الشهرة</th>',
+                                                                          '<th scope="col">تاريخ الميلاد</th>',
+                                                                  		  '<th scope="col">الجنس</th>',
                                                                           '<th scope="col">الحزب</th>',
                                                                           '<th scope="col">الصفة</th>',
-                                                                          '<th scope="col">الرمز</th>',
+                                                                        
                                                                         '</tr>'
                                                 );
                                 
                                                 var candidates = lists[l].candidates;
                                                 for(var j = 0;j<candidates.length;j++){
-                                                        c = (j%2 == 0)?'even':'';
-                                                        listingsHtml += S('<tr class = "'+c+'">',
-                                                                          '<td><a href="'+candidates[j].url+'">'+candidates[j].name+'</a></td>',
+                                                        c = (j%2 == 0)?'':'even';
+                                                        infoHtml += S('<tr class = "'+c+'">',
+                                                         				 '<td>'+j+'</td>',
+                                                                          '<td>'+candidates[j].name+'</td>',
                                                                           '<td>'+candidates[j].nick_name+'</td>',
+                                                                          '<td>'+candidates[j].date_of_birth+'</td>',
+                                                                          '<td>'+candidates[j].gender+'</td>',
                                                                           '<td>'+candidates[j].party_name+'</td>',
                                                                           '<td>'+candidates[j].type+'</td>',
-                                                                          '<td><img width="50" height="50" src="'+candidates[j].symbol_url+'" alt="'+candidates[j].symbol+'" /></td>',
                                                                         '</tr>'
                                                         );
                                                 }
 
-                                                listingsHtml += S('<tr>',
-                                                                '<td colspan="10" class="center list-info"><a href="'+lists[l].url+'">للمزيد من المعلومات قم بزيارة الموقع الخاص بقائمة'+' '+lists[l].name +' </a></td>',
-                                                                '</tr>'
-                                                );
-                                                listingsHtml += '</table>';
-                                                listingsHtml += '</li>';
+                                               
+                                                infoHtml += '</table>';
+                                                infoHtml += '</li>';
                                         }       
-                                        listingsHtml +='</ul>';
+                                        infoHtml +='</ul></div>';
                                 }
                         }
-        
+        				return infoHtml;
+                }
+				
+	
+        /////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+        function longInfo() {
+				var existsHtml = existsHtmlFiller();
+                var location = vote.locations[0]; 
+                var contests = vote.poll.contests;
+                var locationHtml =  locationHtmlFiller(location,contests[0].box_number,contests[0].citizen_number);
+                var boundriesHtml = '';         
+                if(contests){   
+                     boundriesHtml = boundariesHtmlFiller(contests);
+
+					 //info
+					 if(document.location.href.indexOf('mobile=') > 0 )
+					 	var infoHtml = infoMobileHtmlFiller(contests);
+					 else
+					 	var infoHtml = infoHtmlFiller(contests);
                 }
 
 	
@@ -730,12 +976,17 @@ function setVoteHtml() {
 							locationHtml,
                                                         boundriesHtml,
 							infoHtml,
-                                                        listingsHtml,
+                                                    
                                                 '</div>'
                 );
                 return T('longInfo',{html: html});
 
         }
+
+        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        
+    
 }
 
 function getContests() {
@@ -861,10 +1112,10 @@ function lookupPollingPlace( nid,gid,pid, callback ) {
                 	
               
 
-                        if( ( !(document.location.href.indexOf('cid=') > 0) ) && ( !(document.location.href.indexOf('conswid=') > 0) )&& (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid && get_new_pid(poll.stateInfo.pid)!= pid ) )) {
-				notTheSame();
-                                return;
-                        }
+                        //if( ( !(document.location.href.indexOf('cid=') > 0) ) && ( !(document.location.href.indexOf('conswid=') > 0) )&& (poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid && get_new_pid(poll.stateInfo.pid)!= pid ) )) {
+				//notTheSame();
+                               // return;
+                       // }
                         callback( poll );
                 }else{
                         sorry();
@@ -896,18 +1147,18 @@ function(poll) {
                 }
                 //end phase1  
                       
-                if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid   && get_new_pid(poll.stateInfo.pid) != pid) )) {
+               // if((poll.status == 'SUCCESS') && ((gid != poll.stateInfo.gid) || ( pid != poll.stateInfo.pid && get_new_pid(pid) != poll.stateInfo.pid   && get_new_pid(poll.stateInfo.pid) != pid) )) {
 			
-			notTheSame();
-                        return;
-                }
+			//notTheSame();
+              //          return;
+                //}
                 var location = {};
                 if (locations && locations.length){
                         location = locations[0];
                         location.address = location.unparsed_address;
                 }
                 
-                if( location.lng && location.lat ){
+                if(location.lng && location.lng != 0 && location.lat && location.lat != 0){
                         log( 'Polling address found' );                 
                         setVoteGeo( location );
                 }

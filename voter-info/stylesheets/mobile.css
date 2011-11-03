@@ -1,8 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 
-html{ direction:rtl; height: auto;}
-body{ padding:0; margin:0; background:#fff; color:#000; height: auto;}
+html{ direction:rtl;}
+body{ padding:0; margin:0; background:#fff; color:#000;}
 a img{ border:none;}
 body, tr, input, textarea, button{ font-family:Arial, Helvetica, sans-serif; font-size: medium;}
 p{ padding:0; margin:0 0 10px;}
@@ -13,14 +13,14 @@ p{ padding:0; margin:0 0 10px;}
 .clear {clear:both;}
 .clearfix {*display:inline-block;}
 * html .clearfix {*height:1%;}
-.container{height: auto;}
+
 /*-- logo --*/
-.logo{ background:#eee; border-bottom:#ddd solid 2px; padding:0 10px; margin-bottom: 5px;}
+.logo{ background:#eee; border-bottom:#ddd solid 2px; padding:0 10px;}
 .logo a{ display:block;}
 
 /*-- content --*/
-.content{ padding:0 10px; height: auto;}
-h1{ color:#c00; font-size: 22px !important; margin:0 0 10px;}
+.content{ padding:10px;}
+h1{ color:#c00; font-size: x-large; margin:0 0 10px;}
 
 
 /*-- search--*/
@@ -37,11 +37,37 @@ h1{ color:#c00; font-size: 22px !important; margin:0 0 10px;}
 .area-button a{ font-weight:bold; display:block; padding:10px 20px; background: #dedede url(../images/area-button-bg.png) repeat-x; border:1px solid #ccc; box-shadow:3px 3px 3px #ddd; color:#333; text-decoration:none; text-shadow: 1px 1px 1px #fff; margin-bottom:10px; text-align:center; }
 .area-button a:hover{color:#fff; background:#c00  url(../images/menu-bg.png) repeat-x; border:1px solid #900; text-shadow: 1px 1px 1px #666666;}
 
-.stations-list{margin:0 10px; padding:0; list-style:inside;}
+.stations-list{margin:0; padding:0; list-style:inside;}
 .stations-list li{ float:right ; width:120px; margin:5px 10px; }
 
-.area-info{ margin:10px 0;  border:1px solid #ddd; padding-bottom:20px;height: auto;}
+.area-info{ margin:10px 0;  border:1px solid #ddd; padding-bottom:20px;}
 .area-info h3{ background:#eee; padding:10px; font-size: large; margin:0;}
 .area-info p{ margin:10px;}
 
 .soon{ font-weight:bold; background:#f2f2f2;}
+
+
+/*-- candidates infromation --*/
+a{ color:#03c;}
+img{ vertical-align:middle;}
+.date{ margin:10px 0; background:#f2f2f2; padding:2px;}
+.area-info h4{ margin:15px 10px 5px; color:#c00; font-size:18px; margin-top:20px;}
+
+table.candidate{ border:1px solid #ddd; margin:5px 10px; width:270px;}
+table.candidate th, table.candidate td{ padding:5px 10px; border-bottom:1px solid #ddd;}
+table.candidate th{ text-align:left; background:#f2f2f2; width:35%; }
+
+table.candidate.info{margin:0 0 20px 0; width:290px;}
+table.candidate.info th{ width:37%;}
+
+
+ul.lists{ list-style:none; margin:0  5px 0 0; padding:0;}
+ul.lists li a{ padding:0; cursor:pointer; font-size:18px; font-weight:bold;}
+ul.lists li a.collapse{padding-right:20px;  background:url(../images/icons/toggle_collapse.png) no-repeat right; text-decoration:none; color:#000;}
+ul.lists li a.expand{ padding-right:20px; background:url(../images/icons/toggle-expand.png) no-repeat right;}
+img.img-border { padding:5px; margin:5px; border:1px solid #ddd; box-shadow:2px 2px 2px #ddd;}
+
+.your-info{ padding:0; margin:0;}
+.your-info dt, .your-info dd{ float:right;margin:0 0 10px 0; }
+.your-info dd{ margin:0 0 10px 0; }
+.your-info dt{ clear:right; width:120px; text-align:left; margin-left:5px; font-weight:bold;}
